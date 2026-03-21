@@ -755,7 +755,7 @@
                 next_main_state = EXECUTE_prefix;
                 mem_control_w_ena = 1;
                 mem_control_ad = {H, L};
-                mem_control_w_data = mem_control_r_data[7:0] | (8'b00000001 << opcode[5:3]);
+                mem_control_w_data = mem_control_r_data[7:0] | (8'b00000001 << opcode[5:3]); //
               end
               7: begin //T3 에지
                 T_clk_counter_next = 8;
