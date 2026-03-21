@@ -15,7 +15,19 @@ module CPU(
   input [7:0] IF, //Interrupt Flag 레지스터, 
   output reg [7:0] irq_clear, //IF_$$FF0F 모듈에 다이렉트로 전달해서 클럭에지때 irq_clear의 8개의 비트중에 1로 만든 비트에 해당하는 IF의 비트를 0으로 만듬.
   //cpu 상태관련 신호
-  output reg halt //HALT 명령어를 실행해서 인터럽트 신호가 올 때까지 더이상 명령어를 실행하지 않는 대기상태가 되면 1로 만들어줘서 외부 모듈에 알려주면 될듯.
+  output reg halt, //HALT 명령어를 실행해서 인터럽트 신호가 올 때까지 더이상 명령어를 실행하지 않는 대기상태가 되면 1로 만들어줘서 외부 모듈에 알려주면 될듯.
+  //디버깅용 output들
+  output [7:0] A_debug,
+  output [7:0] F_debug,
+  output [7:0] B_debug,
+  output [7:0] C_debug,
+  output [7:0] D_debug,
+  output [7:0] E_debug,
+  output [7:0] H_debug,
+  output [7:0] L_debug,
+  output [15:0] PC_debug,
+  output [15:0] SP_debug,
+  output [7:0] main_state_debug
   
 );
   //memory_interface 모듈은 무조건 주소를 주면 다음 클럭에지에서 data가 나오게 되어있음. 그래서 버스가 사용중이거나 하면 쓰레기값을 반환하는 방식으로 구현함. 그래서 입출력이 완료될때까지 기다리는 구조가 아니고 그냥 조용히 실패하는 구조임. 
@@ -37,6 +49,21 @@ module CPU(
   reg [7:0] L;
   reg [15:0] SP; //Stack Pointer
   reg [15:0] PC; //Program Counter
+  //
+  
+  assign A_debug = A;
+  assign F_debug = F;
+  assign B_debug = B;
+  assign C_debug = C;
+  assign D_debug = D;
+  assign E_debug = E;
+  assign H_debug = H;
+  assign L_debug = L;
+  assign PC_debug = PC;
+  assign SP_debug = SP;
+  
+  assign main_state_debug = main_state;
+  
   
   reg [7:0] IF_reg; //인터럽트를 실행할때 외부 모듈에서 들어오는 IF의 값을 저장해둘 용도로 정의해줌. 
   
@@ -140,9 +167,11 @@ module CPU(
       halt <= 0;
       EI_pending <= 0;
       T_clk_counter <= 0;
-      PC <= 16'h0000; //PC 초기값 설정.
+      PC <= 16'h0100; //PC 초기값 설정.
       SP <= 16'hFFFE;
       IME <= 0;
+      
+      irq_clear[7:0] <= 0;
       
       mem_ena <= 0;
       mem_w_ena <= 0;
@@ -151,6 +180,9 @@ module CPU(
       imm8_reg <= 0;
       imm16_reg <= 0;
       tem_reg <= 0;
+      
+      mem_w_ena_reg <= 0;
+      mem_r_ena_reg <= 0;
     end
     else begin
       mem_ena <= 0; //초기값 설정.
@@ -206,6 +238,7 @@ module CPU(
             mem_state <= 1; //이렇게 PC값을 읽어 오게 됨. 메모리 입출력 할때는 mem_state 1로 바꿔주는거 잊으면 안됨.
             mem_ad_reg <= PC; //ROM은 어차피 CPU만 사용하므로 타이밍 맞출 필요가 없음. VRAM이랑 I/O register만 주의하면 됨.
             mem_r_ena_reg <= 1;
+            mem_w_ena_reg <= 0;
             opcode_valid <= 0;
           end
           fetch_T2: begin //T2에지
@@ -226,9 +259,11 @@ module CPU(
               //EI 명령어가 직전에 실행되었다면 IME는 1로 설정되고 EI_pending은 0으로 설정됨.
               IME <= (EI_pending) ? 1 : IME; //여기서 1로 설정되어도 밑의 코드에 의해 IME_off신호가 1이라면 결과적으로 IME는 0로 설정됨.
               EI_pending <= 0;
+              T_clk_counter <= 0;
             end
             else if(next_main_state == INTERRUPT) begin
               opcode_valid <= 0; //1 M_cycle 명령어 실행 완료 후 INTERRUPT로 state가 변경예정이면 마찬가지로 opcode_valid를 0으로 설정해 always @(*)에서 발생하는 제어신호 차단.
+              T_clk_counter <= 1;
             end
             else if((next_main_state == imm8_T1) | (next_main_state == imm16_T1) | (next_main_state == prefix_T1)) begin
               opcode_valid <= 0;
@@ -264,6 +299,7 @@ module CPU(
             mem_state <= 1;
             mem_ad_reg <= PC + 1; //PC값은 명령어 실행 제일 마지막에 증가하므로 PC + 1을 mem_ad_reg에 넣음으로써 다음 바이트를 읽게 됨.
             mem_r_ena_reg <= 1;
+            mem_w_ena_reg <= 0;
             PC <= PC + 1; //나중에 PC_plus_ena로 PC값을 1 증가시킬것이므로 미리 1 증가시켜서 다음 명령어를 나중에 가르키게 해줌.
           end
           imm8_T2: begin //T2에지
@@ -300,6 +336,7 @@ module CPU(
             mem_state <= 1;
             mem_ad_reg <= PC + 1;
             mem_r_ena_reg <= 1;
+            mem_w_ena_reg <= 0;
             PC <= PC + 1;
           end
           imm16_T2: begin //T2에지
@@ -321,6 +358,7 @@ module CPU(
             mem_state <= 1;
             mem_ad_reg <= PC + 1; //이 PC는 1 증가한 상태고 여기서 1 더 증가시킨 주소를 읽음.
             mem_r_ena_reg <= 1; 
+            mem_w_ena_reg <= 0;
             PC <= PC + 1; //이렇게 되면 PC는 처음에서 2 증가한 상황임. 다음 opcode를 읽으려면 나중에 PC_plus_ena로 1 더 증가시켜야 함.
           end 
           imm16_T6: begin //T2에지
@@ -356,6 +394,7 @@ module CPU(
             mem_state <= 1;
             mem_ad_reg <= PC; //PC는 T4에지에서 이미 1 증가한 상황임. 따라서 PC값을 바로 주소로 줘야함.
             mem_r_ena_reg <= 1;
+            mem_w_ena_reg <= 0;
             opcode_valid <= 0; //일단 opcode_valid를 0으로 T1에지때 만들고 prefix_valid를 T3에지때 1로 만들어서 prefix instruction으로 opcode가 해석되게 해야 함.
           end
           prefix_T2: begin //T2 에지
@@ -374,6 +413,7 @@ module CPU(
             if(next_main_state == fetch_T1) begin //즉 8 T-cycle(2 M-cycle) 명령어인경우. 이때 fetch_T1으로 가서 다음 명령어를 실행해야 하므로 prefix_valid와 opcode_valid를 꺼줌.
               opcode_valid <= 0;
               prefix_valid <= 0;
+              T_clk_counter <= 0;
               //EI 명령어가 직전에 실행되었다면 IME는 1로 설정되고 EI_pending은 0으로 설정됨.
               IME <= (EI_pending) ? 1 : IME;
               EI_pending <= 0;
@@ -385,6 +425,7 @@ module CPU(
             else if(next_main_state == INTERRUPT) begin //즉 8 T-cycle 명령어인데 인터럽트조건을 만족한 경우. 두 valid신호 모두 꺼주고 INTERRUPT로 가줘야 함.
               opcode_valid <= 0;
               prefix_valid <= 0;
+              T_clk_counter <= 1;
             end
           end
           EXECUTE_prefix: begin
@@ -393,6 +434,7 @@ module CPU(
             if(next_main_state == fetch_T1) begin //실행이 끝나고 다음 명령어를 fetch해야 하는 상황일 때.
               opcode_valid <= 0;
               prefix_valid <= 0;
+              T_clk_counter <= 0;
               //EI 명령어가 직전에 실행되었다면 IME는 1로 설정되고 EI_pending은 0으로 설정됨.
               IME <= (EI_pending) ? 1 : IME;
               EI_pending <= 0;
@@ -404,6 +446,7 @@ module CPU(
             else if(next_main_state == INTERRUPT) begin //실행이 끝났는데 인터럽트 처리 해야하는 경우.
               opcode_valid <= 0;
               prefix_valid <= 0;
+              T_clk_counter <= 1;
             end
           end
           INTERRUPT: begin 
@@ -451,6 +494,7 @@ module CPU(
                 main_state <= INTERRUPT;
                 mem_state <= 1;
                 mem_w_ena_reg <= 1;
+                mem_r_ena_reg <= 0;
                 mem_ad_reg[15:0] <= SP - 1;
                 mem_w_data_reg[7:0] <= PC[15:8]; //little endian 방식이라서 SP - 1에 MSB가 들어가고, SP - 2에 LSB가 들어간다고 함.
                 SP <= SP - 1;
@@ -472,6 +516,7 @@ module CPU(
                 main_state <= INTERRUPT;
                 mem_state <= 1;
                 mem_w_ena_reg <= 1;
+                mem_r_ena_reg <= 0;
                 mem_ad_reg[15:0] <= SP - 1;
                 mem_w_data_reg[7:0] <= PC[7:0]; //little endian 방식이라서 SP - 1에 MSB가 들어가고, SP - 2에 LSB가 들어간다고 함.
                 SP <= SP - 1;
@@ -514,11 +559,11 @@ module CPU(
           end
           HALT: begin
             halt <= 1; //main_state가 HALT이면 output인 halt는 1로 설정.
-            if((IE & IF) && IME) begin //인터럽트 요청이 오고 IME가 1인 상황이면 
+            if(((IE & IF) != 8'b0) && IME) begin //인터럽트 요청이 오고 IME가 1인 상황이면 
               main_state <= INTERRUPT;
               T_clk_counter <= 1;
             end
-            else if ((IE & IF) && !IME) begin
+            else if (((IE & IF) != 8'b0) && !IME) begin
               main_state <= fetch_T1;
               T_clk_counter <= 0;
             end
@@ -550,7 +595,7 @@ module CPU(
               A <= reg_w_data[7:0];
             end
             2: begin //F
-              F <= reg_w_data[7:0];
+              F <= reg_w_data[7:0] & 8'b11110000; //F[3:0]은 무조건 0으로 설정.;
             end
             3: begin //B
               B <= reg_w_data[7:0];
@@ -577,7 +622,7 @@ module CPU(
               PC <= reg_w_data[15:0];
             end
             11: begin //AF
-              {A, F} <= reg_w_data[15:0];
+              {A, F} <= reg_w_data[15:0] & 16'b1111111111110000; //F[3:0]은 무조건 0으로 설정.
             end
             12: begin //BC
               {B, C} <= reg_w_data[15:0];
@@ -624,7 +669,7 @@ module CPU(
               PC <= reg_w_data_2[15:0];
             end
             11: begin //AF
-              {A, F} <= reg_w_data_2[15:0];
+              {A, F} <= reg_w_data_2[15:0] & 16'b1111111111110000; //F[3:0]은 무조건 0으로 설정.
             end
             12: begin //BC
               {B, C} <= reg_w_data_2[15:0];
@@ -668,12 +713,14 @@ module CPU(
         if(mem_control_w_ena) begin //mem_control_w_ena, mem_control_r_ena 신호로 메모리 입출력을 할 수 있음. 이 제어신호가 제일 밑에 있기때문에 우선순위가 가장 높음. 읽기때 데이터는 mem_out_reg 에 담기고 assign문으로 mem_control_r_data와 연결되어 있기 때문에 mem_out_reg나 mem_control_r_data는 사실상 같은 변수라고 생각하면 됨.
           mem_state <= 1;
           mem_w_ena_reg <= 1;
+          mem_r_ena_reg <= 0;
           mem_ad_reg[15:0] <= mem_control_ad;
           mem_w_data_reg[7:0] <= mem_control_w_data;
         end
         else if(mem_control_r_ena) begin
           mem_state <= 1;
           mem_r_ena_reg <= 1;
+          mem_w_ena_reg <= 0;
           mem_ad_reg[15:0] <= mem_control_ad;
         end
         
@@ -721,7 +768,7 @@ module CPU(
     register_r16stk = 0;
     register_r16stk_ad = 0;
     
-    if(opcode[7:6] == 2'b00) begin //block 0일때. 
+    if((opcode[7:6] == 2'b00) && !prefix_valid) begin //block 0일때. 
       case(opcode[5:3])
         0: Operand_r8 = B;
         1: Operand_r8 = C;
@@ -747,7 +794,7 @@ module CPU(
     end
     
     
-    if(opcode[7:6] == 2'b00) begin //block 1일때. opcode[5:3]에 따라서 Operand_r8_ad가 정해짐
+    if((opcode[7:6] == 2'b00) && !prefix_valid) begin //block 0일때. opcode[5:3]에 따라서 Operand_r8_ad가 정해짐
       case(opcode[5:3]) //Operand_r8_ad는 reg_ad 값을 나타내기 위한 것임. 그래서 내가 전에 정해둔 주소값이 담김.
         0: Operand_r8_ad = 3; //B
         1: Operand_r8_ad = 4; //C
@@ -759,7 +806,7 @@ module CPU(
         7: Operand_r8_ad = 1; //A
       endcase  
     end
-    else begin //block 3, prefix일때. opcode[2:0]에 따라서 값이 정해짐.
+    else begin //block 2, prefix일때. opcode[2:0]에 따라서 값이 정해짐.
       case(opcode[2:0]) //Operand_r8_ad는 reg_ad 값을 나타내기 위한 것임. 그래서 내가 전에 정해둔 주소값이 담김.
         0: Operand_r8_ad = 3; //B
         1: Operand_r8_ad = 4; //C
@@ -866,7 +913,7 @@ module CPU(
                   end
                   else begin //조건 불만족시 다음 명령어 실행함. 이때 총 실행시간은 8 T_cycle임.
                     PC_plus_ena = 1; //이때 PC를 또 1 증가시켜서 처음PC + 2로 만들어줌. 분기가 일어나는 경우는 밑에서 증가시켜줄 거임.
-                    if((IE & IF) && IME) begin
+                    if(((IE & IF) != 8'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -891,8 +938,8 @@ module CPU(
                 8: begin //T4 에지
                   reg_w_ena = 1;
                   reg_ad = 10; //PC에 쓸거임.
-                  reg_w_data[15:0] =  PC + 1 + {{8{imm8_reg[7]}}, imm8_reg[7:0]};
-                  if((IE & IF) && IME) begin
+                  reg_w_data[15:0] =  PC + 16'd1 + {{8{imm8_reg[7]}}, imm8_reg[7:0]};
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -907,7 +954,7 @@ module CPU(
               case(opcode[4:3])
                 2'b00: begin //NOP, 4 T_cycle  flag: - - - -
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin 
+                  if(((IE & IF) != 8'b0) && IME) begin 
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -953,7 +1000,7 @@ module CPU(
                       next_main_state = EXECUTE;
                       T_clk_counter_next = 15;
                       mem_control_w_ena = 1;
-                      mem_control_ad = imm16_reg[15:0] + 1;
+                      mem_control_ad = imm16_reg[15:0] + 16'd1;
                       mem_control_w_data = SP[15:8];
                     end
                     15: begin //T3에지
@@ -963,7 +1010,7 @@ module CPU(
                     16: begin //T4에지
                       imm16_reg_clear = 1; //마지막에 imm16_reg 초기화 해줌.
                       PC_plus_ena = 1;
-                      if((IE & IF) && IME) begin 
+                      if(((IE & IF) != 8'b0) && IME) begin 
                         next_main_state = INTERRUPT;
                         T_clk_counter_next = 1;
                       end
@@ -1006,9 +1053,9 @@ module CPU(
                     8: begin //T4에지
                       reg_w_ena = 1;
                       reg_ad = 10; //PC에 쓸거니 10으로 설정. 주의할점이 여기서는 PC값을 단순히 1증가시키는게 아니므로 PC_plus_ena를 사용하지 않고 reg_w_ena를 사용함. 1: A, 2: F, 3: B, 4: C, 5: D, 6: E, 7: H, 8: L, 9: SP, 10: PC, 11: AF, 12: BC, 13: DE, 14: HL
-                      reg_w_data[15:0] = PC + 1 + {{8{imm8_reg[7]}}, imm8_reg[7:0]}; //16비트 연산인데 imm_reg은 8비트 이므로 부호확장 해줘야 함. 주의할점이 점프명령어에서는 imm8_reg를 signed라고 봐야 한다는 점임.
+                      reg_w_data[15:0] = PC + 16'd1 + {{8{imm8_reg[7]}}, imm8_reg[7:0]}; //16비트 연산인데 imm_reg은 8비트 이므로 부호확장 해줘야 함. 주의할점이 점프명령어에서는 imm8_reg를 signed라고 봐야 한다는 점임.
                       imm8_reg_clear = 1; //imm8_reg 초기화.
-                      if((IE & IF) && IME) begin //그리고 PC같은 경우에는 다음 바이트의 imm8을 읽기위해 여기서는 미리 1 증가되어 있으므로 PC + 2로 쓰면 안됨 !!!
+                      if(((IE & IF) != 8'b0) && IME) begin //그리고 PC같은 경우에는 다음 바이트의 imm8을 읽기위해 여기서는 미리 1 증가되어 있으므로 PC + 2로 쓰면 안됨 !!!
                         next_main_state = INTERRUPT;
                         T_clk_counter_next = 1;
                       end
@@ -1035,7 +1082,7 @@ module CPU(
                   reg_w_data[15:0] = imm16_reg[15:0];
                   imm16_reg_clear = 1;
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1071,7 +1118,7 @@ module CPU(
                   reg_ad_2 = 2; //플레그 바꿔줘야 함.
                   reg_w_data_2[7:0] = {F[7], 1'b0, ({1'b0, H[3:0], L[7:0]} + {1'b0, Operand_r16[11:0]} > 13'b0111111111111), ({1'b0, H[7:0], L[7:0]} + {1'b0, Operand_r16} > 17'b01111111111111111), 4'b0000}; //16비트 연산이라서 ALU_8bit 모듈을 못써서 이렇게 작성했음. half carry는 11번 비트에서 carry가 발생했는지를 나타내고 carry는 15번 비트에서 carry가 발생했는지 나타냄. 
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1109,17 +1156,17 @@ module CPU(
                   if(opcode[5:4] == 2) begin//HL+
                     reg_w_ena = 1;
                     reg_ad = 14; //HL에 쓰기
-                    reg_w_data = {H, L} + 1;
+                    reg_w_data[15:0] = {H, L} + 16'd1;
                   end
                   else if(opcode[5:4] == 3) begin //HL-
                     reg_w_ena = 1;
                     reg_ad = 14; //HL에 쓰기
-                    reg_w_data = {H, L} - 1;
+                    reg_w_data[15:0] = {H, L} - 16'd1;
                   end
                   else begin //나머지 BC, DE인 경우에는 레지스터 쓰기는 일어나지 않음
                   end
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1156,16 +1203,16 @@ module CPU(
                   reg_w_data[7:0] = mem_control_r_data[7:0]; //메모리에서 읽어온 값을 A에 씀.
                   if(opcode[5:4] == 2) begin//HL+
                     reg_ad_2 = 14; //HL에 쓰기
-                    reg_w_data_2 = {H, L} + 1;
+                    reg_w_data_2 = {H, L} + 16'd1;
                   end
                   else if(opcode[5:4] == 3) begin //HL-
                     reg_ad_2 = 14; //HL에 쓰기
-                    reg_w_data_2 = {H, L} - 1;
+                    reg_w_data_2 = {H, L} - 16'd1;
                   end
                   else begin //BC거나 DE일때는 증감 없음. 
                   end
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1199,9 +1246,9 @@ module CPU(
                 4: begin //T4에지
                   reg_w_ena = 1; //이 명령어에서는 F레지스터는 바꾸지 않음!!1
                   reg_ad = Operand_r16_ad;
-                  reg_w_data[15:0] = Operand_r16 + 1;
+                  reg_w_data[15:0] = Operand_r16 + 16'd1;
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1233,9 +1280,9 @@ module CPU(
                 4: begin //T4에지
                   reg_w_ena = 1; //이 명령어에서는 F레지스터는 바꾸지 않음!!1
                   reg_ad = Operand_r16_ad;
-                  reg_w_data[15:0] = Operand_r16 - 1;
+                  reg_w_data[15:0] = Operand_r16 - 16'd1;
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1281,7 +1328,7 @@ module CPU(
                   T_clk_counter_next = 7;
                   mem_control_w_ena = 1;
                   mem_control_ad = {H, L};
-                  mem_control_w_data = mem_control_r_data[7:0] + 1;
+                  mem_control_w_data = mem_control_r_data[7:0] + 8'd1; //decimal(10진수)라서 d임. 1을 8비트라고 명확히 정의를 해 놓아야지 FF -> 00으로 됨.
                   tem_reg_w_ena = 1; //tem_reg에 mem_control_w_data저장. 
                   tem_reg_w_data = mem_control_w_data;
                 end
@@ -1292,9 +1339,9 @@ module CPU(
                 8: begin //T4에지
                   reg_w_ena = 1;
                   reg_ad = 2; //F레지스터에 쓸거임.
-                  reg_w_data[7:0] = {(tem_reg == 0), 1'b0, (mem_control_r_data[3:0] == 4'b1111), F[4], 4'b0000};
+                  reg_w_data[7:0] = {(tem_reg[7:0] == 0), 1'b0, (mem_control_r_data[3:0] == 4'b1111), F[4], 4'b0000};
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1308,11 +1355,11 @@ module CPU(
             else begin
               reg_w_ena = 1;
               reg_ad = Operand_r8_ad;
-              reg_w_data[7:0] = Operand_r8 + 1;
+              reg_w_data[7:0] = Operand_r8 + 8'd1;
               reg_ad_2 = 2; //F레지스터에 flag값 써줘야 함.
               reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, (Operand_r8[3:0] == 4'b1111), F[4], 4'b0000}; //carry flag는 변경 X. 그리고 half carry는 하위 4비트가 1111인 경우에 1이 됨.
               PC_plus_ena = 1; //PC 1 증가.
-              if((IE & IF) && IME) begin //인터럽트 해야하는 경우.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 해야하는 경우.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -1356,7 +1403,7 @@ module CPU(
                   T_clk_counter_next = 7;
                   mem_control_w_ena = 1;
                   mem_control_ad = {H, L};
-                  mem_control_w_data = mem_control_r_data[7:0] - 1;
+                  mem_control_w_data = mem_control_r_data[7:0] - 8'd1;
                   tem_reg_w_ena = 1; //tem_reg에 mem_control_w_data저장. 
                   tem_reg_w_data = mem_control_w_data;
                 end
@@ -1367,9 +1414,9 @@ module CPU(
                 8: begin //T4에지
                   reg_w_ena = 1;
                   reg_ad = 2; //F레지스터에 쓸거임.
-                  reg_w_data[7:0] = {(tem_reg == 0), 1'b0, (mem_control_r_data[3:0] == 4'b0000), F[4], 4'b0000};
+                  reg_w_data[7:0] = {(tem_reg == 0), 1'b1, (mem_control_r_data[3:0] == 4'b0000), F[4], 4'b0000};
                   PC_plus_ena = 1;
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1383,11 +1430,11 @@ module CPU(
             else begin
               reg_w_ena = 1;
               reg_ad = Operand_r8_ad;
-              reg_w_data[7:0] = Operand_r8 - 1;
+              reg_w_data[7:0] = Operand_r8 - 8'd1;
               reg_ad_2 = 2; //F레지스터에 flag값 써줘야 함.
               reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b1, (Operand_r8[3:0] == 4'b0000), F[4], 4'b0000}; //carry flag는 변경 X. 그리고 half carry는 하위 4비트가 0000인 경우에 1이 됨.
               PC_plus_ena = 1; //PC 1 증가.
-              if((IE & IF) && IME) begin //인터럽트 해야하는 경우.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 해야하는 경우.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -1426,7 +1473,7 @@ module CPU(
                 8: begin //T4 에지
                   imm8_reg_clear = 1; //명령어가 끝날때 imm8_reg를 초기화시켜둠.
                   PC_plus_ena = 1; //PC 1 증가. main_state가 imm8_T1 -> imm8_T2로 갈때 PC는 이미 1 증가해서 다시 1만 증가시켜주면 됨. 결국 T4에지에서 PC는 처음PC + 2값이 됨.
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1446,10 +1493,10 @@ module CPU(
                 4: begin //M2의 T4 에지. M2의 T3에지에서 opcode_valid가 1로 다시 바뀌면서 T_clk_counter는 4로 설정됨.
                   reg_w_ena = 1;
                   reg_ad = Dest_r8; //전에 만들어둔 Dest_R8을 재활용 함.
-                  reg_w_data = imm8_reg; //imm8_reg는 M2의 T3에지에서 값이 들어갔음.
+                  reg_w_data[7:0] = imm8_reg; //imm8_reg는 M2의 T3에지에서 값이 들어갔음.
                   imm8_reg_clear = 1; //imm8_reg를 초기화해줌. 굳이 할 필요는 없지만 파형볼때 좋을라고 해둠.
                   PC_plus_ena = 1; //PC 1 증가
-                  if((IE & IF) && IME) begin
+                  if(((IE & IF) != 8'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1468,7 +1515,7 @@ module CPU(
                 reg_ad = 11; //AF에 쓸거임
                 reg_w_data[15:0] = {A[6:0], A[7], 1'b0, 1'b0, 1'b0, A[7], 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1482,7 +1529,7 @@ module CPU(
                 reg_ad = 11; //AF에 쓸거임
                 reg_w_data[15:0] = {A[0], A[7:1], 1'b0, 1'b0, 1'b0, A[0], 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1496,7 +1543,7 @@ module CPU(
                 reg_ad = 11; //AF에 쓸거임
                 reg_w_data[15:0] = {A[6:0], F[4], 1'b0, 1'b0, 1'b0, A[7], 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1510,7 +1557,7 @@ module CPU(
                 reg_ad = 11; //AF에 쓸거임
                 reg_w_data[15:0] = {F[4], A[7:1], 1'b0, 1'b0, 1'b0, A[0], 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1549,7 +1596,7 @@ module CPU(
                   reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), F[6], 1'b0, F[4], 4'b0000};
                 end
                 PC_plus_ena = 1; //PC 1 증가.
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1563,7 +1610,7 @@ module CPU(
                 reg_ad = 11; //AF에 쓸거임
                 reg_w_data[15:0] = {~A[7:0], F[7], 1'b1, 1'b1, F[4], 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1577,7 +1624,7 @@ module CPU(
                 reg_ad = 2; //F에 쓸거임
                 reg_w_data[7:0] = {F[7], 1'b0, 1'b0, 1'b1, 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1591,7 +1638,7 @@ module CPU(
                 reg_ad = 2; //F에 쓸거임
                 reg_w_data[7:0] = {F[7], 1'b0, 1'b0, !F[4], 4'b0000};
                 PC_plus_ena = 1; 
-                if((IE & IF) && IME) begin
+                if(((IE & IF) != 8'b0) && IME) begin
                   next_main_state = INTERRUPT; 
                   T_clk_counter_next = 1;
                 end
@@ -1607,11 +1654,11 @@ module CPU(
       2'b01: begin //block 1
         if(opcode == 8'b01110110) begin //halt 일때
           PC_plus_ena = 1; //PC는 조건 상관없이 일단 미리 증가시켜줌.
-          if((IE & IF) && IME) begin //(IE & IF)가 0이 아니고 IME가 1일때
+          if(((IE & IF) != 8'b0) && IME) begin //(IE & IF)가 0이 아니고 IME가 1일때
             next_main_state = INTERRUPT; //IME가 1이므로 인터럽트 핸들러를 실행시켜야 함.
             T_clk_counter_next = 1;
           end
-          else if((IE & IF) && !IME) begin //else if이므로 (IE & IF)가 0이 아니고 IME가 0일때
+          else if(((IE & IF) != 8'b0) && !IME) begin //else if이므로 (IE & IF)가 0이 아니고 IME가 0일때
             next_main_state = fetch_T1; //IME가 0이므로 인터럽트 핸들러를 실행하지 않고 바로 다음 명령어를 실행함.
             T_clk_counter_next = 0;
           end
@@ -1634,7 +1681,7 @@ module CPU(
               2: begin //T2에지
                 T_clk_counter_next = 3;
                 next_main_state = EXECUTE;
-                mem_control_r_ena = 0;
+                mem_control_r_ena = 1;
                 mem_control_ad = {H, L}; //HL에 담겨있는 값을 메모리 주소로 봐서 값을 읽어와야 함.
               end
               3: begin //T3에지
@@ -1646,7 +1693,7 @@ module CPU(
                 reg_ad = Dest_r8;
                 reg_w_data[7:0] = mem_control_r_data; //T3에지에서 mem_out_reg에 값이 저장되고 그걸 T4에지에서 레지스터에 저장시켜줌. 아 그리고 reg_w_data[7:0] 에서 [7:0] 쓰는거 필수임. 8비트 쓸거면 [7:0] 16비트면 reg_w_data[15:0] 이렇게 해야함. 
                 PC_plus_ena = 1; //PC 1 증가.
-                if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -1680,7 +1727,7 @@ module CPU(
               end
               4: begin //T4 에지
                 PC_plus_ena = 1; //PC 증가.
-                if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -1696,7 +1743,7 @@ module CPU(
             reg_ad = Dest_r8;
             reg_w_data[7:0] = Source_r8;
             PC_plus_ena = 1; //PC 1 증가 신호
-            if(IME && (IE & IF)) begin //인터럽트 검사.
+            if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사.
               next_main_state = INTERRUPT;
               T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 평소에는 0임.
              end
@@ -1738,7 +1785,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1758,7 +1805,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -1797,7 +1844,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1817,7 +1864,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -1856,7 +1903,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1876,7 +1923,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -1915,7 +1962,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1935,7 +1982,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -1974,7 +2021,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1994,7 +2041,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -2033,7 +2080,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -2053,7 +2100,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -2092,7 +2139,7 @@ module CPU(
                   reg_ad = 11; //AF에 쓸거기 때문에 11로 설정.
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -2112,7 +2159,7 @@ module CPU(
               reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000}; //A에는 alu_result_8을 쓰고, F레지스터를 바꿔줌.
               reg_ad = 11; //AF에 쓸거임. 
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
@@ -2151,7 +2198,7 @@ module CPU(
                   reg_ad = 2; //F에만 쓸거기 때문에 2로 설정.
                   reg_w_data[7:0] = {flag_8[3:0], 4'b0000};
                   PC_plus_ena = 1; //PC 1 증가 신호      
-                  if(IME && (IE & IF)) begin //인터럽트 처리를 위한 if-else 문
+                  if(((IE & IF) != 8'b0) && IME) begin //인터럽트 처리를 위한 if-else 문
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -2171,7 +2218,7 @@ module CPU(
               reg_w_data[7:0] = {flag_8[3:0], 4'b0000}; //A에는 값을 쓰지않고, F레지스터만 바꿔줌.
               reg_ad = 2; //F에만 쓸거라서 2로 설정함.
               PC_plus_ena = 1; //PC 1 증가 신호      
-              if(IME && (IE & IF)) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
+              if(((IE & IF) != 8'b0) && IME) begin //인터럽트 검사. 인터럽트가 없으면 fetch_T1으로 main_state를 바꾸고 있다면 INTERRUPT로 바꿈.
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1; //인터럽트가 일어날때 T4에지에서 T_clk_counter는 1로 갱신되게 됨. 
               end
