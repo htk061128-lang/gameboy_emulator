@@ -1,6 +1,6 @@
 {
   "name": "GameBoy Emulator Dev",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/cpp:1-ubuntu-22.04",
   "forwardPorts": [6080],
   "features": {
     "ghcr.io/devcontainers/features/desktop-lite:1": {
@@ -14,7 +14,7 @@
         "mshr-h.VerilogHDL",
         "ms-vscode.cpptools",
         "ms-vscode.cpptools-extension-pack"
-      ]
+      ] 
     }
   }
 }
