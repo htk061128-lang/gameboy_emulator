@@ -9,6 +9,14 @@
 #include "Vtop.h"
 #include "rom_data.h"
 
+// Game Boy 오리지널 해상도
+const int GB_WIDTH = 160;
+const int GB_HEIGHT = 144;
+// 화면이 너무 작아서 보기 힘드므로 4배 확대해서 창을 띄웁니다.
+const int SCALE = 4; 
+
+
+
 int main(int argc, char** argv) {
     // 1. Verilator 초기화
     Verilated::commandArgs(argc, argv);
@@ -24,13 +32,14 @@ int main(int argc, char** argv) {
 
     std::cout << "Simulation Starting..." << std::endl;
 
-    while() {
-        dut->my_clk = 1;
+    while(1) {
+        dut->clk = 1;
         dut->eval();
 
 
-        dut->my_clk = 0;
+        dut->clk = 0;
         dut->eval();
+
     }
 
 

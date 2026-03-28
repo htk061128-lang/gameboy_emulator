@@ -2230,12 +2230,12 @@ module CPU(
          endcase
       end
       2'b11: begin //block 3
-`include "block3_decoder.sv" //너무 길어져서 따로 파일을 만들어서 작성함.
+`include "block3_decoder.svh" //너무 길어져서 따로 파일을 만들어서 작성함.
       end
     endcase //case(opcode[7:6]) 문의 endcase
     end //if(opcode_valid) 문의 end
     
-`include "prefix_decoder.sv" //prefix 명령어 디코딩 부분은 파일이 너무 길어져서 edaplayground에서 저장이 안되서 prefix_decoder.sv로 옮겼음.
+`include "prefix_decoder.svh" //prefix 명령어 디코딩 부분은 파일이 너무 길어져서 edaplayground에서 저장이 안되서 prefix_decoder.sv로 옮겼음.
     
 
     
