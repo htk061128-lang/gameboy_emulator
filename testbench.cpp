@@ -6,7 +6,7 @@
 #include <fstream>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vsim.h"
+#include "Vtop.h"
 #include "rom_data.h"
 
 int main(int argc, char** argv) {
@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     Verilated::commandArgs(argc, argv);
 
     // 2. CPU 인스턴스 생성
-    Vsim* dut = new Vsim;
+    Vtop* dut = new Vtop;
 
     // 3. 파형 추적 설정
     Verilated::traceEverOn(true);
