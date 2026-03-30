@@ -9,6 +9,176 @@
 #include "Vtop.h"
 #include "rom_data.h"
 
+#include <stdint.h>
+
+#include <stdint.h>
+
+void setup_test_rom(uint8_t *memory)
+{
+    // [0] 메모리 초기화
+    for (int i = 0; i < 32768; i++) memory[i] = 0;
+
+    // [1] 부팅 진입점 ($0100)
+    memory[0x0100] = 0x00; // NOP
+    memory[0x0101] = 0xC3; // JP $0150
+    memory[0x0102] = 0x50; 
+    memory[0x0103] = 0x01; 
+
+    // ==========================================
+    // [DATA] 타일 및 맵 데이터 (체크무늬 생성)
+    // ==========================================
+    // 타일 0: 텅 빈 공간
+    for(int i=0; i<16; i++) memory[0x0500 + i] = 0x00;
+    
+    // 타일 1: 꽉 찬 네모 (십자가 모양 패턴으로 시각적 구분을 줌)
+    uint8_t tile_cross[] = {
+        0x18,0x18, 0x18,0x18, 0x18,0x18, 0xFF,0xFF, 
+        0xFF,0xFF, 0x18,0x18, 0x18,0x18, 0x18,0x18
+    };
+    for(int i=0; i<16; i++) memory[0x0510 + i] = tile_cross[i];
+
+    // BG 타일맵 (ROM $0600) -> 체스판 패턴으로 1024바이트 채우기
+    for(int i=0; i<1024; i++) {
+        int x = i % 32;
+        int y = i / 32;
+        // x와 y를 더한 값이 짝수면 타일 1, 홀수면 타일 0 (체스판 무늬)
+        memory[0x0600 + i] = ((x + y) % 2 == 0) ? 1 : 0;
+    }
+
+    // ==========================================
+    // [CODE] 메인 루틴 ($0150)
+    // ==========================================
+    uint16_t p = 0x0150;
+
+    // Z80 메모리 복사 람다 함수 (ROM -> VRAM)
+    auto emit_copy = [&](uint16_t src, uint16_t dst, uint16_t size) {
+        memory[p++] = 0x21; memory[p++] = dst & 0xFF; memory[p++] = dst >> 8; // LD HL, dst
+        memory[p++] = 0x11; memory[p++] = src & 0xFF; memory[p++] = src >> 8; // LD DE, src
+        memory[p++] = 0x01; memory[p++] = size & 0xFF; memory[p++] = size >> 8; // LD BC, size
+        memory[p++] = 0x1A; // LD A, (DE)
+        memory[p++] = 0x13; // INC DE
+        memory[p++] = 0x22; // LD (HL+), A
+        memory[p++] = 0x0B; // DEC BC
+        memory[p++] = 0x78; // LD A, B
+        memory[p++] = 0xB1; // OR C
+        memory[p++] = 0x20; memory[p++] = 0xF9; // JR NZ, -7
+    };
+
+    // 데이터 VRAM으로 복사 ($8000: 타일 데이터, $9800: 타일 맵)
+    emit_copy(0x0500, 0x8000, 32);   // 타일 2개 복사
+    emit_copy(0x0600, 0x9800, 1024); // BG 타일맵 복사
+
+    // [2] 초기 레지스터 설정
+    memory[p++] = 0x3E; memory[p++] = 0xE4; memory[p++] = 0xE0; memory[p++] = 0x47; // BGP = $E4 (정상 팔레트)
+    memory[p++] = 0xAF; memory[p++] = 0xE0; memory[p++] = 0x42; // SCY = 0
+    memory[p++] = 0xE0; memory[p++] = 0x43; // SCX = 0
+
+    // [3] LCD 켜기 (오직 BG만 켬)
+    // 0x91 = LCD ON (Bit 7), BG/Win Data $8000 (Bit 4), BG ON (Bit 0). 나머지는 모두 0.
+    memory[p++] = 0x3E; memory[p++] = 0x91; 
+    memory[p++] = 0xE0; memory[p++] = 0x40; // LDH ($40), A
+
+    // ==========================================
+    // [4] 메인 컨트롤 루프
+    // ==========================================
+    uint16_t loop_start = p;
+
+    // V-Blank 대기 (LY == 144가 될 때까지 멈춤)
+    memory[p++] = 0xF0; memory[p++] = 0x44; // LDH A, ($44)
+    memory[p++] = 0xFE; memory[p++] = 0x90; // CP 144
+    memory[p++] = 0x20; memory[p++] = 0xFA; // JR NZ, -6
+
+    // --- D-Pad 읽기 ---
+    memory[p++] = 0x3E; memory[p++] = 0x20; memory[p++] = 0xE0; memory[p++] = 0x00; // P14(방향키) 선택
+    memory[p++] = 0xF0; memory[p++] = 0x00; // 딜레이를 위해 두 번 읽음
+    memory[p++] = 0xF0; memory[p++] = 0x00; 
+    memory[p++] = 0x2F; memory[p++] = 0xE6; memory[p++] = 0x0F; memory[p++] = 0x47; // 반전 후 하위 4비트만 B 레지스터에 저장
+
+    // 방향키 판별 (Bit 0: Right, Bit 1: Left, Bit 2: Up, Bit 3: Down)
+    // Right -> SCX 증가
+    memory[p++] = 0xCB; memory[p++] = 0x40; memory[p++] = 0x28; memory[p++] = 0x04;
+    memory[p++] = 0xF0; memory[p++] = 0x43; memory[p++] = 0x3C; memory[p++] = 0xE0; memory[p++] = 0x43;
+    
+    // Left -> SCX 감소
+    memory[p++] = 0xCB; memory[p++] = 0x48; memory[p++] = 0x28; memory[p++] = 0x04;
+    memory[p++] = 0xF0; memory[p++] = 0x43; memory[p++] = 0x3D; memory[p++] = 0xE0; memory[p++] = 0x43;
+    
+    // Up -> SCY 감소
+    memory[p++] = 0xCB; memory[p++] = 0x50; memory[p++] = 0x28; memory[p++] = 0x04;
+    memory[p++] = 0xF0; memory[p++] = 0x42; memory[p++] = 0x3D; memory[p++] = 0xE0; memory[p++] = 0x42;
+    
+    // Down -> SCY 증가
+    memory[p++] = 0xCB; memory[p++] = 0x58; memory[p++] = 0x28; memory[p++] = 0x04;
+    memory[p++] = 0xF0; memory[p++] = 0x42; memory[p++] = 0x3C; memory[p++] = 0xE0; memory[p++] = 0x42;
+
+    // 같은 프레임 내에서 루프가 여러 번 도는 것을 방지 (LY가 144를 벗어날 때까지 대기)
+    // memory[p++] = 0xF0; memory[p++] = 0x44; memory[p++] = 0xFE; memory[p++] = 0x90; memory[p++] = 0x28; memory[p++] = 0xFA;
+    uint16_t wait_leave_vblank = p;
+    memory[p++] = 0xF0; memory[p++] = 0x44; // LDH A, ($44)
+    memory[p++] = 0xFE; memory[p++] = 0x90; // CP 144
+    memory[p++] = 0x28; memory[p++] = 0xFA; // JR Z, -6 (LY가 144면 계속 대기)
+
+    // 루프 복귀
+    memory[p++] = 0x18; 
+    memory[p++] = (uint8_t)((loop_start - (p + 1)) & 0xFF); 
+}
+
+int print_tile(uint8_t *vram)
+{
+    SDL_Window *window = SDL_CreateWindow(
+        "game boy test",        // 창 제목
+        SDL_WINDOWPOS_CENTERED, // X 위치
+        SDL_WINDOWPOS_CENTERED, // Y 위치
+        16 * 8 * 2,             // 창 너비, 16개의 타일을 2배 확대
+        24 * 8 * 2,             // 창 높이, 24개의 타일을 2배 확대
+        SDL_WINDOW_SHOWN        // 플래그
+    );
+    if (!window)
+    {
+        std::cerr << "Window 생성 실패: " << SDL_GetError() << std::endl;
+        SDL_Quit();
+        return 1;
+    }
+
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED); // 렌더러 생성.
+
+    // 5. 텍스처(Texture) 생성 (160x144 크기의 가상 도화지)
+    SDL_Texture *texture = SDL_CreateTexture(
+        renderer,
+        SDL_PIXELFORMAT_ARGB8888,    // 픽셀 포맷 (Alpha, Red, Green, Blue 각각 8비트)
+        SDL_TEXTUREACCESS_STREAMING, // CPU에서 픽셀 데이터를 자주 업데이트할 때 쓰는 옵션
+        16 * 8,                      // 가로 128픽셀
+        24 * 8);                     // 세로 192픽셀
+
+    std::vector<uint32_t> pixelbuffer(16 * 8 * 24 * 8); // 128 * 192 개의 배열 생성. 각각 32비트.
+
+    uint32_t palette[4] = {
+        0xFFE0F8D0, // 0: 가장 밝은 녹색 (배경) - Alpha 100%
+        0xFF88C070, // 1: 밝은 녹색
+        0xFF346856, // 2: 어두운 녹색
+        0xFF081820  // 3: 까만색 (사각형) - Alpha 100%
+    };
+
+    uint8_t tile_data[8][8];
+
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+        }
+    }
+
+    SDL_UpdateTexture(texture, nullptr, pixelbuffer.data(), 128 * sizeof(uint32_t));
+
+    // 10. 렌더러 초기화 및 도화지를 창 크기에 맞춰 확대해서 복사
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+
+    // 11. 화면에 최종 출력
+    SDL_RenderPresent(renderer);
+    printf("tile display!\n");
+}
+
 // Game Boy 오리지널 해상도
 const int GB_WIDTH = 160;
 const int GB_HEIGHT = 144;
@@ -66,10 +236,10 @@ int main(int argc, char **argv)
     Vtop *dut = new Vtop;
 
     // 3. 파형 추적 설정
-    Verilated::traceEverOn(true);
-    VerilatedVcdC *m_trace = new VerilatedVcdC;
-    dut->trace(m_trace, 5);
-    m_trace->open("waveform.vcd");
+    // Verilated::traceEverOn(true);
+    // VerilatedVcdC *m_trace = new VerilatedVcdC;
+    // dut->trace(m_trace, 5);
+    // m_trace->open("waveform.vcd");
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     { // SDL 초기화
@@ -104,16 +274,29 @@ int main(int argc, char **argv)
         GB_HEIGHT);
 
     std::vector<uint32_t> pixelbuffer(GB_WIDTH * GB_HEIGHT); // 160 * 144 개의 배열 생성. 각각 32비트.
+
     uint32_t palette[4] = {
-        0x9BBC0FFF, // 0: 가장 밝음 (White)
-        0x8BAC0FFF, // 1: 밝은 회색 (Light Gray)
-        0x306230FF, // 2: 어두운 회색 (Dark Gray)
-        0x0F380FFF  // 3: 가장 어두움 (Black)
+        0xFFE0F8D0, // 0: 가장 밝은 녹색 (배경) - Alpha 100%
+        0xFF88C070, // 1: 밝은 녹색
+        0xFF346856, // 2: 어두운 녹색
+        0xFF081820  // 3: 까만색 (사각형) - Alpha 100%
     };
+
+    for (int i = 0; i < (160 * 144); i++)
+    {
+        pixelbuffer[i] = palette[0]; // pixelbuffer 초기화.
+    }
+
     int j = 0; // pixelbuffer의 인덱스를 저장함.
 
     SDL_Event event; // 이벤트 처리 위해 선언.
     bool is_running = true;
+    int sim_time = 0; // 매 클럭마다 1씩 증가함.
+    int frame_counter = 0;
+    int second_counter = 0;
+    int second_counter_standard = SDL_GetTicks();
+
+    uint32_t frame_start_time = SDL_GetTicks(); // 프레임이 출력이 끝난후의 시작을 측정하는 변수.
 
     std::cout << "Simulation Starting..." << std::endl;
 
@@ -124,22 +307,50 @@ int main(int argc, char **argv)
     OAM oam;
     HRAM hram;
 
-    for (int i = 0; i < 32768; i++) // 2097152 대신 32768 사용
+    for (int i = 0; i < 2097152; i++)
+    {
+        rom.memory[i] = 0;
+    }
+
+    setup_test_rom(rom.memory);
+    /*for (int i = 0; i < 32768; i++)
     {
         rom.memory[i] = game_data[i];
+    }*/
+
+    for (int i = 0; i < 32768; i++)
+    {
+        eram.memory[i] = 0;
     }
+    for (int i = 0; i < 8192; i++)
+    {
+        vram.memory[i] = 0;
+    }
+    for (int i = 0; i < 160; i++)
+    {
+        oam.memory[i] = 0;
+    }
+    for (int i = 0; i < 127; i++)
+    {
+        hram.memory[i] = 0;
+    }
+    for (int i = 0; i < 4096; i++)
+    {
+        wram.memory[i] = 0;
+    }
+
     dut->MBC_version = 1; // MBC1으로 설정.
     dut->ROM_size = 6;    // 2MiB
     dut->RAM_size = 3;    // 32KiB
-    dut->reset = 0;
 
+    dut->reset = 1;
     dut->clk = 0;
     dut->eval();
 
-    dut->reset = 1;
     dut->clk = 1;
     dut->eval();
 
+    dut->reset = 0;
     dut->clk = 0;
     dut->eval();
 
@@ -160,60 +371,100 @@ int main(int argc, char **argv)
 
             // 11. 화면에 최종 출력
             SDL_RenderPresent(renderer);
-            SDL_Delay(16); // CPU를 100% 쓰지 않도록 약간의 딜레이 (약 60FPS 타겟)
+            frame_counter++;
+            printf("pixel display! JOY: %02X\n", dut->JOY_out);
+
+            while (SDL_PollEvent(&event))
+            {
+                if (event.type == SDL_QUIT)
+                    is_running = false;
+
+                // 1. 키를 눌렀을 때 (상태를 1로 유지)
+                if (event.type == SDL_KEYDOWN)
+                {
+                    switch (event.key.keysym.sym)
+                    {
+                    case SDLK_UP:
+                        dut->joypad_up = 1;
+                        break;
+                    case SDLK_DOWN:
+                        dut->joypad_down = 1;
+                        break;
+                    case SDLK_LEFT:
+                        dut->joypad_left = 1;
+                        break;
+                    case SDLK_RIGHT:
+                        dut->joypad_right = 1;
+                        break;
+                    case SDLK_z:
+                        dut->joypad_A = 1;
+                        break;
+                    case SDLK_x:
+                        dut->joypad_B = 1;
+                        break;
+                    case SDLK_c:
+                        dut->joypad_start = 1;
+                        break;
+                    case SDLK_v:
+                        dut->joypad_select = 1;
+                        break;
+                    case SDLK_ESCAPE:
+                        is_running = false;
+                        break;
+                    }
+                }
+                // 2. 키를 뗐을 때 (상태를 0으로 복구)
+                else if (event.type == SDL_KEYUP)
+                {
+                    switch (event.key.keysym.sym)
+                    {
+                    case SDLK_UP:
+                        dut->joypad_up = 0;
+                        break;
+                    case SDLK_DOWN:
+                        dut->joypad_down = 0;
+                        break;
+                    case SDLK_LEFT:
+                        dut->joypad_left = 0;
+                        break;
+                    case SDLK_RIGHT:
+                        dut->joypad_right = 0;
+                        break;
+                    case SDLK_z:
+                        dut->joypad_A = 0;
+                        break;
+                    case SDLK_x:
+                        dut->joypad_B = 0;
+                        break;
+                    case SDLK_c:
+                        dut->joypad_start = 0;
+                        break;
+                    case SDLK_v:
+                        dut->joypad_select = 0;
+                        break;
+                    }
+                }
+            }
+
+            uint32_t frame_time = SDL_GetTicks() - frame_start_time;
+            if (frame_time < 16)
+            {
+                SDL_Delay(16 - frame_time); // 16ms를 채우기 위해 남은 시간만 쉼
+            }
+            frame_start_time = SDL_GetTicks(); // 다음 프레임 시간 측정 시작
         }
         else if (dut->pixel_valid)
         {
-            pixelbuffer[j] = palette[dut->pixel_data];
-            j = j + 1;
-        }
-
-        dut->joypad_A = 0;
-        dut->joypad_B = 0;
-        dut->joypad_left = 0;
-        dut->joypad_right = 0;
-        dut->joypad_up = 0;
-        dut->joypad_down = 0;
-        dut->joypad_start = 0;
-        dut->joypad_select = 0;
-
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-                is_running = false;
-
-            if (event.type == SDL_KEYDOWN)
+            if (j < pixelbuffer.size())
             {
-                switch (event.key.keysym.sym)
-                {
-                case SDLK_UP: /* 위 로직 */
-                    dut->joypad_up = 1;
-                    break;
-                case SDLK_DOWN: /* 아래 로직 */
-                    dut->joypad_down = 1;
-                    break;
-                case SDLK_LEFT: /* 왼쪽 로직 */
-                    dut->joypad_left = 1;
-                    break;
-                case SDLK_RIGHT: /* 오른쪽 로직 */
-                    dut->joypad_right = 1;
-                    break;
-                case SDLK_z: /* Z 로직 */
-                    dut->joypad_A = 1;
-                    break;
-                case SDLK_x: /* X 로직 */
-                    dut->joypad_B = 1;
-                    break;
-                case SDLK_c: /* C 로직 */
-                    dut->joypad_start = 1;
-                    break;
-                case SDLK_v: /* V 로직 */
-                    dut->joypad_select = 1;
-                    break;
-                case SDLK_ESCAPE:
-                    is_running = false;
-                    break;
-                }
+                pixelbuffer[j] = palette[dut->pixel_data];
+                j++;
+            }
+            else
+            {
+                // 이 로그가 찍힌다면 PPU의 vsync 타이밍이 잘못된 것입니다!
+                printf("Warning: Pixel index j out of bounds! j=%d\n", j);
+                return 1;
             }
         }
 
@@ -226,6 +477,7 @@ int main(int argc, char **argv)
         {
             rom.read_data = rom.memory[dut->ROM_ad];
             rom.read_data_ena = 1;
+            // printf("read_memory, ad: %04X\n", dut->ROM_ad); // ROM 읽기 로그 출력.
         }
         else if (dut->ROM_ena && dut->ROM_w_ena)
         {
@@ -290,6 +542,8 @@ int main(int argc, char **argv)
         else if (dut->VRAM_ena && dut->VRAM_w_ena)
         {
             vram.memory[dut->VRAM_ad - 0x8000] = dut->VRAM_w_data;
+            // printf("VRAM_write, ad: %04X\n", dut->VRAM_ad); // VRAM 쓰기 로그 출력.
+            // printf("IF: %04X , IE: %04X, LCDC: %04X\n", dut->IF_out, dut->IE_out, dut->LCDC_out);
         }
 
         if (wram.read_data_ena)
@@ -307,15 +561,38 @@ int main(int argc, char **argv)
             wram.memory[dut->WRAM_ad - 0xC000] = dut->WRAM_w_data;
         }
 
+        if (dut->top__DOT__cpu_mem_ad == 0xFF40 && dut->top__DOT__cpu_mem_ena)
+        {
+            printf("CPU $FF40 write, data: %04X\n", dut->top__DOT__cpu_mem_w_data);
+            if (dut->top__DOT__io_reg_ena == 1 && dut->top__DOT__io_reg_ad == 0xFF40)
+            {
+                printf("LDCD_write, data: %04X\n", dut->top__DOT__io_reg_w_data);
+            }
+        }
+
+        /*
+        if (second_counter > 1000)
+        {
+            second_counter_standard = SDL_GetTicks();
+            printf("FPS: %d\n", frame_counter);
+            frame_counter = 0;
+        }
+        else
+        {
+            second_counter = SDL_GetTicks() - second_counter_standard;
+        }*/
+
         dut->clk = 0;
         dut->eval();
+
+        sim_time++; // 매 클럭마다 1씩 증가.
     }
 
     std::cout << "\nSimulation Finished!" << std::endl;
-    m_trace->close();
+    // m_trace->close();
     dut->final();
     delete dut;
-    delete m_trace;
+    // delete m_trace;
 
     return 0;
 }

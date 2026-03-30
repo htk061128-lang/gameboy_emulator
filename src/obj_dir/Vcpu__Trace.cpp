@@ -1,12 +1,12 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Tracing implementation internals
 #include "verilated_vcd_c.h"
-#include "Vtop__Syms.h"
+#include "Vcpu__Syms.h"
 
 
-void Vtop::traceChgTop0(void* userp, VerilatedVcd* tracep) {
-    Vtop__Syms* __restrict vlSymsp = static_cast<Vtop__Syms*>(userp);
-    Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+void Vcpu::traceChgTop0(void* userp, VerilatedVcd* tracep) {
+    Vcpu__Syms* __restrict vlSymsp = static_cast<Vcpu__Syms*>(userp);
+    Vcpu* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Variables
     if (VL_UNLIKELY(!vlSymsp->__Vm_activity)) return;
     // Body
@@ -15,9 +15,9 @@ void Vtop::traceChgTop0(void* userp, VerilatedVcd* tracep) {
     }
 }
 
-void Vtop::traceChgSub0(void* userp, VerilatedVcd* tracep) {
-    Vtop__Syms* __restrict vlSymsp = static_cast<Vtop__Syms*>(userp);
-    Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+void Vcpu::traceChgSub0(void* userp, VerilatedVcd* tracep) {
+    Vcpu__Syms* __restrict vlSymsp = static_cast<Vcpu__Syms*>(userp);
+    Vcpu* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     vluint32_t* const oldp = tracep->oldp(vlSymsp->__Vm_baseCode + 1);
     if (false && oldp) {}  // Prevent unused
     // Body
@@ -37,98 +37,98 @@ void Vtop::traceChgSub0(void* userp, VerilatedVcd* tracep) {
             tracep->chgCData(oldp+11,(vlTOPp->top__DOT__u_io_register__DOT__inst_DMA__DOT__DMA_reg),8);
             tracep->chgCData(oldp+12,(vlTOPp->top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg),8);
             tracep->chgCData(oldp+13,(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LYC_reg),8);
-            tracep->chgCData(oldp+14,(vlTOPp->top__DOT__u_io_register__DOT__JOY),8);
-            tracep->chgBit(oldp+15,(vlTOPp->top__DOT__cpu_mem_ena));
-            tracep->chgSData(oldp+16,(vlTOPp->top__DOT__cpu_mem_ad),16);
-            tracep->chgBit(oldp+17,(vlTOPp->top__DOT__cpu_mem_r_ena));
-            tracep->chgBit(oldp+18,(vlTOPp->top__DOT__cpu_mem_w_ena));
-            tracep->chgCData(oldp+19,(vlTOPp->top__DOT__cpu_mem_w_data),8);
-            tracep->chgBit(oldp+20,(vlTOPp->top__DOT__ppu_mem_ena));
-            tracep->chgSData(oldp+21,(vlTOPp->top__DOT__ppu_mem_ad),16);
-            tracep->chgBit(oldp+22,(vlTOPp->top__DOT__ppu_mem_r_ena));
-            tracep->chgBit(oldp+23,(vlTOPp->top__DOT__ppu_mem_w_ena));
-            tracep->chgCData(oldp+24,(vlTOPp->top__DOT__ppu_mem_w_data),8);
-            tracep->chgBit(oldp+25,(vlTOPp->top__DOT__dma_mem_ena));
-            tracep->chgSData(oldp+26,(vlTOPp->top__DOT__dma_mem_ad),16);
-            tracep->chgBit(oldp+27,(vlTOPp->top__DOT__dma_mem_r_ena));
-            tracep->chgBit(oldp+28,(vlTOPp->top__DOT__dma_mem_w_ena));
-            tracep->chgCData(oldp+29,(vlTOPp->top__DOT__dma_mem_w_data),8);
-            tracep->chgCData(oldp+30,(vlTOPp->top__DOT__io_reg_r_data),8);
-            tracep->chgBit(oldp+31,(vlTOPp->top__DOT__u_io_register__DOT__DMA_start));
-            tracep->chgCData(oldp+32,(vlTOPp->top__DOT__irq_clear),8);
-            tracep->chgBit(oldp+33,(vlTOPp->top__DOT__irq_LCD));
-            tracep->chgBit(oldp+34,(vlTOPp->top__DOT__irq_vblank));
-            tracep->chgBit(oldp+35,(vlTOPp->top__DOT__PPU_STAT_w_ena));
-            tracep->chgCData(oldp+36,(vlTOPp->top__DOT__PPU_STAT_w_data),8);
-            tracep->chgBit(oldp+37,(vlTOPp->top__DOT__PPU_LY_w_ena));
-            tracep->chgCData(oldp+38,(vlTOPp->top__DOT__PPU_LY_w_data),8);
-            tracep->chgBit(oldp+39,(vlTOPp->top__DOT__u_CPU__DOT__halt));
-            tracep->chgCData(oldp+40,(vlTOPp->top__DOT__u_CPU__DOT__A),8);
-            tracep->chgCData(oldp+41,(vlTOPp->top__DOT__u_CPU__DOT__F),8);
-            tracep->chgCData(oldp+42,(vlTOPp->top__DOT__u_CPU__DOT__B),8);
-            tracep->chgCData(oldp+43,(vlTOPp->top__DOT__u_CPU__DOT__C),8);
-            tracep->chgCData(oldp+44,(vlTOPp->top__DOT__u_CPU__DOT__D),8);
-            tracep->chgCData(oldp+45,(vlTOPp->top__DOT__u_CPU__DOT__E),8);
-            tracep->chgCData(oldp+46,(vlTOPp->top__DOT__u_CPU__DOT__H),8);
-            tracep->chgCData(oldp+47,(vlTOPp->top__DOT__u_CPU__DOT__L),8);
-            tracep->chgSData(oldp+48,(vlTOPp->top__DOT__u_CPU__DOT__PC),16);
-            tracep->chgSData(oldp+49,(vlTOPp->top__DOT__u_CPU__DOT__SP),16);
-            tracep->chgCData(oldp+50,(vlTOPp->top__DOT__u_CPU__DOT__main_state),8);
-            tracep->chgBit(oldp+51,(vlTOPp->top__DOT__u_CPU__DOT__IME));
-            tracep->chgBit(oldp+52,(vlTOPp->top__DOT__u_CPU__DOT__IME_on));
-            tracep->chgBit(oldp+53,(vlTOPp->top__DOT__u_CPU__DOT__IME_off));
-            tracep->chgBit(oldp+54,(vlTOPp->top__DOT__u_CPU__DOT__EI_pending));
-            tracep->chgBit(oldp+55,(vlTOPp->top__DOT__u_CPU__DOT__EI_pending_on));
-            tracep->chgCData(oldp+56,(vlTOPp->top__DOT__u_CPU__DOT__IF_reg),8);
-            tracep->chgCData(oldp+57,(vlTOPp->top__DOT__u_CPU__DOT__Operand_r8_ad),8);
-            tracep->chgCData(oldp+58,(vlTOPp->top__DOT__u_CPU__DOT__Dest_r8),8);
-            tracep->chgBit(oldp+59,(vlTOPp->top__DOT__u_CPU__DOT__Condition));
-            tracep->chgCData(oldp+60,(vlTOPp->top__DOT__u_CPU__DOT__Operand_r16_ad),8);
-            tracep->chgSData(oldp+61,(vlTOPp->top__DOT__u_CPU__DOT__Dest_r16mem),16);
-            tracep->chgSData(oldp+62,(vlTOPp->top__DOT__u_CPU__DOT__Source_r16mem),16);
-            tracep->chgCData(oldp+63,(vlTOPp->top__DOT__u_CPU__DOT__register_r16stk_ad),8);
-            tracep->chgCData(oldp+64,(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter),8);
-            tracep->chgCData(oldp+65,(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next),8);
-            tracep->chgCData(oldp+66,(vlTOPp->top__DOT__u_CPU__DOT__opcode),8);
-            tracep->chgBit(oldp+67,(vlTOPp->top__DOT__u_CPU__DOT__opcode_valid));
-            tracep->chgBit(oldp+68,(vlTOPp->top__DOT__u_CPU__DOT__prefix_valid));
-            tracep->chgCData(oldp+69,(vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter),4);
-            tracep->chgBit(oldp+70,((3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter))));
-            tracep->chgCData(oldp+71,(vlTOPp->top__DOT__u_CPU__DOT__mem_state),4);
-            tracep->chgCData(oldp+72,(vlTOPp->top__DOT__u_CPU__DOT__next_main_state),8);
-            tracep->chgBit(oldp+73,(vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena));
-            tracep->chgCData(oldp+74,(vlTOPp->top__DOT__u_CPU__DOT__reg_ad),8);
-            tracep->chgCData(oldp+75,(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2),8);
-            tracep->chgBit(oldp+76,(vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena));
-            tracep->chgSData(oldp+77,(vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg),16);
-            tracep->chgCData(oldp+78,(vlTOPp->top__DOT__u_CPU__DOT__mem_w_data_reg),8);
-            tracep->chgBit(oldp+79,(vlTOPp->top__DOT__u_CPU__DOT__mem_w_ena_reg));
-            tracep->chgBit(oldp+80,(vlTOPp->top__DOT__u_CPU__DOT__mem_r_ena_reg));
-            tracep->chgCData(oldp+81,(vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg),8);
-            tracep->chgBit(oldp+82,(vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena));
-            tracep->chgBit(oldp+83,(vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena));
-            tracep->chgSData(oldp+84,(vlTOPp->top__DOT__u_CPU__DOT__mem_control_ad),16);
-            tracep->chgCData(oldp+85,(vlTOPp->top__DOT__u_CPU__DOT__tem_reg),8);
-            tracep->chgBit(oldp+86,(vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena));
-            tracep->chgCData(oldp+87,(vlTOPp->top__DOT__u_CPU__DOT__imm8_reg),8);
-            tracep->chgBit(oldp+88,(vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear));
-            tracep->chgSData(oldp+89,(vlTOPp->top__DOT__u_CPU__DOT__imm16_reg),16);
-            tracep->chgBit(oldp+90,(vlTOPp->top__DOT__u_CPU__DOT__imm16_reg_clear));
-            tracep->chgCData(oldp+91,(vlTOPp->top__DOT__u_CPU__DOT__a_8),8);
-            tracep->chgCData(oldp+92,(vlTOPp->top__DOT__u_CPU__DOT__alu_op_8),5);
-            tracep->chgBit(oldp+93,(vlTOPp->top__DOT__u_CPU__DOT__cin_8));
-            tracep->chgCData(oldp+94,((0xf8U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg))),8);
-            tracep->chgCData(oldp+95,(vlTOPp->top__DOT__u_io_register__DOT__inst_TMA__DOT__TMA_reg),8);
-            tracep->chgBit(oldp+96,(vlTOPp->top__DOT__u_io_register__DOT__irq_timer_wire));
-            tracep->chgCData(oldp+97,(vlTOPp->top__DOT__u_io_register__DOT__div_r_data),8);
-            tracep->chgCData(oldp+98,(vlTOPp->top__DOT__u_io_register__DOT__tima_r_data),8);
-            tracep->chgCData(oldp+99,(vlTOPp->top__DOT__u_io_register__DOT__tma_r_data),8);
-            tracep->chgCData(oldp+100,(vlTOPp->top__DOT__u_io_register__DOT__tac_r_data),8);
-            tracep->chgCData(oldp+101,(vlTOPp->top__DOT__u_io_register__DOT__dma_r_data),8);
-            tracep->chgCData(oldp+102,(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data),8);
-            tracep->chgCData(oldp+103,(vlTOPp->top__DOT__u_io_register__DOT__stat_r_data),8);
-            tracep->chgCData(oldp+104,(vlTOPp->top__DOT__u_io_register__DOT__ly_r_data),8);
-            tracep->chgCData(oldp+105,(vlTOPp->top__DOT__u_io_register__DOT__r_state),4);
+            tracep->chgBit(oldp+14,(vlTOPp->top__DOT__cpu_mem_ena));
+            tracep->chgSData(oldp+15,(vlTOPp->top__DOT__cpu_mem_ad),16);
+            tracep->chgBit(oldp+16,(vlTOPp->top__DOT__cpu_mem_r_ena));
+            tracep->chgBit(oldp+17,(vlTOPp->top__DOT__cpu_mem_w_ena));
+            tracep->chgCData(oldp+18,(vlTOPp->top__DOT__cpu_mem_w_data),8);
+            tracep->chgBit(oldp+19,(vlTOPp->top__DOT__ppu_mem_ena));
+            tracep->chgSData(oldp+20,(vlTOPp->top__DOT__ppu_mem_ad),16);
+            tracep->chgBit(oldp+21,(vlTOPp->top__DOT__ppu_mem_r_ena));
+            tracep->chgBit(oldp+22,(vlTOPp->top__DOT__ppu_mem_w_ena));
+            tracep->chgCData(oldp+23,(vlTOPp->top__DOT__ppu_mem_w_data),8);
+            tracep->chgBit(oldp+24,(vlTOPp->top__DOT__dma_mem_ena));
+            tracep->chgSData(oldp+25,(vlTOPp->top__DOT__dma_mem_ad),16);
+            tracep->chgBit(oldp+26,(vlTOPp->top__DOT__dma_mem_r_ena));
+            tracep->chgBit(oldp+27,(vlTOPp->top__DOT__dma_mem_w_ena));
+            tracep->chgCData(oldp+28,(vlTOPp->top__DOT__dma_mem_w_data),8);
+            tracep->chgCData(oldp+29,(vlTOPp->top__DOT__io_reg_r_data),8);
+            tracep->chgBit(oldp+30,(vlTOPp->top__DOT__u_io_register__DOT__DMA_start));
+            tracep->chgCData(oldp+31,(vlTOPp->top__DOT__irq_clear),8);
+            tracep->chgBit(oldp+32,(vlTOPp->top__DOT__irq_LCD));
+            tracep->chgBit(oldp+33,(vlTOPp->top__DOT__irq_vblank));
+            tracep->chgBit(oldp+34,(vlTOPp->top__DOT__PPU_STAT_w_ena));
+            tracep->chgCData(oldp+35,(vlTOPp->top__DOT__PPU_STAT_w_data),8);
+            tracep->chgBit(oldp+36,(vlTOPp->top__DOT__PPU_LY_w_ena));
+            tracep->chgCData(oldp+37,(vlTOPp->top__DOT__PPU_LY_w_data),8);
+            tracep->chgBit(oldp+38,(vlTOPp->top__DOT__u_CPU__DOT__halt));
+            tracep->chgCData(oldp+39,(vlTOPp->top__DOT__u_CPU__DOT__A),8);
+            tracep->chgCData(oldp+40,(vlTOPp->top__DOT__u_CPU__DOT__F),8);
+            tracep->chgCData(oldp+41,(vlTOPp->top__DOT__u_CPU__DOT__B),8);
+            tracep->chgCData(oldp+42,(vlTOPp->top__DOT__u_CPU__DOT__C),8);
+            tracep->chgCData(oldp+43,(vlTOPp->top__DOT__u_CPU__DOT__D),8);
+            tracep->chgCData(oldp+44,(vlTOPp->top__DOT__u_CPU__DOT__E),8);
+            tracep->chgCData(oldp+45,(vlTOPp->top__DOT__u_CPU__DOT__H),8);
+            tracep->chgCData(oldp+46,(vlTOPp->top__DOT__u_CPU__DOT__L),8);
+            tracep->chgSData(oldp+47,(vlTOPp->top__DOT__u_CPU__DOT__PC),16);
+            tracep->chgSData(oldp+48,(vlTOPp->top__DOT__u_CPU__DOT__SP),16);
+            tracep->chgCData(oldp+49,(vlTOPp->top__DOT__u_CPU__DOT__main_state),8);
+            tracep->chgBit(oldp+50,(vlTOPp->top__DOT__u_CPU__DOT__IME));
+            tracep->chgBit(oldp+51,(vlTOPp->top__DOT__u_CPU__DOT__IME_on));
+            tracep->chgBit(oldp+52,(vlTOPp->top__DOT__u_CPU__DOT__IME_off));
+            tracep->chgBit(oldp+53,(vlTOPp->top__DOT__u_CPU__DOT__EI_pending));
+            tracep->chgBit(oldp+54,(vlTOPp->top__DOT__u_CPU__DOT__EI_pending_on));
+            tracep->chgCData(oldp+55,(vlTOPp->top__DOT__u_CPU__DOT__IF_reg),8);
+            tracep->chgCData(oldp+56,(vlTOPp->top__DOT__u_CPU__DOT__Operand_r8_ad),8);
+            tracep->chgCData(oldp+57,(vlTOPp->top__DOT__u_CPU__DOT__Dest_r8),8);
+            tracep->chgBit(oldp+58,(vlTOPp->top__DOT__u_CPU__DOT__Condition));
+            tracep->chgCData(oldp+59,(vlTOPp->top__DOT__u_CPU__DOT__Operand_r16_ad),8);
+            tracep->chgSData(oldp+60,(vlTOPp->top__DOT__u_CPU__DOT__Dest_r16mem),16);
+            tracep->chgSData(oldp+61,(vlTOPp->top__DOT__u_CPU__DOT__Source_r16mem),16);
+            tracep->chgCData(oldp+62,(vlTOPp->top__DOT__u_CPU__DOT__register_r16stk_ad),8);
+            tracep->chgCData(oldp+63,(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter),8);
+            tracep->chgCData(oldp+64,(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next),8);
+            tracep->chgCData(oldp+65,(vlTOPp->top__DOT__u_CPU__DOT__opcode),8);
+            tracep->chgBit(oldp+66,(vlTOPp->top__DOT__u_CPU__DOT__opcode_valid));
+            tracep->chgBit(oldp+67,(vlTOPp->top__DOT__u_CPU__DOT__prefix_valid));
+            tracep->chgCData(oldp+68,(vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter),4);
+            tracep->chgBit(oldp+69,((3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter))));
+            tracep->chgCData(oldp+70,(vlTOPp->top__DOT__u_CPU__DOT__mem_state),4);
+            tracep->chgCData(oldp+71,(vlTOPp->top__DOT__u_CPU__DOT__next_main_state),8);
+            tracep->chgBit(oldp+72,(vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena));
+            tracep->chgCData(oldp+73,(vlTOPp->top__DOT__u_CPU__DOT__reg_ad),8);
+            tracep->chgCData(oldp+74,(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2),8);
+            tracep->chgBit(oldp+75,(vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena));
+            tracep->chgSData(oldp+76,(vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg),16);
+            tracep->chgCData(oldp+77,(vlTOPp->top__DOT__u_CPU__DOT__mem_w_data_reg),8);
+            tracep->chgBit(oldp+78,(vlTOPp->top__DOT__u_CPU__DOT__mem_w_ena_reg));
+            tracep->chgBit(oldp+79,(vlTOPp->top__DOT__u_CPU__DOT__mem_r_ena_reg));
+            tracep->chgCData(oldp+80,(vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg),8);
+            tracep->chgBit(oldp+81,(vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena));
+            tracep->chgBit(oldp+82,(vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena));
+            tracep->chgSData(oldp+83,(vlTOPp->top__DOT__u_CPU__DOT__mem_control_ad),16);
+            tracep->chgCData(oldp+84,(vlTOPp->top__DOT__u_CPU__DOT__tem_reg),8);
+            tracep->chgBit(oldp+85,(vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena));
+            tracep->chgCData(oldp+86,(vlTOPp->top__DOT__u_CPU__DOT__imm8_reg),8);
+            tracep->chgBit(oldp+87,(vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear));
+            tracep->chgSData(oldp+88,(vlTOPp->top__DOT__u_CPU__DOT__imm16_reg),16);
+            tracep->chgBit(oldp+89,(vlTOPp->top__DOT__u_CPU__DOT__imm16_reg_clear));
+            tracep->chgCData(oldp+90,(vlTOPp->top__DOT__u_CPU__DOT__a_8),8);
+            tracep->chgCData(oldp+91,(vlTOPp->top__DOT__u_CPU__DOT__alu_op_8),5);
+            tracep->chgBit(oldp+92,(vlTOPp->top__DOT__u_CPU__DOT__cin_8));
+            tracep->chgCData(oldp+93,((0xf8U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg))),8);
+            tracep->chgCData(oldp+94,(vlTOPp->top__DOT__u_io_register__DOT__inst_TMA__DOT__TMA_reg),8);
+            tracep->chgBit(oldp+95,(vlTOPp->top__DOT__u_io_register__DOT__irq_timer_wire));
+            tracep->chgCData(oldp+96,(vlTOPp->top__DOT__u_io_register__DOT__div_r_data),8);
+            tracep->chgCData(oldp+97,(vlTOPp->top__DOT__u_io_register__DOT__tima_r_data),8);
+            tracep->chgCData(oldp+98,(vlTOPp->top__DOT__u_io_register__DOT__tma_r_data),8);
+            tracep->chgCData(oldp+99,(vlTOPp->top__DOT__u_io_register__DOT__tac_r_data),8);
+            tracep->chgCData(oldp+100,(vlTOPp->top__DOT__u_io_register__DOT__dma_r_data),8);
+            tracep->chgCData(oldp+101,(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data),8);
+            tracep->chgCData(oldp+102,(vlTOPp->top__DOT__u_io_register__DOT__stat_r_data),8);
+            tracep->chgCData(oldp+103,(vlTOPp->top__DOT__u_io_register__DOT__ly_r_data),8);
+            tracep->chgCData(oldp+104,(vlTOPp->top__DOT__u_io_register__DOT__r_state),4);
+            tracep->chgCData(oldp+105,(vlTOPp->top__DOT__u_io_register__DOT__JOY),8);
             tracep->chgBit(oldp+106,(vlTOPp->top__DOT__u_io_register__DOT__irq_joypad));
             tracep->chgCData(oldp+107,(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg),8);
             tracep->chgCData(oldp+108,(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg),8);
@@ -339,16 +339,12 @@ void Vtop::traceChgSub0(void* userp, VerilatedVcd* tracep) {
         tracep->chgCData(oldp+413,(vlTOPp->MBC_version),4);
         tracep->chgCData(oldp+414,(vlTOPp->ROM_size),8);
         tracep->chgCData(oldp+415,(vlTOPp->RAM_size),8);
-        tracep->chgBit(oldp+416,(vlTOPp->IF_out));
-        tracep->chgBit(oldp+417,(vlTOPp->IE_out));
-        tracep->chgBit(oldp+418,(vlTOPp->LCDC_out));
-        tracep->chgBit(oldp+419,(vlTOPp->JOY_out));
     }
 }
 
-void Vtop::traceCleanup(void* userp, VerilatedVcd* /*unused*/) {
-    Vtop__Syms* __restrict vlSymsp = static_cast<Vtop__Syms*>(userp);
-    Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+void Vcpu::traceCleanup(void* userp, VerilatedVcd* /*unused*/) {
+    Vcpu__Syms* __restrict vlSymsp = static_cast<Vcpu__Syms*>(userp);
+    Vcpu* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     {
         vlSymsp->__Vm_activity = false;

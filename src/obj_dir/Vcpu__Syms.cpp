@@ -1,15 +1,17 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vtop__Syms.h"
-#include "Vtop.h"
+#include "Vcpu__Syms.h"
+#include "Vcpu.h"
 
 
 
 // FUNCTIONS
-Vtop__Syms::Vtop__Syms(Vtop* topp, const char* namep)
+Vcpu__Syms::Vcpu__Syms(Vcpu* topp, const char* namep)
     // Setup locals
     : __Vm_namep(namep)
+    , __Vm_activity(false)
+    , __Vm_baseCode(0)
     , __Vm_didInit(false)
     // Setup submodule names
 {

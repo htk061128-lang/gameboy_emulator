@@ -199,7 +199,9 @@ module PPU(
       
       mode3_state <= 0;
       mode3_counter_1 <= 0;
-      
+
+      hsync <= 0;
+      vsync <= 0;
     end
     else begin
       mem_ena <= 0;
@@ -1168,7 +1170,7 @@ module PPU(
             mode3_counter_1 <= 0;
             mode3_state <= IDLE;
             hsync <= 1;
-            if(line_counter == 159) vsync <= 1;
+            if(line_counter == 139) vsync <= 1;
           end
           else begin
             mode3_counter_1 <= mode3_counter_1 + 1;
