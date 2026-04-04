@@ -339,6 +339,15 @@ int main(int argc, char **argv)
         wram.memory[i] = 0;
     }
 
+    dut->joypad_A = 0;
+    dut->joypad_B = 0;
+    dut->joypad_start = 0;
+    dut->joypad_select = 0;
+    dut->joypad_up = 0;
+    dut->joypad_down = 0;
+    dut->joypad_right = 0;
+    dut->joypad_left = 0;
+
     dut->MBC_version = 1; // MBC1으로 설정.
     dut->ROM_size = 6;    // 2MiB
     dut->RAM_size = 3;    // 32KiB
