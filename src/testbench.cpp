@@ -11,116 +11,213 @@
 
 #include <stdint.h>
 
-#include <stdint.h>
-
+// verilator -Wall -Wno-fatal --cc --trace --top-module top *.sv --exe testbench.cpp -CFLAGS "$(sdl2-config --cflags)" -LDFLAGS "$(sdl2-config --libs)" --build -j $(nproc) && ./obj_dir/Vtop
 void setup_test_rom(uint8_t *memory)
 {
-    // [0] 메모리 초기화
-    for (int i = 0; i < 32768; i++) memory[i] = 0;
+    // [0] 메모리 전체 초기화
+    for (int i = 0; i < 32768; i++)
+        memory[i] = 0;
 
     // [1] 부팅 진입점 ($0100)
     memory[0x0100] = 0x00; // NOP
-    memory[0x0101] = 0xC3; // JP $0150
-    memory[0x0102] = 0x50; 
-    memory[0x0103] = 0x01; 
+    memory[0x0101] = 0xC3;
+    memory[0x0102] = 0x50;
+    memory[0x0103] = 0x01; // JP $0150
 
     // ==========================================
-    // [DATA] 타일 및 맵 데이터 (체크무늬 생성)
+    // [DATA] 타일 및 맵 데이터 설정
     // ==========================================
-    // 타일 0: 텅 빈 공간
-    for(int i=0; i<16; i++) memory[0x0500 + i] = 0x00;
-    
-    // 타일 1: 꽉 찬 네모 (십자가 모양 패턴으로 시각적 구분을 줌)
-    uint8_t tile_cross[] = {
-        0x18,0x18, 0x18,0x18, 0x18,0x18, 0xFF,0xFF, 
-        0xFF,0xFF, 0x18,0x18, 0x18,0x18, 0x18,0x18
-    };
-    for(int i=0; i<16; i++) memory[0x0510 + i] = tile_cross[i];
+    // 타일 0: 텅 빈 공간 (배경용)
+    for (int i = 0; i < 16; i++)
+        memory[0x0500 + i] = 0x00;
 
-    // BG 타일맵 (ROM $0600) -> 체스판 패턴으로 1024바이트 채우기
-    for(int i=0; i<1024; i++) {
+    // 타일 1: 흐린 체크무늬 (바닥 패턴)
+    uint8_t tile_bg[] = {
+        0xAA, 0x00, 0x55, 0x00, 0xAA, 0x00, 0x55, 0x00,
+        0xAA, 0x00, 0x55, 0x00, 0xAA, 0x00, 0x55, 0x00};
+    for (int i = 0; i < 16; i++)
+        memory[0x0510 + i] = tile_bg[i];
+
+    // 타일 2: 플레이어 캐릭터 (동그란 슬라임 모양)
+    uint8_t tile_player[] = {
+        0x3C, 0x3C, 0x7E, 0x7E, 0xFF, 0xFF, 0xFF, 0xFF,
+        0xFF, 0xFF, 0xFF, 0xFF, 0x7E, 0x7E, 0x3C, 0x3C};
+    for (int i = 0; i < 16; i++)
+        memory[0x0520 + i] = tile_player[i];
+
+    // BG 타일맵 ($0600~$09FF) -> 체스판 패턴으로 바닥 깔기
+    for (int i = 0; i < 1024; i++)
+    {
         int x = i % 32;
         int y = i / 32;
-        // x와 y를 더한 값이 짝수면 타일 1, 홀수면 타일 0 (체스판 무늬)
         memory[0x0600 + i] = ((x + y) % 2 == 0) ? 1 : 0;
     }
 
     // ==========================================
-    // [CODE] 메인 루틴 ($0150)
+    // [CODE] 메인 로직 ($0150)
     // ==========================================
     uint16_t p = 0x0150;
 
-    // Z80 메모리 복사 람다 함수 (ROM -> VRAM)
-    auto emit_copy = [&](uint16_t src, uint16_t dst, uint16_t size) {
-        memory[p++] = 0x21; memory[p++] = dst & 0xFF; memory[p++] = dst >> 8; // LD HL, dst
-        memory[p++] = 0x11; memory[p++] = src & 0xFF; memory[p++] = src >> 8; // LD DE, src
-        memory[p++] = 0x01; memory[p++] = size & 0xFF; memory[p++] = size >> 8; // LD BC, size
+    // --- VRAM 복사 함수 ---
+    auto emit_copy = [&](uint16_t src, uint16_t dst, uint16_t size)
+    {
+        memory[p++] = 0x21;
+        memory[p++] = dst & 0xFF;
+        memory[p++] = dst >> 8; // LD HL, dst
+        memory[p++] = 0x11;
+        memory[p++] = src & 0xFF;
+        memory[p++] = src >> 8; // LD DE, src
+        memory[p++] = 0x01;
+        memory[p++] = size & 0xFF;
+        memory[p++] = size >> 8; // LD BC, size
+
         memory[p++] = 0x1A; // LD A, (DE)
-        memory[p++] = 0x13; // INC DE
         memory[p++] = 0x22; // LD (HL+), A
+        memory[p++] = 0x13; // INC DE
         memory[p++] = 0x0B; // DEC BC
         memory[p++] = 0x78; // LD A, B
         memory[p++] = 0xB1; // OR C
-        memory[p++] = 0x20; memory[p++] = 0xF9; // JR NZ, -7
+        memory[p++] = 0x20;
+        memory[p++] = 0xF8; // JR NZ, -8
     };
 
-    // 데이터 VRAM으로 복사 ($8000: 타일 데이터, $9800: 타일 맵)
-    emit_copy(0x0500, 0x8000, 32);   // 타일 2개 복사
-    emit_copy(0x0600, 0x9800, 1024); // BG 타일맵 복사
+    // 1. 데이터 VRAM 전송 (타일 3개 = 48바이트 복사)
+    emit_copy(0x0500, 0x8000, 48);   // 타일 데이터 복사
+    emit_copy(0x0600, 0x9800, 1024); // 타일 맵 복사
 
-    // [2] 초기 레지스터 설정
-    memory[p++] = 0x3E; memory[p++] = 0xE4; memory[p++] = 0xE0; memory[p++] = 0x47; // BGP = $E4 (정상 팔레트)
-    memory[p++] = 0xAF; memory[p++] = 0xE0; memory[p++] = 0x42; // SCY = 0
-    memory[p++] = 0xE0; memory[p++] = 0x43; // SCX = 0
+    // 2. 초기 캐릭터 위치 설정 (HRAM $FF80=Y, $FF81=X 사용)
+    memory[p++] = 0x3E;
+    memory[p++] = 72; // LD A, 72 (화면 중앙 Y)
+    memory[p++] = 0xE0;
+    memory[p++] = 0x80; // LDH ($80), A
+    memory[p++] = 0x3E;
+    memory[p++] = 84; // LD A, 84 (화면 중앙 X)
+    memory[p++] = 0xE0;
+    memory[p++] = 0x81; // LDH ($81), A
 
-    // [3] LCD 켜기 (오직 BG만 켬)
-    // 0x91 = LCD ON (Bit 7), BG/Win Data $8000 (Bit 4), BG ON (Bit 0). 나머지는 모두 0.
-    memory[p++] = 0x3E; memory[p++] = 0x91; 
-    memory[p++] = 0xE0; memory[p++] = 0x40; // LDH ($40), A
+    // 3. 초기 레지스터 & 팔레트 설정
+    memory[p++] = 0x3E;
+    memory[p++] = 0xE4; // LD A, $E4
+    memory[p++] = 0xE0;
+    memory[p++] = 0x47; // BGP = $E4 (배경 팔레트)
+    memory[p++] = 0xE0;
+    memory[p++] = 0x48; // OBP0 = $E4 (스프라이트 팔레트)
+    memory[p++] = 0xAF; // XOR A (A=0)
+    memory[p++] = 0xE0;
+    memory[p++] = 0x42; // SCY = 0
+    memory[p++] = 0xE0;
+    memory[p++] = 0x43; // SCX = 0
+
+    // 4. LCD 켜기 (BG ON + SPRITE ON)
+    // 0x93 = LCD ON(Bit7), BG/Win Data(Bit4), OBJ ON(Bit1), BG ON(Bit0)
+    memory[p++] = 0x3E;
+    memory[p++] = 0x93;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x40; // LCDC = $93
 
     // ==========================================
-    // [4] 메인 컨트롤 루프
+    // [5] 무한 게임 루프
     // ==========================================
-    uint16_t loop_start = p;
+    uint16_t main_loop = p;
 
-    // V-Blank 대기 (LY == 144가 될 때까지 멈춤)
-    memory[p++] = 0xF0; memory[p++] = 0x44; // LDH A, ($44)
-    memory[p++] = 0xFE; memory[p++] = 0x90; // CP 144
-    memory[p++] = 0x20; memory[p++] = 0xFA; // JR NZ, -6
+    // --- V-Blank 대기 ---
+    memory[p++] = 0xF0;
+    memory[p++] = 0x44; // LDH A, ($44)
+    memory[p++] = 0xFE;
+    memory[p++] = 0x90; // CP 144
+    memory[p++] = 0x20;
+    memory[p++] = 0xFA; // JR NZ, -6
 
-    // --- D-Pad 읽기 ---
-    memory[p++] = 0x3E; memory[p++] = 0x20; memory[p++] = 0xE0; memory[p++] = 0x00; // P14(방향키) 선택
-    memory[p++] = 0xF0; memory[p++] = 0x00; // 딜레이를 위해 두 번 읽음
-    memory[p++] = 0xF0; memory[p++] = 0x00; 
-    memory[p++] = 0x2F; memory[p++] = 0xE6; memory[p++] = 0x0F; memory[p++] = 0x47; // 반전 후 하위 4비트만 B 레지스터에 저장
+    // --- 스프라이트(OAM) 그리기 ---
+    // OAM 0번 메모리($FE00~$FE03)에 X, Y, 타일 번호 업데이트
+    memory[p++] = 0xF0;
+    memory[p++] = 0x80; // LDH A, ($80) -> Y좌표 가져오기
+    memory[p++] = 0xEA;
+    memory[p++] = 0x00;
+    memory[p++] = 0xFE; // LD ($FE00), A
+    memory[p++] = 0xF0;
+    memory[p++] = 0x81; // LDH A, ($81) -> X좌표 가져오기
+    memory[p++] = 0xEA;
+    memory[p++] = 0x01;
+    memory[p++] = 0xFE; // LD ($FE01), A
+    memory[p++] = 0x3E;
+    memory[p++] = 0x02; // LD A, 2 (타일 번호 2번: 슬라임)
+    memory[p++] = 0xEA;
+    memory[p++] = 0x02;
+    memory[p++] = 0xFE; // LD ($FE02), A
+    memory[p++] = 0xAF; // XOR A (A=0, 기본 속성)
+    memory[p++] = 0xEA;
+    memory[p++] = 0x03;
+    memory[p++] = 0xFE; // LD ($FE03), A
 
-    // 방향키 판별 (Bit 0: Right, Bit 1: Left, Bit 2: Up, Bit 3: Down)
-    // Right -> SCX 증가
-    memory[p++] = 0xCB; memory[p++] = 0x40; memory[p++] = 0x28; memory[p++] = 0x04;
-    memory[p++] = 0xF0; memory[p++] = 0x43; memory[p++] = 0x3C; memory[p++] = 0xE0; memory[p++] = 0x43;
-    
-    // Left -> SCX 감소
-    memory[p++] = 0xCB; memory[p++] = 0x48; memory[p++] = 0x28; memory[p++] = 0x04;
-    memory[p++] = 0xF0; memory[p++] = 0x43; memory[p++] = 0x3D; memory[p++] = 0xE0; memory[p++] = 0x43;
-    
-    // Up -> SCY 감소
-    memory[p++] = 0xCB; memory[p++] = 0x50; memory[p++] = 0x28; memory[p++] = 0x04;
-    memory[p++] = 0xF0; memory[p++] = 0x42; memory[p++] = 0x3D; memory[p++] = 0xE0; memory[p++] = 0x42;
-    
-    // Down -> SCY 증가
-    memory[p++] = 0xCB; memory[p++] = 0x58; memory[p++] = 0x28; memory[p++] = 0x04;
-    memory[p++] = 0xF0; memory[p++] = 0x42; memory[p++] = 0x3C; memory[p++] = 0xE0; memory[p++] = 0x42;
+    // --- 조이패드 읽기 ---
+    memory[p++] = 0x3E;
+    memory[p++] = 0x20;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x00; // 방향키 선택
+    memory[p++] = 0xF0;
+    memory[p++] = 0x00; // Delay
+    memory[p++] = 0xF0;
+    memory[p++] = 0x00; // Read
+    memory[p++] = 0x2F; // CPL (눌림=0 -> 1로 반전)
+    memory[p++] = 0x47; // LD B, A
 
-    // 같은 프레임 내에서 루프가 여러 번 도는 것을 방지 (LY가 144를 벗어날 때까지 대기)
-    // memory[p++] = 0xF0; memory[p++] = 0x44; memory[p++] = 0xFE; memory[p++] = 0x90; memory[p++] = 0x28; memory[p++] = 0xFA;
-    uint16_t wait_leave_vblank = p;
-    memory[p++] = 0xF0; memory[p++] = 0x44; // LDH A, ($44)
-    memory[p++] = 0xFE; memory[p++] = 0x90; // CP 144
-    memory[p++] = 0x28; memory[p++] = 0xFA; // JR Z, -6 (LY가 144면 계속 대기)
+    // --- 플레이어 이동 로직 ---
+    // Right (X 증가)
+    memory[p++] = 0xCB;
+    memory[p++] = 0x40; // BIT 0, B
+    memory[p++] = 0x28;
+    memory[p++] = 0x05; // JR Z, +5 (안 눌렸으면 스킵)
+    memory[p++] = 0xF0;
+    memory[p++] = 0x81;
+    memory[p++] = 0x3C;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x81; // INC X
 
-    // 루프 복귀
-    memory[p++] = 0x18; 
-    memory[p++] = (uint8_t)((loop_start - (p + 1)) & 0xFF); 
+    // Left (X 감소)
+    memory[p++] = 0xCB;
+    memory[p++] = 0x48; // BIT 1, B
+    memory[p++] = 0x28;
+    memory[p++] = 0x05; // JR Z, +5
+    memory[p++] = 0xF0;
+    memory[p++] = 0x81;
+    memory[p++] = 0x3D;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x81; // DEC X
+
+    // Up (Y 감소)
+    memory[p++] = 0xCB;
+    memory[p++] = 0x50; // BIT 2, B
+    memory[p++] = 0x28;
+    memory[p++] = 0x05; // JR Z, +5
+    memory[p++] = 0xF0;
+    memory[p++] = 0x80;
+    memory[p++] = 0x3D;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x80; // DEC Y
+
+    // Down (Y 증가)
+    memory[p++] = 0xCB;
+    memory[p++] = 0x58; // BIT 3, B
+    memory[p++] = 0x28;
+    memory[p++] = 0x05; // JR Z, +5
+    memory[p++] = 0xF0;
+    memory[p++] = 0x80;
+    memory[p++] = 0x3C;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x80; // INC Y
+
+    // --- V-Blank 탈출 대기 --- (너무 빠른 이동 방지)
+    memory[p++] = 0xF0;
+    memory[p++] = 0x44; // LDH A, ($44)
+    memory[p++] = 0xFE;
+    memory[p++] = 0x90; // CP 144
+    memory[p++] = 0x28;
+    memory[p++] = 0xFA; // JR Z, -6
+
+    // 메인 루프로 복귀
+    memory[p++] = 0x18;
+    memory[p++] = (uint8_t)((main_loop - (p + 1)) & 0xFF);
 }
 
 int print_tile(uint8_t *vram)
@@ -295,6 +392,7 @@ int main(int argc, char **argv)
     int frame_counter = 0;
     int second_counter = 0;
     int second_counter_standard = SDL_GetTicks();
+    int nextclk;
 
     uint32_t frame_start_time = SDL_GetTicks(); // 프레임이 출력이 끝난후의 시작을 측정하는 변수.
 
@@ -312,11 +410,11 @@ int main(int argc, char **argv)
         rom.memory[i] = 0;
     }
 
-    setup_test_rom(rom.memory);
-    /*for (int i = 0; i < 32768; i++)
+    // setup_test_rom(rom.memory);
+    for (int i = 0; i < 32768; i++)
     {
         rom.memory[i] = game_data[i];
-    }*/
+    }
 
     for (int i = 0; i < 32768; i++)
     {
@@ -381,7 +479,6 @@ int main(int argc, char **argv)
             // 11. 화면에 최종 출력
             SDL_RenderPresent(renderer);
             frame_counter++;
-            printf("pixel display! JOY: %02X\n", dut->JOY_out);
 
             while (SDL_PollEvent(&event))
             {
@@ -572,12 +669,42 @@ int main(int argc, char **argv)
 
         if (dut->top__DOT__cpu_mem_ad == 0xFF40 && dut->top__DOT__cpu_mem_ena)
         {
-            printf("CPU $FF40 write, data: %04X\n", dut->top__DOT__cpu_mem_w_data);
+            printf("CPU $FF40 write, data: %02X\n", dut->top__DOT__cpu_mem_w_data);
             if (dut->top__DOT__io_reg_ena == 1 && dut->top__DOT__io_reg_ad == 0xFF40)
             {
-                printf("LDCD_write, data: %04X\n", dut->top__DOT__io_reg_w_data);
+                printf("LDCD_write, data: %02X\n", dut->top__DOT__io_reg_w_data);
             }
         }
+
+        /*if (dut->top__DOT__cpu_mem_ena && dut->top__DOT__cpu_mem_ad == 0xFF00)
+        {
+            if (dut->top__DOT__cpu_mem_r_ena)
+            {
+            }
+            if (dut->top__DOT__cpu_mem_w_ena)
+            {
+                printf("CPU $FF00 wirte, data: %02X\n", dut->top__DOT__cpu_mem_w_data);
+                if (dut->top__DOT__io_reg_ena && dut->top__DOT__io_reg_ad == 0xFF00 && dut->top__DOT__io_reg_w_ena && dut->top__DOT__io_reg_w_data == dut->top__DOT__cpu_mem_w_data)
+                {
+                    printf("JOY write, data: %02X\n", dut->top__DOT__io_reg_w_data);
+                    if (dut->top__DOT__u_io_register__DOT__joy_w_ena)
+                    {
+                        printf("JOY[5:4] write!!!, JOY: %02X\n", dut->JOY_out);
+                        nextclk = 1;
+                    }
+                }
+            }
+        }
+        if (nextclk)
+        {
+            printf("JOY next: %02X\n", dut->JOY_out);
+            nextclk = 0;
+        }
+        if (dut->vsync)
+        {
+            printf("Input Check -> UP:%d, DN:%d, LT:%d, RT:%d | JOY_REG:%02X\n",
+                   dut->joypad_up, dut->joypad_down, dut->joypad_left, dut->joypad_right, dut->JOY_out);
+        }*/
 
         /*
         if (second_counter > 1000)

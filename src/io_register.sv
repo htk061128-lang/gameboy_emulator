@@ -535,6 +535,8 @@ module io_register( //Memory_Interface와 직접적으로 상호작용하면서 
       r_state <= next;
       irq_joypad <= 0;
       
+      JOY[7:6] <= 2'b11;
+
       if(joy_w_ena) begin
         JOY[5:4] <= io_reg_w_data[5:4];
       end

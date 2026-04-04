@@ -339,10 +339,10 @@ void Vtop::traceChgSub0(void* userp, VerilatedVcd* tracep) {
         tracep->chgCData(oldp+413,(vlTOPp->MBC_version),4);
         tracep->chgCData(oldp+414,(vlTOPp->ROM_size),8);
         tracep->chgCData(oldp+415,(vlTOPp->RAM_size),8);
-        tracep->chgBit(oldp+416,(vlTOPp->IF_out));
-        tracep->chgBit(oldp+417,(vlTOPp->IE_out));
-        tracep->chgBit(oldp+418,(vlTOPp->LCDC_out));
-        tracep->chgBit(oldp+419,(vlTOPp->JOY_out));
+        tracep->chgCData(oldp+416,(vlTOPp->IF_out),8);
+        tracep->chgCData(oldp+417,(vlTOPp->IE_out),8);
+        tracep->chgCData(oldp+418,(vlTOPp->LCDC_out),8);
+        tracep->chgCData(oldp+419,(vlTOPp->JOY_out),8);
     }
 }
 
