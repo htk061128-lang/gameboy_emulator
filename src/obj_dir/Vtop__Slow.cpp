@@ -32,6 +32,8 @@ void Vtop::_settle__TOP__5(Vtop__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop::_settle__TOP__5\n"); );
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
+    vlTOPp->IME_out = vlTOPp->top__DOT__u_CPU__DOT__IME;
+    vlTOPp->PC_out = vlTOPp->top__DOT__u_CPU__DOT__PC;
     vlTOPp->top__DOT__u_CPU__DOT__IME_off = 0U;
     if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
         if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {

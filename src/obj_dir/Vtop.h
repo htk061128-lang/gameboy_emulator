@@ -75,11 +75,14 @@ VL_MODULE(Vtop) {
     VL_OUT8(IE_out,7,0);
     VL_OUT8(LCDC_out,7,0);
     VL_OUT8(JOY_out,7,0);
+    VL_OUT8(LY_out,7,0);
+    VL_OUT8(IME_out,0,0);
     VL_OUT16(VRAM_ad,15,0);
     VL_OUT16(WRAM_ad,15,0);
     VL_OUT16(ERAM_ad,14,0);
     VL_OUT16(OAM_ad,15,0);
     VL_OUT16(HRAM_ad,15,0);
+    VL_OUT16(PC_out,15,0);
     VL_OUT(ROM_ad,20,0);
     
     // LOCAL SIGNALS

@@ -5284,8 +5284,8 @@ VL_INLINE_OPT QData Vtop::_change_request_1(Vtop__Syms* __restrict vlSymsp) {
     QData __req = false;  // Logically a bool
     __req |= ((vlTOPp->top__DOT__u_CPU__DOT__flag_8 ^ vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__flag_8)
          | (vlTOPp->top__DOT__u_CPU__DOT__alu_result_8 ^ vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__alu_result_8));
-    VL_DEBUG_IF( if(__req && ((vlTOPp->top__DOT__u_CPU__DOT__flag_8 ^ vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__flag_8))) VL_DBG_MSGF("        CHANGE: cpu.sv:147: top.u_CPU.flag_8\n"); );
-    VL_DEBUG_IF( if(__req && ((vlTOPp->top__DOT__u_CPU__DOT__alu_result_8 ^ vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__alu_result_8))) VL_DBG_MSGF("        CHANGE: cpu.sv:148: top.u_CPU.alu_result_8\n"); );
+    VL_DEBUG_IF( if(__req && ((vlTOPp->top__DOT__u_CPU__DOT__flag_8 ^ vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__flag_8))) VL_DBG_MSGF("        CHANGE: cpu.sv:149: top.u_CPU.flag_8\n"); );
+    VL_DEBUG_IF( if(__req && ((vlTOPp->top__DOT__u_CPU__DOT__alu_result_8 ^ vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__alu_result_8))) VL_DBG_MSGF("        CHANGE: cpu.sv:150: top.u_CPU.alu_result_8\n"); );
     // Final
     vlTOPp->__Vchglast__TOP__top__DOT__u_CPU__DOT__flag_8 
         = vlTOPp->top__DOT__u_CPU__DOT__flag_8;

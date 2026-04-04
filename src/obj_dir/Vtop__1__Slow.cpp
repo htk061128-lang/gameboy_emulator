@@ -12,6 +12,7 @@ void Vtop::_settle__TOP__6(Vtop__Syms* __restrict vlSymsp) {
     vlTOPp->IF_out = (0xe0U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg));
     vlTOPp->IE_out = (0xe0U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg));
     vlTOPp->LCDC_out = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg;
+    vlTOPp->LY_out = vlTOPp->top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg;
     vlTOPp->top__DOT__u_PPU__DOT__map_y = (0xffU & 
                                            ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__SCY_reg) 
                                             + (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter)));
@@ -6791,6 +6792,9 @@ void Vtop::_ctor_var_reset() {
     IE_out = VL_RAND_RESET_I(8);
     LCDC_out = VL_RAND_RESET_I(8);
     JOY_out = VL_RAND_RESET_I(8);
+    LY_out = VL_RAND_RESET_I(8);
+    IME_out = VL_RAND_RESET_I(1);
+    PC_out = VL_RAND_RESET_I(16);
     top__DOT__cpu_mem_ena = VL_RAND_RESET_I(1);
     top__DOT__cpu_mem_ad = VL_RAND_RESET_I(16);
     top__DOT__cpu_mem_r_ena = VL_RAND_RESET_I(1);

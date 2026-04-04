@@ -393,6 +393,7 @@ int main(int argc, char **argv)
     int second_counter = 0;
     int second_counter_standard = SDL_GetTicks();
     int nextclk;
+    int counter;
 
     uint32_t frame_start_time = SDL_GetTicks(); // 프레임이 출력이 끝난후의 시작을 측정하는 변수.
 
@@ -478,6 +479,8 @@ int main(int argc, char **argv)
 
             // 11. 화면에 최종 출력
             SDL_RenderPresent(renderer);
+            printf("pixel display!!!\n");
+            printf("PC: %04X\n", dut->PC_out);
             frame_counter++;
 
             while (SDL_PollEvent(&event))
@@ -583,7 +586,12 @@ int main(int argc, char **argv)
         {
             rom.read_data = rom.memory[dut->ROM_ad];
             rom.read_data_ena = 1;
-            // printf("read_memory, ad: %04X\n", dut->ROM_ad); // ROM 읽기 로그 출력.
+            if (counter < 1)
+            {
+                printf("read_ROM, ad: %06X\n", dut->ROM_ad); // ROM 읽기 로그 출력.
+                printf("PC: %04X\n", dut->PC_out);
+                counter++;
+            }
         }
         else if (dut->ROM_ena && dut->ROM_w_ena)
         {
@@ -665,6 +673,9 @@ int main(int argc, char **argv)
         else if (dut->WRAM_ena && dut->WRAM_w_ena)
         {
             wram.memory[dut->WRAM_ad - 0xC000] = dut->WRAM_w_data;
+            /*if(dut->WRAM_ad == 0xC0BF){
+                printf("C0BF write!, data: %02X", dut->WRAM_w_data);
+            }*/
         }
 
         if (dut->top__DOT__cpu_mem_ad == 0xFF40 && dut->top__DOT__cpu_mem_ena)
@@ -674,6 +685,20 @@ int main(int argc, char **argv)
             {
                 printf("LDCD_write, data: %02X\n", dut->top__DOT__io_reg_w_data);
             }
+        }
+
+        // PC가 0x0040 (V-Blank 인터럽트 핸들러)에 도착했는지 확인
+        if (dut->PC_out == 0x0040)
+        {
+            printf("\n🔥🔥🔥 V-BLANK INTERRUPT TRIGGERED! 🔥🔥🔥\n\n");
+        }
+
+        // 루프에 갇혀 있을 때 CPU 내부의 인터럽트 상태 확인
+        if (dut->PC_out == 0x1661)
+        {
+            // 주의: dut->IME_out, dut->IE_out, dut->IF_out은 top.sv에서 output으로 빼두어야 출력 가능합니다.
+            printf("Waiting... IME: %d | IE: %02X | IF: %02X\n",
+                   dut->IME_out, dut->IE_out, dut->IF_out);
         }
 
         /*if (dut->top__DOT__cpu_mem_ena && dut->top__DOT__cpu_mem_ad == 0xFF00)

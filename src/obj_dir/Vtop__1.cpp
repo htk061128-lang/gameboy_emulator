@@ -5394,7 +5394,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
         }
     }
     if (vlTOPp->reset) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg = 0U;
+        vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg = 0x91U;
     } else {
         if (((((((((0xff40U == (IData)(vlTOPp->top__DOT__io_reg_ad)) 
                    | (0xff42U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
@@ -5413,6 +5413,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
         }
     }
     vlTOPp->top__DOT__irq_clear = vlTOPp->__Vdly__top__DOT__irq_clear;
+    vlTOPp->LY_out = vlTOPp->top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg;
     vlTOPp->IE_out = (0xe0U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg));
     vlTOPp->IF_out = (0xe0U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg));
     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = vlTOPp->top__DOT__u_CPU__DOT__main_state;

@@ -123,9 +123,6 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__1(Vtop__Syms* __restrict vlSymsp) {
         = vlTOPp->top__DOT__u_CPU__DOT__EI_pending;
     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state 
         = vlTOPp->top__DOT__u_CPU__DOT__mem_state;
-    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
-        = vlTOPp->top__DOT__u_CPU__DOT__main_state;
-    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME = vlTOPp->top__DOT__u_CPU__DOT__IME;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__mode3_counter_1 
         = vlTOPp->top__DOT__u_PPU__DOT__mode3_counter_1;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__mode3_state 
@@ -268,8 +265,11 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__1(Vtop__Syms* __restrict vlSymsp) {
         = vlTOPp->top__DOT__u_PPU__DOT__sub_counter_1;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__sub_state 
         = vlTOPp->top__DOT__u_PPU__DOT__sub_state;
+    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+        = vlTOPp->top__DOT__u_CPU__DOT__main_state;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__array_index 
         = vlTOPp->top__DOT__u_PPU__DOT__array_index;
+    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME = vlTOPp->top__DOT__u_CPU__DOT__IME;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__m_clk_counter 
         = vlTOPp->top__DOT__u_PPU__DOT__m_clk_counter;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__main_state 
@@ -277,11 +277,11 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__1(Vtop__Syms* __restrict vlSymsp) {
     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_out_reg 
         = vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg;
     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = vlTOPp->top__DOT__u_CPU__DOT__PC;
-    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP = vlTOPp->top__DOT__u_CPU__DOT__SP;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__line_counter 
         = vlTOPp->top__DOT__u_PPU__DOT__line_counter;
     vlTOPp->__Vdly__top__DOT__u_PPU__DOT__sub_counter_2 
         = vlTOPp->top__DOT__u_PPU__DOT__sub_counter_2;
+    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP = vlTOPp->top__DOT__u_CPU__DOT__SP;
     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
         = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter;
     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid 
@@ -1830,27 +1830,44 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__1(Vtop__Syms* __restrict vlSymsp) {
                                                                 vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
                                                                 if (
                                                                     (1U 
-                                                                     & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                     & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                        & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) {
                                                                     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x40U;
                                                                 } else {
                                                                     if (
-                                                                        (2U 
-                                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                        (1U 
+                                                                         & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                             >> 1U) 
+                                                                            & (0x70U 
+                                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 1U))))) {
                                                                         vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x48U;
                                                                     } else {
                                                                         if (
-                                                                            (4U 
-                                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                            (1U 
+                                                                             & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 2U) 
+                                                                                & (0x38U 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 2U))))) {
                                                                             vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x50U;
                                                                         } else {
                                                                             if (
-                                                                                (8U 
-                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 3U) 
+                                                                                & (0x1cU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 3U))))) {
                                                                                 vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x58U;
                                                                             } else {
                                                                                 if (
-                                                                                (0x10U 
-                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 4U) 
+                                                                                & (0xeU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 4U))))) {
                                                                                 vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x60U;
                                                                                 }
                                                                             }
@@ -1865,39 +1882,56 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__1(Vtop__Syms* __restrict vlSymsp) {
                                                                     vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
                                                                     if (
                                                                         (1U 
-                                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                         & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                            & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) {
                                                                         vlTOPp->__Vdly__top__DOT__irq_clear 
                                                                             = 
                                                                             (1U 
                                                                              | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
                                                                     } else {
                                                                         if (
-                                                                            (2U 
-                                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                            (1U 
+                                                                             & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 1U) 
+                                                                                & (0x70U 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 1U))))) {
                                                                             vlTOPp->__Vdly__top__DOT__irq_clear 
                                                                                 = 
                                                                                 (2U 
                                                                                 | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
                                                                         } else {
                                                                             if (
-                                                                                (4U 
-                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 2U) 
+                                                                                & (0x38U 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 2U))))) {
                                                                                 vlTOPp->__Vdly__top__DOT__irq_clear 
                                                                                 = 
                                                                                 (4U 
                                                                                 | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
                                                                             } else {
                                                                                 if (
-                                                                                (8U 
-                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 3U) 
+                                                                                & (0x1cU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 3U))))) {
                                                                                 vlTOPp->__Vdly__top__DOT__irq_clear 
                                                                                 = 
                                                                                 (8U 
                                                                                 | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
                                                                                 } else {
                                                                                 if (
-                                                                                (0x10U 
-                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg))) {
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 4U) 
+                                                                                & (0xeU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 4U))))) {
                                                                                 vlTOPp->__Vdly__top__DOT__irq_clear 
                                                                                 = 
                                                                                 (0x10U 
@@ -27424,8 +27458,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__2(Vtop__Syms* __restrict vlSymsp) {
     vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__my_clk_counter;
     vlTOPp->top__DOT__u_CPU__DOT__main_state = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state;
     vlTOPp->top__DOT__u_CPU__DOT__IME = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME;
-    vlTOPp->top__DOT__u_CPU__DOT__PC = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC;
     vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_out_reg;
+    vlTOPp->top__DOT__u_CPU__DOT__PC = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC;
     vlTOPp->top__DOT__u_CPU__DOT__SP = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP;
     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter;
     vlTOPp->top__DOT__u_CPU__DOT__opcode_valid = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid;
@@ -27623,6 +27657,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__2(Vtop__Syms* __restrict vlSymsp) {
                 = vlTOPp->top__DOT__io_reg_w_data;
         }
     }
+    vlTOPp->IME_out = vlTOPp->top__DOT__u_CPU__DOT__IME;
+    vlTOPp->PC_out = vlTOPp->top__DOT__u_CPU__DOT__PC;
     vlTOPp->top__DOT__u_CPU__DOT__IME_off = 0U;
     if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
         if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {

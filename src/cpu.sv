@@ -27,7 +27,8 @@ module CPU(
   output [7:0] L_debug,
   output [15:0] PC_debug,
   output [15:0] SP_debug,
-  output [7:0] main_state_debug
+  output [7:0] main_state_debug,
+  output IME_debug
   
 );
   //memory_interface 모듈은 무조건 주소를 주면 다음 클럭에지에서 data가 나오게 되어있음. 그래서 버스가 사용중이거나 하면 쓰레기값을 반환하는 방식으로 구현함. 그래서 입출력이 완료될때까지 기다리는 구조가 아니고 그냥 조용히 실패하는 구조임. 
@@ -61,6 +62,7 @@ module CPU(
   assign L_debug = L;
   assign PC_debug = PC;
   assign SP_debug = SP;
+  assign IME_debug = IME;
   
   assign main_state_debug = main_state;
   
@@ -532,20 +534,20 @@ module CPU(
               17: begin //T1 에지, M5 에지
                 T_clk_counter <= 18;
                 main_state <= INTERRUPT;
-                if(IF_reg[0]) PC[15:0] <= 16'h0040; //VBlank interrupt
-                else if(IF_reg[1]) PC[15:0] <= 16'h0048; //STAT interrupt
-                else if(IF_reg[2]) PC[15:0] <= 16'h0050; //Timer interrupt
-                else if(IF_reg[3]) PC[15:0] <= 16'h0058; //Serial interrupt
-                else if(IF_reg[4]) PC[15:0] <= 16'h0060; //Joypad interrupt
+                if(IF_reg[0] & IE[0]) PC[15:0] <= 16'h0040; //VBlank interrupt
+                else if(IF_reg[1] & IE[1]) PC[15:0] <= 16'h0048; //STAT interrupt
+                else if(IF_reg[2] & IE[2]) PC[15:0] <= 16'h0050; //Timer interrupt
+                else if(IF_reg[3] & IE[3]) PC[15:0] <= 16'h0058; //Serial interrupt
+                else if(IF_reg[4] & IE[4]) PC[15:0] <= 16'h0060; //Joypad interrupt
               end
               18: begin //T2 에지
                 T_clk_counter <= 19;
                 main_state <= INTERRUPT;
-                if(IF_reg[0]) irq_clear[0] <= 1; //VBlank interrupt. irq_clear 신호를 보내서 외부 모듈의 IF레지스터를 초기화 시켜줌.
-                else if(IF_reg[1]) irq_clear[1] <= 1; //STAT interrupt
-                else if(IF_reg[2]) irq_clear[2] <= 1; //Timer interrupt
-                else if(IF_reg[3]) irq_clear[3] <= 1; //Serial interrupt
-                else if(IF_reg[4]) irq_clear[4] <= 1; //Joypad interrupt
+                if(IF_reg[0] & IE[0]) irq_clear[0] <= 1; //VBlank interrupt. irq_clear 신호를 보내서 외부 모듈의 IF레지스터를 초기화 시켜줌.
+                else if(IF_reg[1] & IE[1]) irq_clear[1] <= 1; //STAT interrupt
+                else if(IF_reg[2] & IE[2]) irq_clear[2] <= 1; //Timer interrupt
+                else if(IF_reg[3] & IE[3]) irq_clear[3] <= 1; //Serial interrupt
+                else if(IF_reg[4] & IE[4]) irq_clear[4] <= 1; //Joypad interrupt
               end
               19: begin //T3 에지
                 T_clk_counter <= 20;
