@@ -356,6 +356,7 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__u_PPU__DOT____Vlvbound16;
         CData/*7:0*/ top__DOT__u_PPU__DOT____Vlvbound17;
         CData/*7:0*/ top__DOT__u_PPU__DOT____Vlvbound18;
+        CData/*7:0*/ __Vdly__top__DOT__u_CPU__DOT__tem_reg;
         CData/*3:0*/ __Vdly__top__DOT__u_CPU__DOT__mem_state;
         CData/*7:0*/ __Vdly__top__DOT__u_CPU__DOT__main_state;
         CData/*0:0*/ __Vdly__top__DOT__u_CPU__DOT__opcode_valid;
@@ -367,7 +368,6 @@ VL_MODULE(Vtop) {
         CData/*0:0*/ __Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg;
         CData/*7:0*/ __Vdly__top__DOT__u_CPU__DOT__mem_out_reg;
         CData/*7:0*/ __Vdly__top__DOT__u_CPU__DOT__IF_reg;
-        CData/*7:0*/ __Vdly__top__DOT__u_CPU__DOT__tem_reg;
         CData/*3:0*/ __Vdly__top__DOT__u_CPU__DOT__my_clk_counter;
         CData/*7:0*/ __Vdly__top__DOT__u_io_register__DOT__JOY;
         CData/*4:0*/ __Vdly__top__DOT__u_io_register__DOT__inst_DIV__DOT__my_clk_counter;

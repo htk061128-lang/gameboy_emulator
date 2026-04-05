@@ -275,6 +275,8 @@ module CPU(
             end
             else if(next_main_state == HALT) begin
               opcode_valid <= 0; //halt 명령어가 실행될때 opcode_valid는 0으로 바꾸어줌.
+              IME <= (EI_pending) ? 1 : IME; //직전에 실행된 명령어가 EI이고 이후 HALT가 실행되는 경우. 이때 main_state가 HALT가 되는 동시에 IME가 1로 설정되야 함!
+              EI_pending <= 0;
             end
           end
           EXECUTE: begin 

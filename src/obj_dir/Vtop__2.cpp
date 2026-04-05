@@ -3764,6 +3764,17 @@ VL_INLINE_OPT void Vtop::_combo__TOP__7(Vtop__Syms* __restrict vlSymsp) {
                                             = vlTOPp->top__DOT__dma_mem_ad;
                                         vlTOPp->top__DOT__io_reg_w_data = 0xffU;
                                         vlTOPp->top__DOT__u_Memory_Interface__DOT__dma_next = 5U;
+                                    } else {
+                                        if ((0xffffU 
+                                             == (IData)(vlTOPp->top__DOT__dma_mem_ad))) {
+                                            vlTOPp->top__DOT__io_reg_ena = 1U;
+                                            vlTOPp->top__DOT__io_reg_r_ena = 1U;
+                                            vlTOPp->top__DOT__io_reg_w_ena = 0U;
+                                            vlTOPp->top__DOT__io_reg_ad 
+                                                = vlTOPp->top__DOT__dma_mem_ad;
+                                            vlTOPp->top__DOT__io_reg_w_data = 0xffU;
+                                            vlTOPp->top__DOT__u_Memory_Interface__DOT__dma_next = 5U;
+                                        }
                                     }
                                 }
                             }
@@ -3899,6 +3910,16 @@ VL_INLINE_OPT void Vtop::_combo__TOP__7(Vtop__Syms* __restrict vlSymsp) {
                                             vlTOPp->top__DOT__io_reg_ad 
                                                 = vlTOPp->top__DOT__cpu_mem_ad;
                                             vlTOPp->top__DOT__u_Memory_Interface__DOT__cpu_next = 7U;
+                                        } else {
+                                            if ((0xffffU 
+                                                 == (IData)(vlTOPp->top__DOT__cpu_mem_ad))) {
+                                                vlTOPp->top__DOT__io_reg_ena = 1U;
+                                                vlTOPp->top__DOT__io_reg_r_ena = 1U;
+                                                vlTOPp->top__DOT__io_reg_w_ena = 0U;
+                                                vlTOPp->top__DOT__io_reg_ad 
+                                                    = vlTOPp->top__DOT__cpu_mem_ad;
+                                                vlTOPp->top__DOT__u_Memory_Interface__DOT__cpu_next = 7U;
+                                            }
                                         }
                                     }
                                 }
@@ -4035,6 +4056,17 @@ VL_INLINE_OPT void Vtop::_combo__TOP__7(Vtop__Syms* __restrict vlSymsp) {
                                         }
                                     }
                                 }
+                            }
+                        } else {
+                            if ((0xffffU == (IData)(vlTOPp->top__DOT__cpu_mem_ad))) {
+                                vlTOPp->top__DOT__io_reg_ena = 1U;
+                                vlTOPp->top__DOT__io_reg_r_ena = 0U;
+                                vlTOPp->top__DOT__io_reg_w_ena = 1U;
+                                vlTOPp->top__DOT__io_reg_ad 
+                                    = vlTOPp->top__DOT__cpu_mem_ad;
+                                vlTOPp->top__DOT__io_reg_w_data 
+                                    = vlTOPp->top__DOT__cpu_mem_w_data;
+                                vlTOPp->top__DOT__u_Memory_Interface__DOT__cpu_next = 0U;
                             }
                         }
                     }

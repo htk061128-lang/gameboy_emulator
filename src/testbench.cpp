@@ -15,43 +15,48 @@
 void setup_test_rom(uint8_t *memory)
 {
     // [0] 메모리 싹 비우기 (0x00)
-    for (int i = 0; i < 32768; i++) memory[i] = 0;
+    for (int i = 0; i < 32768; i++)
+        memory[i] = 0;
 
     // ==========================================
     // [1] V-Blank 인터럽트 핸들러 ($0040)
     // ==========================================
     // PPU가 V-Blank를 알리면 CPU는 여기로 강제 점프해야 합니다!
     uint16_t p = 0x0040;
-    memory[p++] = 0xF5;             // PUSH AF (레지스터 백업)
-    memory[p++] = 0x3E; memory[p++] = 0x01; // LD A, $01
-    memory[p++] = 0xE0; memory[p++] = 0x80; // LDH ($80), A  <- HRAM($FF80)에 1을 써서 "나 깼어!"라고 표시
-    memory[p++] = 0xF1;             // POP AF (레지스터 복구)
-    memory[p++] = 0xD9;             // RETI (인터럽트 종료 및 IME=1 복구)
+    memory[p++] = 0xF5; // PUSH AF (레지스터 백업)
+    memory[p++] = 0x3E;
+    memory[p++] = 0x01; // LD A, $01
+    memory[p++] = 0xE0;
+    memory[p++] = 0x80; // LDH ($80), A  <- HRAM($FF80)에 1을 써서 "나 깼어!"라고 표시
+    memory[p++] = 0xF1; // POP AF (레지스터 복구)
+    memory[p++] = 0xD9; // RETI (인터럽트 종료 및 IME=1 복구)
 
     // ==========================================
     // [2] 부팅 진입점 ($0100)
     // ==========================================
     p = 0x0100;
-    memory[p++] = 0x00;             // NOP
-    memory[p++] = 0xC3; 
-    memory[p++] = 0x50; 
-    memory[p++] = 0x01;             // JP $0150
+    memory[p++] = 0x00; // NOP
+    memory[p++] = 0xC3;
+    memory[p++] = 0x50;
+    memory[p++] = 0x01; // JP $0150
 
     // ==========================================
     // [DATA] 타일 및 맵 데이터
     // ==========================================
     // 타일 0: 텅 빈 공간
-    for(int i=0; i<16; i++) memory[0x0500 + i] = 0x00;
-    
+    for (int i = 0; i < 16; i++)
+        memory[0x0500 + i] = 0x00;
+
     // 타일 1: 대각선 빗살무늬 패턴 (스크롤 확인할 때 시각적으로 잘 보임)
     uint8_t tile_pattern[] = {
         0xCC, 0x00, 0x66, 0x00, 0x33, 0x00, 0x99, 0x00,
-        0xCC, 0x00, 0x66, 0x00, 0x33, 0x00, 0x99, 0x00
-    };
-    for(int i=0; i<16; i++) memory[0x0510 + i] = tile_pattern[i];
+        0xCC, 0x00, 0x66, 0x00, 0x33, 0x00, 0x99, 0x00};
+    for (int i = 0; i < 16; i++)
+        memory[0x0510 + i] = tile_pattern[i];
 
     // BG 타일맵 ($0600~$09FF) -> 체크무늬로 채우기
-    for(int i=0; i<1024; i++) {
+    for (int i = 0; i < 1024; i++)
+    {
         int x = i % 32;
         int y = i / 32;
         memory[0x0600 + i] = ((x + y) % 2 == 0) ? 1 : 0;
@@ -61,81 +66,113 @@ void setup_test_rom(uint8_t *memory)
     // [3] 메인 초기화 루틴 ($0150)
     // ==========================================
     p = 0x0150;
-    memory[p++] = 0xF3;             // DI (인터럽트 일단 끄기)
-    memory[p++] = 0x31; memory[p++] = 0x00; memory[p++] = 0xE0; // LD SP, $E000 (스택 포인터 설정! 매우 중요!)
+    memory[p++] = 0xF3; // DI (인터럽트 일단 끄기)
+    memory[p++] = 0x31;
+    memory[p++] = 0x00;
+    memory[p++] = 0xE0; // LD SP, $E000 (스택 포인터 설정! 매우 중요!)
 
     // --- VRAM 복사 람다 함수 ---
-    auto emit_copy = [&](uint16_t src, uint16_t dst, uint16_t size) {
-        memory[p++] = 0x21; memory[p++] = dst & 0xFF; memory[p++] = dst >> 8; // LD HL, dst
-        memory[p++] = 0x11; memory[p++] = src & 0xFF; memory[p++] = src >> 8; // LD DE, src
-        memory[p++] = 0x01; memory[p++] = size & 0xFF; memory[p++] = size >> 8; // LD BC, size
-        memory[p++] = 0x1A; // LD A, (DE)
-        memory[p++] = 0x22; // LD (HL+), A
-        memory[p++] = 0x13; // INC DE
-        memory[p++] = 0x0B; // DEC BC
-        memory[p++] = 0x78; // LD A, B
-        memory[p++] = 0xB1; // OR C
-        memory[p++] = 0x20; memory[p++] = 0xF8; // JR NZ, -8
+    auto emit_copy = [&](uint16_t src, uint16_t dst, uint16_t size)
+    {
+        memory[p++] = 0x21;
+        memory[p++] = dst & 0xFF;
+        memory[p++] = dst >> 8; // LD HL, dst
+        memory[p++] = 0x11;
+        memory[p++] = src & 0xFF;
+        memory[p++] = src >> 8; // LD DE, src
+        memory[p++] = 0x01;
+        memory[p++] = size & 0xFF;
+        memory[p++] = size >> 8; // LD BC, size
+        memory[p++] = 0x1A;      // LD A, (DE)
+        memory[p++] = 0x22;      // LD (HL+), A
+        memory[p++] = 0x13;      // INC DE
+        memory[p++] = 0x0B;      // DEC BC
+        memory[p++] = 0x78;      // LD A, B
+        memory[p++] = 0xB1;      // OR C
+        memory[p++] = 0x20;
+        memory[p++] = 0xF8; // JR NZ, -8
     };
 
     emit_copy(0x0500, 0x8000, 32);   // 타일 복사
     emit_copy(0x0600, 0x9800, 1024); // 맵 복사
 
     // 팔레트 및 위치 초기화
-    memory[p++] = 0x3E; memory[p++] = 0xE4; memory[p++] = 0xE0; memory[p++] = 0x47; // BGP = $E4
+    memory[p++] = 0x3E;
+    memory[p++] = 0xE4;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x47; // BGP = $E4
     memory[p++] = 0xAF; // XOR A (A=0)
-    memory[p++] = 0xE0; memory[p++] = 0x42; // SCY = 0
-    memory[p++] = 0xE0; memory[p++] = 0x43; // SCX = 0
+    memory[p++] = 0xE0;
+    memory[p++] = 0x42; // SCY = 0
+    memory[p++] = 0xE0;
+    memory[p++] = 0x43; // SCX = 0
 
     // LCD 켜기
-    memory[p++] = 0x3E; memory[p++] = 0x91; 
-    memory[p++] = 0xE0; memory[p++] = 0x40; // LCDC = $91
+    memory[p++] = 0x3E;
+    memory[p++] = 0x91;
+    memory[p++] = 0xE0;
+    memory[p++] = 0x40; // LCDC = $91
 
     // ==========================================
     // [4] 인터럽트 대기 지옥 (The Core Test)
     // ==========================================
     // 1. 확인용 플래그 HRAM($FF80)을 0으로 세팅
     memory[p++] = 0xAF; // XOR A
-    memory[p++] = 0xE0; memory[p++] = 0x80; // LDH ($80), A 
+    memory[p++] = 0xE0;
+    memory[p++] = 0x80; // LDH ($80), A
 
     // 2. V-Blank 인터럽트 수신 허용 (IE 레지스터 = 1)
-    memory[p++] = 0x3E; memory[p++] = 0x01; // LD A, 1
-    memory[p++] = 0xEA; memory[p++] = 0xFF; memory[p++] = 0xFF; // LD ($FFFF), A
+    memory[p++] = 0x3E;
+    memory[p++] = 0x01; // LD A, 1
+    memory[p++] = 0xEA;
+    memory[p++] = 0xFF;
+    memory[p++] = 0xFF; // LD ($FFFF), A
 
     // 3. 마스터 스위치 ON (IME = 1)
     memory[p++] = 0xFB; // EI
 
     // 4. 대기 루프 시작
     uint16_t wait_loop = p;
-    memory[p++] = 0x76;             // HALT (CPU 수면 상태 진입. PPU가 깨워주길 기다림)
-    memory[p++] = 0x00;             // NOP  (Halt bug 방지용)
-    memory[p++] = 0xF0; memory[p++] = 0x80; // LDH A, ($80) (플래그 확인)
-    memory[p++] = 0xB7;             // OR A (A가 0인지 체크)
-    memory[p++] = 0x28; memory[p++] = 0xF9; // JR Z, -7 (여전히 0이면 HALT로 다시 점프!)
+    memory[p++] = 0x76; // HALT (CPU 수면 상태 진입. PPU가 깨워주길 기다림)
+    memory[p++] = 0x00; // NOP  (Halt bug 방지용)
+    memory[p++] = 0xF0;
+    memory[p++] = 0x80; // LDH A, ($80) (플래그 확인)
+    memory[p++] = 0xB7; // OR A (A가 0인지 체크)
+    memory[p++] = 0x28;
+    memory[p++] = 0xF9; // JR Z, -7 (여전히 0이면 HALT로 다시 점프!)
 
     // ==========================================
     // [5] 테스트 성공! (무한 자동 스크롤 루프)
     // ==========================================
     // 이 코드가 실행된다는 것은 인터럽트 처리 후 무사히 돌아왔다는 뜻입니다.
     uint16_t success_loop = p;
-    
+
     // V-Blank 대기 (한 프레임 1번 스크롤용)
-    memory[p++] = 0xF0; memory[p++] = 0x44; // LDH A, ($44)
-    memory[p++] = 0xFE; memory[p++] = 0x90; // CP 144
-    memory[p++] = 0x20; memory[p++] = 0xFA; // JR NZ, -6
-    
+    memory[p++] = 0xF0;
+    memory[p++] = 0x44; // LDH A, ($44)
+    memory[p++] = 0xFE;
+    memory[p++] = 0x90; // CP 144
+    memory[p++] = 0x20;
+    memory[p++] = 0xFA; // JR NZ, -6
+
     // 배경을 자동으로 왼쪽으로 스크롤 (SCX++)
-    memory[p++] = 0xF0; memory[p++] = 0x43; // LDH A, ($43)
-    memory[p++] = 0x3C;             // INC A
-    memory[p++] = 0xE0; memory[p++] = 0x43; // LDH ($43), A
+    memory[p++] = 0xF0;
+    memory[p++] = 0x43; // LDH A, ($43)
+    memory[p++] = 0x3C; // INC A
+    memory[p++] = 0xE0;
+    memory[p++] = 0x43; // LDH ($43), A
 
     // V-Blank 벗어날 때까지 대기
-    memory[p++] = 0xF0; memory[p++] = 0x44; // LDH A, ($44)
-    memory[p++] = 0xFE; memory[p++] = 0x90; // CP 144
-    memory[p++] = 0x28; memory[p++] = 0xFA; // JR Z, -6
+    memory[p++] = 0xF0;
+    memory[p++] = 0x44; // LDH A, ($44)
+    memory[p++] = 0xFE;
+    memory[p++] = 0x90; // CP 144
+    memory[p++] = 0x28;
+    memory[p++] = 0xFA; // JR Z, -6
 
     // 무한 반복
-    memory[p++] = 0x18; memory[p++] = (uint8_t)((success_loop - (p + 1)) & 0xFF);
+    memory[p++] = 0x18;
+    memory[p++] = (uint8_t)((success_loop - (p + 1)) & 0xFF);
 }
 
 int print_tile(uint8_t *vram)
@@ -397,8 +434,8 @@ int main(int argc, char **argv)
 
             // 11. 화면에 최종 출력
             SDL_RenderPresent(renderer);
-            //printf("pixel display!!!\n");
-            //printf("PC: %04X\n", dut->PC_out);
+            // printf("pixel display!!!\n");
+            // printf("PC: %04X\n", dut->PC_out);
             frame_counter++;
 
             while (SDL_PollEvent(&event))
@@ -619,34 +656,58 @@ int main(int argc, char **argv)
                    dut->IME_out, dut->IE_out, dut->IF_out);
         }
 
-        if(dut->top__DOT__irq_vblank)
+        if (dut->top__DOT__irq_vblank)
         {
             printf("vblank request! IE: %02X, IF: %02X, IME: %d\n", dut->IE_out, dut->IF_out, dut->IME_out);
         }
 
-        if(dut->top__DOT__io_reg_ena && dut->top__DOT__io_reg_ad == 0xFFFF)
+        if (dut->top__DOT__io_reg_ena && dut->top__DOT__io_reg_ad == 0xFFFF)
         {
             printf("CPU, IE write!, sim_time: %d\n", sim_time);
             nextclk = 1;
         }
-        if(nextclk)
+        if (nextclk)
         {
             printf("IE : %02X\n", dut->IE_out);
             nextclk = 0;
         }
 
-        if(dut->top__DOT__u_CPU__DOT__halt)
+        if (dut->top__DOT__u_CPU__DOT__halt)
         {
             printf("halt!!\n");
         }
 
-        if(dut->HRAM_ad == 0xFF80 && dut->HRAM_ena)
+        if (dut->HRAM_ad == 0xFF80 && dut->HRAM_ena)
         {
-            if(dut->HRAM_w_ena) {
-            printf("CPU FF80 write!!, data: %02X, PC: %04X sim_time: %d\n", dut->HRAM_w_data, dut->PC_out, sim_time);
+            if (dut->HRAM_w_ena)
+            {
+                printf("CPU FF80 write!!, data: %02X, PC: %04X sim_time: %d\n", dut->HRAM_w_data, dut->PC_out, sim_time);
+            }
+            if (dut->HRAM_r_ena)
+            {
+                // printf("CPU FF80 read!! PC: %04X sim_time: %d\n", dut->PC_out, sim_time);
             }
         }
 
+        // 1. IE 쓰기 명령어 구간 모니터링
+        if (dut->PC_out >= 0x0188 && dut->PC_out <= 0x018A)
+        {
+            printf("[DEBUG] PC: %04X | Fetching LD ($FFFF), A (0xEA) | IE: %02X\n", dut->PC_out, dut->IE_out);
+        }
+
+        // 2. EI 명령어 모니터링
+        if (dut->PC_out == 0x018B)
+        {
+            printf("[DEBUG] PC: %04X | Executing EI (0xFB) | IME before: %d, IE: %02X\n", dut->PC_out, dut->IME_out, dut->IE_out);
+        }
+
+        // 3. HALT 명령어 진입 모니터링
+        if (dut->PC_out == 0x018C)
+        {
+            // 이 로그가 미친듯이 도배된다면: PC가 증가하지 않고 HALT에 제대로 멈춰있는 것입니다! (정상)
+            // 이 로그가 한 번만 찍히고 넘어간다면: HALT가 무시되고 있는 것입니다! (버그)
+            //printf("[DEBUG] PC: %04X | Executing HALT (0x76) | IME: %d, IE: %02X, IF: %02X\n", dut->PC_out, dut->IME_out, dut->IE_out, dut->IF_out);
+        }
 
         /*if (dut->top__DOT__cpu_mem_ena && dut->top__DOT__cpu_mem_ad == 0xFF00)
         {

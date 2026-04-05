@@ -5159,6 +5159,17 @@ void Vtop::_settle__TOP__6(Vtop__Syms* __restrict vlSymsp) {
                                             = vlTOPp->top__DOT__dma_mem_ad;
                                         vlTOPp->top__DOT__io_reg_w_data = 0xffU;
                                         vlTOPp->top__DOT__u_Memory_Interface__DOT__dma_next = 5U;
+                                    } else {
+                                        if ((0xffffU 
+                                             == (IData)(vlTOPp->top__DOT__dma_mem_ad))) {
+                                            vlTOPp->top__DOT__io_reg_ena = 1U;
+                                            vlTOPp->top__DOT__io_reg_r_ena = 1U;
+                                            vlTOPp->top__DOT__io_reg_w_ena = 0U;
+                                            vlTOPp->top__DOT__io_reg_ad 
+                                                = vlTOPp->top__DOT__dma_mem_ad;
+                                            vlTOPp->top__DOT__io_reg_w_data = 0xffU;
+                                            vlTOPp->top__DOT__u_Memory_Interface__DOT__dma_next = 5U;
+                                        }
                                     }
                                 }
                             }
@@ -5294,6 +5305,16 @@ void Vtop::_settle__TOP__6(Vtop__Syms* __restrict vlSymsp) {
                                             vlTOPp->top__DOT__io_reg_ad 
                                                 = vlTOPp->top__DOT__cpu_mem_ad;
                                             vlTOPp->top__DOT__u_Memory_Interface__DOT__cpu_next = 7U;
+                                        } else {
+                                            if ((0xffffU 
+                                                 == (IData)(vlTOPp->top__DOT__cpu_mem_ad))) {
+                                                vlTOPp->top__DOT__io_reg_ena = 1U;
+                                                vlTOPp->top__DOT__io_reg_r_ena = 1U;
+                                                vlTOPp->top__DOT__io_reg_w_ena = 0U;
+                                                vlTOPp->top__DOT__io_reg_ad 
+                                                    = vlTOPp->top__DOT__cpu_mem_ad;
+                                                vlTOPp->top__DOT__u_Memory_Interface__DOT__cpu_next = 7U;
+                                            }
                                         }
                                     }
                                 }
@@ -5430,6 +5451,17 @@ void Vtop::_settle__TOP__6(Vtop__Syms* __restrict vlSymsp) {
                                         }
                                     }
                                 }
+                            }
+                        } else {
+                            if ((0xffffU == (IData)(vlTOPp->top__DOT__cpu_mem_ad))) {
+                                vlTOPp->top__DOT__io_reg_ena = 1U;
+                                vlTOPp->top__DOT__io_reg_r_ena = 0U;
+                                vlTOPp->top__DOT__io_reg_w_ena = 1U;
+                                vlTOPp->top__DOT__io_reg_ad 
+                                    = vlTOPp->top__DOT__cpu_mem_ad;
+                                vlTOPp->top__DOT__io_reg_w_data 
+                                    = vlTOPp->top__DOT__cpu_mem_w_data;
+                                vlTOPp->top__DOT__u_Memory_Interface__DOT__cpu_next = 0U;
                             }
                         }
                     }
@@ -7054,6 +7086,7 @@ void Vtop::_ctor_var_reset() {
     top__DOT__u_OAM_DMA__DOT__w_ad_reg = VL_RAND_RESET_I(16);
     top__DOT__u_OAM_DMA__DOT__w_end = VL_RAND_RESET_I(1);
     top__DOT__u_OAM_DMA__DOT__r_end = VL_RAND_RESET_I(1);
+    __Vdly__top__DOT__u_CPU__DOT__tem_reg = VL_RAND_RESET_I(8);
     __Vdly__top__DOT__u_CPU__DOT__mem_state = VL_RAND_RESET_I(4);
     __Vdly__top__DOT__u_CPU__DOT__main_state = VL_RAND_RESET_I(8);
     __Vdly__top__DOT__u_CPU__DOT__opcode_valid = VL_RAND_RESET_I(1);
@@ -7067,7 +7100,6 @@ void Vtop::_ctor_var_reset() {
     __Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = VL_RAND_RESET_I(1);
     __Vdly__top__DOT__u_CPU__DOT__mem_out_reg = VL_RAND_RESET_I(8);
     __Vdly__top__DOT__u_CPU__DOT__IF_reg = VL_RAND_RESET_I(8);
-    __Vdly__top__DOT__u_CPU__DOT__tem_reg = VL_RAND_RESET_I(8);
     __Vdly__top__DOT__u_CPU__DOT__my_clk_counter = VL_RAND_RESET_I(4);
     __Vdly__top__DOT__u_io_register__DOT__JOY = VL_RAND_RESET_I(8);
     __Vdly__top__DOT__u_io_register__DOT__inst_DIV__DOT__my_clk_counter = VL_RAND_RESET_I(5);
