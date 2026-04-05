@@ -366,11 +366,11 @@ int main(int argc, char **argv)
         rom.memory[i] = 0;
     }
 
-    setup_test_rom(rom.memory);
-    /*for (int i = 0; i < 32768; i++)
+    // setup_test_rom(rom.memory);
+    for (int i = 0; i < 32768; i++)
     {
         rom.memory[i] = game_data[i];
-    }*/
+    }
 
     for (int i = 0; i < 32768; i++)
     {
@@ -434,8 +434,8 @@ int main(int argc, char **argv)
 
             // 11. 화면에 최종 출력
             SDL_RenderPresent(renderer);
-            // printf("pixel display!!!\n");
-            // printf("PC: %04X\n", dut->PC_out);
+            //printf("pixel display!!!\n");
+            //printf("PC: %04X, IME: %d, IE: %02X, IF: %02X, LY: %02X\n", dut->PC_out, dut->IME_out, dut->IE_out, dut->IF_out, dut->LY_out);
             frame_counter++;
 
             while (SDL_PollEvent(&event))
@@ -628,116 +628,25 @@ int main(int argc, char **argv)
         else if (dut->WRAM_ena && dut->WRAM_w_ena)
         {
             wram.memory[dut->WRAM_ad - 0xC000] = dut->WRAM_w_data;
-            /*if(dut->WRAM_ad == 0xC0BF){
-                printf("C0BF write!, data: %02X", dut->WRAM_w_data);
-            }*/
         }
 
         if (dut->top__DOT__cpu_mem_ad == 0xFF40 && dut->top__DOT__cpu_mem_ena)
         {
-            printf("CPU $FF40 write, data: %02X\n", dut->top__DOT__cpu_mem_w_data);
-            if (dut->top__DOT__io_reg_ena == 1 && dut->top__DOT__io_reg_ad == 0xFF40)
+            if (dut->top__DOT__io_reg_ena == 1 && dut->top__DOT__io_reg_ad == 0xFF40 && dut->top__DOT__io_reg_w_ena)
             {
-                printf("LDCD_write, data: %02X\n", dut->top__DOT__io_reg_w_data);
+                //printf("LDCD_write, data: %02X\n", dut->top__DOT__io_reg_w_data);
+            }
+            if (dut->top__DOT__io_reg_ena == 1 && dut->top__DOT__io_reg_ad == 0xFF40 && dut->top__DOT__io_reg_r_ena)
+            {
+                //printf("LDCD_read, data: %02X\n", dut->LCDC_out);
             }
         }
 
-        // PC가 0x0040 (V-Blank 인터럽트 핸들러)에 도착했는지 확인
-        if (dut->PC_out == 0x0040)
+        if (dut->top__DOT__cpu_mem_ad == 0xFF44 && dut->top__DOT__cpu_mem_ena && dut->top__DOT__cpu_mem_r_ena)
         {
-            printf("\n🔥🔥🔥 V-BLANK INTERRUPT TRIGGERED! 🔥🔥🔥\n\n");
+            // 주의: cpu_mem_r_data 변수명은 본인의 Verilog output 이름에 맞게 변경하세요.
+            //printf("Reading LY ($FF44), CPU got: %02X\n", dut->LY_out);
         }
-
-        // 루프에 갇혀 있을 때 CPU 내부의 인터럽트 상태 확인
-        if (dut->PC_out == 0x1661)
-        {
-            // 주의: dut->IME_out, dut->IE_out, dut->IF_out은 top.sv에서 output으로 빼두어야 출력 가능합니다.
-            printf("Waiting... IME: %d | IE: %02X | IF: %02X\n",
-                   dut->IME_out, dut->IE_out, dut->IF_out);
-        }
-
-        if (dut->top__DOT__irq_vblank)
-        {
-            printf("vblank request! IE: %02X, IF: %02X, IME: %d\n", dut->IE_out, dut->IF_out, dut->IME_out);
-        }
-
-        if (dut->top__DOT__io_reg_ena && dut->top__DOT__io_reg_ad == 0xFFFF)
-        {
-            printf("CPU, IE write!, sim_time: %d\n", sim_time);
-            nextclk = 1;
-        }
-        if (nextclk)
-        {
-            printf("IE : %02X\n", dut->IE_out);
-            nextclk = 0;
-        }
-
-        if (dut->top__DOT__u_CPU__DOT__halt)
-        {
-            printf("halt!!\n");
-        }
-
-        if (dut->HRAM_ad == 0xFF80 && dut->HRAM_ena)
-        {
-            if (dut->HRAM_w_ena)
-            {
-                printf("CPU FF80 write!!, data: %02X, PC: %04X sim_time: %d\n", dut->HRAM_w_data, dut->PC_out, sim_time);
-            }
-            if (dut->HRAM_r_ena)
-            {
-                // printf("CPU FF80 read!! PC: %04X sim_time: %d\n", dut->PC_out, sim_time);
-            }
-        }
-
-        // 1. IE 쓰기 명령어 구간 모니터링
-        if (dut->PC_out >= 0x0188 && dut->PC_out <= 0x018A)
-        {
-            printf("[DEBUG] PC: %04X | Fetching LD ($FFFF), A (0xEA) | IE: %02X\n", dut->PC_out, dut->IE_out);
-        }
-
-        // 2. EI 명령어 모니터링
-        if (dut->PC_out == 0x018B)
-        {
-            printf("[DEBUG] PC: %04X | Executing EI (0xFB) | IME before: %d, IE: %02X\n", dut->PC_out, dut->IME_out, dut->IE_out);
-        }
-
-        // 3. HALT 명령어 진입 모니터링
-        if (dut->PC_out == 0x018C)
-        {
-            // 이 로그가 미친듯이 도배된다면: PC가 증가하지 않고 HALT에 제대로 멈춰있는 것입니다! (정상)
-            // 이 로그가 한 번만 찍히고 넘어간다면: HALT가 무시되고 있는 것입니다! (버그)
-            //printf("[DEBUG] PC: %04X | Executing HALT (0x76) | IME: %d, IE: %02X, IF: %02X\n", dut->PC_out, dut->IME_out, dut->IE_out, dut->IF_out);
-        }
-
-        /*if (dut->top__DOT__cpu_mem_ena && dut->top__DOT__cpu_mem_ad == 0xFF00)
-        {
-            if (dut->top__DOT__cpu_mem_r_ena)
-            {
-            }
-            if (dut->top__DOT__cpu_mem_w_ena)
-            {
-                printf("CPU $FF00 wirte, data: %02X\n", dut->top__DOT__cpu_mem_w_data);
-                if (dut->top__DOT__io_reg_ena && dut->top__DOT__io_reg_ad == 0xFF00 && dut->top__DOT__io_reg_w_ena && dut->top__DOT__io_reg_w_data == dut->top__DOT__cpu_mem_w_data)
-                {
-                    printf("JOY write, data: %02X\n", dut->top__DOT__io_reg_w_data);
-                    if (dut->top__DOT__u_io_register__DOT__joy_w_ena)
-                    {
-                        printf("JOY[5:4] write!!!, JOY: %02X\n", dut->JOY_out);
-                        nextclk = 1;
-                    }
-                }
-            }
-        }
-        if (nextclk)
-        {
-            printf("JOY next: %02X\n", dut->JOY_out);
-            nextclk = 0;
-        }
-        if (dut->vsync)
-        {
-            printf("Input Check -> UP:%d, DN:%d, LT:%d, RT:%d | JOY_REG:%02X\n",
-                   dut->joypad_up, dut->joypad_down, dut->joypad_left, dut->joypad_right, dut->JOY_out);
-        }*/
 
         /*
         if (second_counter > 1000)

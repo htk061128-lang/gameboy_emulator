@@ -28,7 +28,7 @@
               end
               else if(Condition == 0) begin //without branch (8t)
                 PC_plus_ena = 1; //PC 1 증가.
-                if(((IE & IF) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -97,7 +97,7 @@
               T_clk_counter_next = 16;
             end
             16: begin
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -122,7 +122,7 @@
               else if(Condition == 0) begin //without branch (12t)
                 PC_plus_ena = 1; //PC 1 증가.
                 imm16_reg_clear = 1;
-                if(((IE & IF) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -149,7 +149,7 @@
               reg_ad = 10; //PC에 쓸거임
               reg_w_data[15:0] = imm16_reg[15:0];
               imm16_reg_clear = 1;
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -175,7 +175,7 @@
               else if(Condition == 0) begin //without branch (12t)
                 PC_plus_ena = 1; //PC 1 증가.
                 imm16_reg_clear = 1;
-                if(((IE & IF) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -246,7 +246,7 @@
               reg_ad = 10; //PC에 쓸거임
               reg_w_data[15:0] = imm16_reg[15:0];
               imm16_reg_clear = 1;
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -324,7 +324,7 @@
               reg_w_ena = 1;
               reg_ad = 10; //PC에 쓸거임.
               reg_w_data[15:0] = {10'b0, opcode[5:3], 3'b000}; //opcode[5:3]에 8을 곱한(왼쪽으로 3번 쉬프트) 값으로 PC를 바꿔줌.
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -404,7 +404,7 @@
               tem_reg_w_ena = 1; //tem_reg 초기화.
               tem_reg_w_data = 0;
               PC_plus_ena = 1; //PC 1 증가.
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -479,7 +479,7 @@
             end
             12: begin //T4에지
               PC_plus_ena = 1;
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -508,7 +508,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -535,7 +535,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -562,7 +562,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -589,7 +589,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -616,7 +616,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -643,7 +643,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -670,7 +670,7 @@
                   reg_w_data[15:0] = {alu_result_8[7:0], flag_8[3:0], 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -697,7 +697,7 @@
                   reg_w_data[15:0] = {A[7:0], flag_8[3:0], 4'b0000}; //A는 기존값 유지. F만 바뀜.
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -773,7 +773,7 @@
                   T_clk_counter_next = 12;
                 end
                 12: begin //T4에지
-                  if (((IE & IF) != 8'b0) && IME) begin
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -850,7 +850,7 @@
                 end
                 12: begin //T4에지
                   IME_on = 1; //T4에지에서 IME가 1로 바뀜.
-                  if (((IE & IF) != 8'b0) && (IME | IME_on)) begin //이미 IME가 켜져있거나 IME_on신호가 활성화되어 있으면 INTERRUPT핸들러를 실행하게 됨.
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && (IME | IME_on)) begin //이미 IME가 켜져있거나 IME_on신호가 활성화되어 있으면 INTERRUPT핸들러를 실행하게 됨.
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -888,7 +888,7 @@
                   reg_ad = 10; //PC에 쓸거임.
                   reg_w_data[15:0] = imm16_reg[15:0]; //PC에 바로 대입함. JR과는 다름.
                   imm16_reg_clear = 1; //imm16_reg 리셋.
-                  if (((IE & IF) != 8'b0) && IME) begin 
+                  if (((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin 
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -903,7 +903,7 @@
               reg_w_ena = 1;
               reg_ad = 10; //PC에 쓸거임.
               reg_w_data[15:0] = {H, L}; //HL레지스터 값을 즉시 PC에 복사함.
-              if(((IE & IF) != 8'b0) && IME) begin
+              if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                 next_main_state = INTERRUPT;
                 T_clk_counter_next = 1;
               end
@@ -984,7 +984,7 @@
                   reg_ad = 10; //PC에 쓸거임.
                   reg_w_data[15:0] = imm16_reg[15:0];
                   imm16_reg_clear = 1;
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1018,7 +1018,7 @@
                 end
                 4: begin //T4에지
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1057,7 +1057,7 @@
                 8: begin //T4에지
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1096,7 +1096,7 @@
                 12: begin //T4에지
                   imm16_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1132,7 +1132,7 @@
                   reg_ad = 1; //A에 쓸거임.
                   reg_w_data[7:0] = mem_control_r_data;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1173,7 +1173,7 @@
                   reg_w_data[7:0] = mem_control_r_data;
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1214,7 +1214,7 @@
                   reg_w_data[7:0] = mem_control_r_data;
                   imm16_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1271,7 +1271,7 @@
                   reg_w_data_2[7:0] = {1'b0, 1'b0, (({1'b0, SP[3:0]} + {1'b0, imm8_reg[3:0]}) > 5'b01111), ({1'b0, SP[7:0]} + {1'b0, imm8_reg[7:0]} > 9'b011111111), 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1312,7 +1312,7 @@
                   reg_w_data_2[7:0] = {1'b0, 1'b0, (({1'b0, SP[3:0]} + {1'b0, imm8_reg[3:0]}) > 5'b01111), ({1'b0, SP[7:0]} + {1'b0, imm8_reg[7:0]} > 9'b011111111), 4'b0000};
                   imm8_reg_clear = 1;
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1346,7 +1346,7 @@
                   reg_ad = 9; //SP에 쓸거임.
                   reg_w_data[15:0] = {H, L};
                   PC_plus_ena = 1; //PC 1 증가
-                  if(((IE & IF) != 8'b0) && IME) begin
+                  if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                     next_main_state = INTERRUPT;
                     T_clk_counter_next = 1;
                   end
@@ -1366,7 +1366,7 @@
             6'b111011: begin //ei (Enable Interrupts). 주의할점은 다음 명령어가 실행된 후에 IME를 1로 설정한다는 점임. DI와 다르게 즉시 IME가 꺼지지 않음.
               PC_plus_ena = 1; //PC 1 증가.
               if(IME == 1) begin //이미 IME가 1일때는 그냥 nop과 똑같이 처리함.
-                if(((IE & IF) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end

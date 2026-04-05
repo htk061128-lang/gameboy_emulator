@@ -77,6 +77,7 @@ VL_MODULE(Vtop) {
     VL_OUT8(JOY_out,7,0);
     VL_OUT8(LY_out,7,0);
     VL_OUT8(IME_out,0,0);
+    VL_OUT8(cpu_halt_out,0,0);
     VL_OUT16(VRAM_ad,15,0);
     VL_OUT16(WRAM_ad,15,0);
     VL_OUT16(ERAM_ad,14,0);
@@ -113,12 +114,12 @@ VL_MODULE(Vtop) {
         CData/*0:0*/ top__DOT__irq_joypad;
         CData/*0:0*/ top__DOT__irq_LCD;
         CData/*0:0*/ top__DOT__irq_vblank;
+        CData/*0:0*/ top__DOT__cpu_halt;
         CData/*0:0*/ top__DOT__PPU_STAT_w_ena;
         CData/*7:0*/ top__DOT__PPU_STAT_w_data;
         CData/*0:0*/ top__DOT__PPU_LY_w_ena;
         CData/*7:0*/ top__DOT__PPU_LY_w_data;
         CData/*7:0*/ top__DOT__u_CPU__DOT__mem_r_data_valid;
-        CData/*0:0*/ top__DOT__u_CPU__DOT__halt;
         CData/*0:0*/ top__DOT__u_CPU__DOT__IME;
         CData/*0:0*/ top__DOT__u_CPU__DOT__IME_on;
         CData/*0:0*/ top__DOT__u_CPU__DOT__IME_off;

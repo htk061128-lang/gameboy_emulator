@@ -51,7 +51,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -68,7 +68,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[7], 4'b0000}; //blocking 이므로 reg_w_data[7:0]에 결과값이 들어가고 그게 reg_w_data_2에 반영되는 구조라 이렇게 써도 문제없음.
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -126,7 +126,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -143,7 +143,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[0], 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -201,7 +201,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -218,7 +218,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[7], 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -276,7 +276,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -293,7 +293,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[0], 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -351,7 +351,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -368,7 +368,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[7], 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -426,7 +426,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -443,7 +443,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[0], 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -501,7 +501,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -518,7 +518,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, 1'b0, 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -577,7 +577,7 @@
                     tem_reg_w_ena = 1;
                     tem_reg_w_data = 0; //나중에 파형볼때 편하라고 명령어실행이 끝날때 tem_reg를 0으로 초기화 해줌. 굳이 할 필요는 없긴 함.
                     PC_plus_ena = 1;
-                    if(((IF & IE) != 8'b0) && IME) begin
+                    if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                       next_main_state = INTERRUPT;
                       T_clk_counter_next = 1;
                     end
@@ -594,7 +594,7 @@
                 reg_ad_2 = 2; //carry flag를 변화시켜야 하므로 F에 쓸거임.
                 reg_w_data_2[7:0] = {(reg_w_data[7:0] == 0), 1'b0, 1'b0, Operand_r8[0], 4'b0000};
                 PC_plus_ena = 1; //PC 증가신호
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1; //T4에지에서 main_state가 INTERRUPT로 바뀌는 동시에 T_clk_counter도 1로 설정됨.
                 end
@@ -631,7 +631,7 @@
                 reg_ad = 2; //F레지스터만 수정해야 함. flag만 바꿔줌.
                 reg_w_data[7:0] = {(mem_control_r_data[opcode[5:3]] == 0), 1'b0, 1'b1, F[4], 4'b0000};
                 PC_plus_ena = 1; //PC 1 증가
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -646,7 +646,7 @@
             reg_ad = 2; //F만 바꿔주는 명령어임. Operand_r8의 opcode[5:3]번 비트가 1이면 zero flag를 0, 0이면 zero flag를 1로 설정함.
             reg_w_data[7:0] = {(Operand_r8[opcode[5:3]] == 0), 1'b0, 1'b1, F[4], 4'b0000}; //carry flag는 unmodified임.
             PC_plus_ena = 1; //PC 1 증가.
-            if(((IF & IE) != 8'b0) && IME) begin
+            if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
               next_main_state = INTERRUPT;
               T_clk_counter_next = 1;
             end
@@ -697,7 +697,7 @@
               end
               8: begin //T4 에지
                 PC_plus_ena = 1;
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -712,7 +712,7 @@
             reg_ad = Operand_r8_ad; //flag는 바꾸지 않는 명령어임.
             reg_w_data[7:0] = Operand_r8[7:0] & ~(8'b00000001 << opcode[5:3]); //opcode[5:3]이 0이면 0번비트가 0으로 설정 되고, 3이면 3번비트가 0으로 설정됨.
             PC_plus_ena = 1;
-            if(((IF & IE) != 8'b0) && IME) begin
+            if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
               next_main_state = INTERRUPT;
               T_clk_counter_next = 1;
             end
@@ -763,7 +763,7 @@
               end
               8: begin //T4 에지
                 PC_plus_ena = 1;
-                if(((IF & IE) != 8'b0) && IME) begin
+                if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
                   next_main_state = INTERRUPT;
                   T_clk_counter_next = 1;
                 end
@@ -778,7 +778,7 @@
             reg_ad = Operand_r8_ad; //flag는 바꾸지 않는 명령어임.
             reg_w_data[7:0] = Operand_r8 | (8'b00000001 << opcode[5:3]); //opcode[5:3]이 0이면 0번비트가 1로 설정 되고, 3이면 3번비트가 1로 설정됨.
             PC_plus_ena = 1;
-            if(((IF & IE) != 8'b0) && IME) begin
+            if(((IE[4:0] & IF[4:0]) != 5'b0) && IME) begin
               next_main_state = INTERRUPT;
               T_clk_counter_next = 1;
             end

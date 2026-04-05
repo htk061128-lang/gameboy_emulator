@@ -5497,8 +5497,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -5586,8 +5586,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 if ((0x10U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
-                                    if (((0U != (0xe0U 
-                                                 | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                    if (((0U != (0x1fU 
+                                                 & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                     & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -5617,8 +5617,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                             vlTOPp->top__DOT__u_CPU__DOT__imm16_reg_clear = 1U;
                                             if (((0U 
                                                   != 
-                                                  (0xe0U 
-                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  (0x1fU 
+                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -5650,8 +5650,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -5698,8 +5698,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -5783,8 +5783,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                             if (
                                                                 ((0U 
                                                                   != 
-                                                                  (0xe0U 
-                                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                  (0x1fU 
+                                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -5891,8 +5891,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                             if (
                                                                 ((0U 
                                                                   != 
-                                                                  (0xe0U 
-                                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                  (0x1fU 
+                                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6008,8 +6008,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                 if (
                                                                     ((0U 
                                                                       != 
-                                                                      (0xe0U 
-                                                                       | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                      (0x1fU 
+                                                                       & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                           & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6128,8 +6128,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                     if (
                                                                         ((0U 
                                                                           != 
-                                                                          (0xe0U 
-                                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                          (0x1fU 
+                                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6196,8 +6196,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                             if (
                                                                 ((0U 
                                                                   != 
-                                                                  (0xe0U 
-                                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                  (0x1fU 
+                                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6227,8 +6227,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                 if (
                                                                     ((0U 
                                                                       != 
-                                                                      (0xe0U 
-                                                                       | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                      (0x1fU 
+                                                                       & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                           & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6258,8 +6258,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                     if (
                                                                         ((0U 
                                                                           != 
-                                                                          (0xe0U 
-                                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                          (0x1fU 
+                                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6289,8 +6289,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                         if (
                                                                             ((0U 
                                                                               != 
-                                                                              (0xe0U 
-                                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                              (0x1fU 
+                                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6320,8 +6320,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                             if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6351,8 +6351,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6382,8 +6382,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6408,8 +6408,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6565,8 +6565,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6686,8 +6686,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 (0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg))))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -6744,8 +6744,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6769,8 +6769,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                     if (
                                                                         ((0U 
                                                                           != 
-                                                                          (0xe0U 
-                                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                          (0x1fU 
+                                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6892,8 +6892,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -6946,8 +6946,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7004,8 +7004,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7059,8 +7059,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7152,8 +7152,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7210,8 +7210,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7270,8 +7270,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7374,8 +7374,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7430,8 +7430,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7483,8 +7483,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7513,8 +7513,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                                 if (
                                                                                 ((0U 
                                                                                 != 
-                                                                                (0xe0U 
-                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                (0x1fU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7577,8 +7577,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7594,8 +7594,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7630,8 +7630,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7647,8 +7647,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7685,8 +7685,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7702,8 +7702,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7738,8 +7738,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7755,8 +7755,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7795,8 +7795,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7812,8 +7812,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7848,8 +7848,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7865,8 +7865,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7903,8 +7903,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7920,8 +7920,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7956,8 +7956,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7973,8 +7973,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -7991,7 +7991,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
             if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
                 if ((0x76U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
                     vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                    if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                    if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                           & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8029,8 +8029,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                             vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                             if (((0U 
                                                   != 
-                                                  (0xe0U 
-                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  (0x1fU 
+                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8069,8 +8069,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                 if (
                                                     ((0U 
                                                       != 
-                                                      (0xe0U 
-                                                       | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                      (0x1fU 
+                                                       & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                           & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8086,7 +8086,7 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                             }
                         } else {
                             vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                            if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                            if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8106,8 +8106,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8119,8 +8119,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     } else {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8134,8 +8134,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8147,8 +8147,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     } else {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8164,8 +8164,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8177,8 +8177,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     } else {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8192,8 +8192,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8205,8 +8205,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     } else {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8251,8 +8251,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8275,8 +8275,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8351,8 +8351,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8365,8 +8365,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8437,8 +8437,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8451,8 +8451,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                 & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8495,8 +8495,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8536,8 +8536,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8581,8 +8581,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8622,8 +8622,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                     if (
                                                         ((0U 
                                                           != 
-                                                          (0xe0U 
-                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8669,8 +8669,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8694,8 +8694,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                         vlTOPp->top__DOT__u_CPU__DOT__imm16_reg_clear = 1U;
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8721,8 +8721,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                             vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                             if (((0U 
                                                   != 
-                                                  (0xe0U 
-                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  (0x1fU 
+                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8754,8 +8754,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8810,8 +8810,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                                     if (
                                                                         ((0U 
                                                                           != 
-                                                                          (0xe0U 
-                                                                           | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                          (0x1fU 
+                                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                               & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8915,8 +8915,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                                         if (
                                                             ((0U 
                                                               != 
-                                                              (0xe0U 
-                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              (0x1fU 
+                                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                                   & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -8932,8 +8932,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                             vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                             if (((0U 
                                                   != 
-                                                  (0xe0U 
-                                                   | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  (0x1fU 
+                                                   & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
                                                       & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
@@ -9008,8 +9008,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                     } else {
                         if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                             vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                            if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                            if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                 vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9020,8 +9020,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                     }
                 } else {
                     vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                    if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                          & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                    if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                          & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                         vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9083,8 +9083,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                     } else {
                         if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                             vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                            if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                            if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                 vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                 vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9095,8 +9095,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                     }
                 } else {
                     vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                    if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                          & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                    if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                          & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                         vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9128,9 +9128,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9144,8 +9144,8 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                     }
                 } else {
                     vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                    if (((0U != (0xe0U | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                          & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                    if (((0U != (0x1fU & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                          & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                         vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                         vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9216,9 +9216,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9229,9 +9229,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9299,9 +9299,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9312,9 +9312,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9385,9 +9385,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9398,9 +9398,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9468,9 +9468,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9481,9 +9481,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9555,9 +9555,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9568,9 +9568,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9638,9 +9638,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9651,9 +9651,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9723,9 +9723,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9736,9 +9736,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9806,9 +9806,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                     if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
                                         vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
                                         if (((0U != 
-                                              (0xe0U 
-                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                              (0x1fU 
+                                               & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                             vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                             vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;
@@ -9819,9 +9819,9 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                                 }
                             } else {
                                 vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena = 1U;
-                                if (((0U != (0xe0U 
-                                             | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg) 
-                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) 
+                                if (((0U != (0x1fU 
+                                             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
                                     vlTOPp->top__DOT__u_CPU__DOT__next_main_state = 0x11U;
                                     vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next = 1U;

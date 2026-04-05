@@ -34,6 +34,7 @@ void Vtop::_settle__TOP__5(Vtop__Syms* __restrict vlSymsp) {
     // Body
     vlTOPp->IME_out = vlTOPp->top__DOT__u_CPU__DOT__IME;
     vlTOPp->PC_out = vlTOPp->top__DOT__u_CPU__DOT__PC;
+    vlTOPp->cpu_halt_out = vlTOPp->top__DOT__cpu_halt;
     vlTOPp->top__DOT__u_CPU__DOT__IME_off = 0U;
     if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
         if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
