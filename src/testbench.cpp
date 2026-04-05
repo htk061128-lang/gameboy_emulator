@@ -397,8 +397,8 @@ int main(int argc, char **argv)
 
             // 11. 화면에 최종 출력
             SDL_RenderPresent(renderer);
-            printf("pixel display!!!\n");
-            printf("PC: %04X\n", dut->PC_out);
+            //printf("pixel display!!!\n");
+            //printf("PC: %04X\n", dut->PC_out);
             frame_counter++;
 
             while (SDL_PollEvent(&event))
@@ -504,12 +504,12 @@ int main(int argc, char **argv)
         {
             rom.read_data = rom.memory[dut->ROM_ad];
             rom.read_data_ena = 1;
-            if (counter < 1)
+            /*if (counter < 500)
             {
                 printf("read_ROM, ad: %06X\n", dut->ROM_ad); // ROM 읽기 로그 출력.
                 printf("PC: %04X\n", dut->PC_out);
                 counter++;
-            }
+            }*/
         }
         else if (dut->ROM_ena && dut->ROM_w_ena)
         {
@@ -618,6 +618,35 @@ int main(int argc, char **argv)
             printf("Waiting... IME: %d | IE: %02X | IF: %02X\n",
                    dut->IME_out, dut->IE_out, dut->IF_out);
         }
+
+        if(dut->top__DOT__irq_vblank)
+        {
+            printf("vblank request! IE: %02X, IF: %02X, IME: %d\n", dut->IE_out, dut->IF_out, dut->IME_out);
+        }
+
+        if(dut->top__DOT__io_reg_ena && dut->top__DOT__io_reg_ad == 0xFFFF)
+        {
+            printf("CPU, IE write!, sim_time: %d\n", sim_time);
+            nextclk = 1;
+        }
+        if(nextclk)
+        {
+            printf("IE : %02X\n", dut->IE_out);
+            nextclk = 0;
+        }
+
+        if(dut->top__DOT__u_CPU__DOT__halt)
+        {
+            printf("halt!!\n");
+        }
+
+        if(dut->HRAM_ad == 0xFF80 && dut->HRAM_ena)
+        {
+            if(dut->HRAM_w_ena) {
+            printf("CPU FF80 write!!, data: %02X, PC: %04X sim_time: %d\n", dut->HRAM_w_data, dut->PC_out, sim_time);
+            }
+        }
+
 
         /*if (dut->top__DOT__cpu_mem_ena && dut->top__DOT__cpu_mem_ad == 0xFF00)
         {
