@@ -1,2 +1,0 @@
-Vcpu.o: Vcpu.cpp Vcpu.h /usr/share/verilator/include/verilated.h \
- /usr/share/verilator/include/verilatedos.h Vcpu__Syms.h

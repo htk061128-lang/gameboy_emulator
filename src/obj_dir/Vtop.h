@@ -13,8 +13,6 @@
 //==========
 
 class Vtop__Syms;
-class Vtop_VerilatedVcd;
-
 
 //----------
 
@@ -111,7 +109,6 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__io_reg_w_data;
         CData/*7:0*/ top__DOT__io_reg_r_data;
         CData/*7:0*/ top__DOT__irq_clear;
-        CData/*0:0*/ top__DOT__irq_joypad;
         CData/*0:0*/ top__DOT__irq_LCD;
         CData/*0:0*/ top__DOT__irq_vblank;
         CData/*0:0*/ top__DOT__cpu_halt;
@@ -119,7 +116,6 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__PPU_STAT_w_data;
         CData/*0:0*/ top__DOT__PPU_LY_w_ena;
         CData/*7:0*/ top__DOT__PPU_LY_w_data;
-        CData/*7:0*/ top__DOT__u_CPU__DOT__mem_r_data_valid;
         CData/*0:0*/ top__DOT__u_CPU__DOT__IME;
         CData/*0:0*/ top__DOT__u_CPU__DOT__IME_on;
         CData/*0:0*/ top__DOT__u_CPU__DOT__IME_off;
@@ -147,18 +143,17 @@ VL_MODULE(Vtop) {
         CData/*0:0*/ top__DOT__u_CPU__DOT__opcode_valid;
         CData/*0:0*/ top__DOT__u_CPU__DOT__prefix_valid;
         CData/*3:0*/ top__DOT__u_CPU__DOT__my_clk_counter;
-        CData/*0:0*/ top__DOT__u_CPU__DOT__M_cycle_ena;
         CData/*3:0*/ top__DOT__u_CPU__DOT__mem_state;
         CData/*7:0*/ top__DOT__u_CPU__DOT__main_state;
         CData/*7:0*/ top__DOT__u_CPU__DOT__next_main_state;
         CData/*0:0*/ top__DOT__u_CPU__DOT__reg_w_ena;
         CData/*7:0*/ top__DOT__u_CPU__DOT__reg_ad;
         CData/*7:0*/ top__DOT__u_CPU__DOT__reg_ad_2;
-    };
-    struct {
         CData/*0:0*/ top__DOT__u_CPU__DOT__PC_plus_ena;
         CData/*7:0*/ top__DOT__u_CPU__DOT__mem_w_data_reg;
         CData/*0:0*/ top__DOT__u_CPU__DOT__mem_w_ena_reg;
+    };
+    struct {
         CData/*0:0*/ top__DOT__u_CPU__DOT__mem_r_ena_reg;
         CData/*7:0*/ top__DOT__u_CPU__DOT__mem_out_reg;
         CData/*0:0*/ top__DOT__u_CPU__DOT__mem_control_r_ena;
@@ -177,8 +172,6 @@ VL_MODULE(Vtop) {
         CData/*3:0*/ top__DOT__u_CPU__DOT__flag_8;
         CData/*7:0*/ top__DOT__u_CPU__DOT__alu_result_8;
         CData/*4:0*/ top__DOT__u_CPU__DOT__ins00__DOT__tem5;
-        CData/*7:0*/ top__DOT__u_io_register__DOT__DIV;
-        CData/*7:0*/ top__DOT__u_io_register__DOT__TIMA;
         CData/*0:0*/ top__DOT__u_io_register__DOT__DMA_start;
         CData/*0:0*/ top__DOT__u_io_register__DOT__irq_timer_wire;
         CData/*0:0*/ top__DOT__u_io_register__DOT__IF_w_ena;
@@ -207,7 +200,6 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__u_io_register__DOT__ly_r_data;
         CData/*0:0*/ top__DOT__u_io_register__DOT__ly_r_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__ly_w_ena;
-        CData/*0:0*/ top__DOT__u_io_register__DOT__joy_r_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__joy_w_ena;
         CData/*3:0*/ top__DOT__u_io_register__DOT__r_state;
         CData/*3:0*/ top__DOT__u_io_register__DOT__next;
@@ -220,14 +212,14 @@ VL_MODULE(Vtop) {
         CData/*3:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__my_clk_counter;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_cycle_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_cycle_ena;
-    };
-    struct {
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena;
         CData/*0:0*/ top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow;
+    };
+    struct {
         CData/*7:0*/ top__DOT__u_io_register__DOT__inst_TMA__DOT__TMA_reg;
         CData/*7:0*/ top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg;
         CData/*7:0*/ top__DOT__u_io_register__DOT__inst_DMA__DOT__DMA_reg;
@@ -242,7 +234,6 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WY_reg;
         CData/*7:0*/ top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg;
         CData/*7:0*/ top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg;
-        CData/*3:0*/ top__DOT__u_PPU__DOT__clk_counter;
         CData/*4:0*/ top__DOT__u_PPU__DOT__main_state;
         CData/*7:0*/ top__DOT__u_PPU__DOT__line_counter;
         CData/*0:0*/ top__DOT__u_PPU__DOT__mode0_enter;
@@ -264,7 +255,6 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__u_PPU__DOT__win_x;
         CData/*7:0*/ top__DOT__u_PPU__DOT__win_y;
         WData/*511:0*/ top__DOT__u_PPU__DOT__tile_buffer[16];
-        CData/*7:0*/ top__DOT__u_PPU__DOT__tile_buffer_index;
         CData/*7:0*/ top__DOT__u_PPU__DOT__obj_row;
         CData/*7:0*/ top__DOT__u_PPU__DOT__shifted_data;
         CData/*6:0*/ top__DOT__u_Memory_Interface__DOT__bank_mask;
@@ -286,8 +276,6 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_0000_1FFF;
         CData/*4:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_2000_3FFF;
         CData/*1:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_4000_5FFF;
-    };
-    struct {
         CData/*0:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_6000_7FFF;
         CData/*0:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_0000_w_ena;
         CData/*0:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_2000_w_ena;
@@ -296,6 +284,8 @@ VL_MODULE(Vtop) {
         CData/*7:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_0000_w_data;
         CData/*4:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_2000_w_data;
         CData/*1:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_4000_w_data;
+    };
+    struct {
         CData/*0:0*/ top__DOT__u_Memory_Interface__DOT__MBC1_6000_w_data;
         CData/*3:0*/ top__DOT__u_OAM_DMA__DOT__state;
         CData/*7:0*/ top__DOT__u_OAM_DMA__DOT__clk_counter;
@@ -421,7 +411,6 @@ VL_MODULE(Vtop) {
         IData/*31:0*/ __Vdly__top__DOT__u_PPU__DOT__m_clk_counter;
         WData/*255:0*/ __Vdly__top__DOT__u_PPU__DOT__obj_priority[8];
         WData/*255:0*/ __Vdly__top__DOT__u_PPU__DOT__obj_palette[8];
-        CData/*0:0*/ __Vm_traceActivity[4];
     };
     
     // INTERNAL VARIABLES
@@ -438,8 +427,6 @@ VL_MODULE(Vtop) {
     Vtop(const char* name = "TOP");
     /// Destroy the model; called (often implicitly) by application code
     ~Vtop();
-    /// Trace signals in the model; called by application code
-    void trace(VerilatedVcdC* tfp, int levels, int options = 0);
     
     // API METHODS
     /// Evaluate the model.  Application must call when inputs change.
@@ -479,16 +466,6 @@ VL_MODULE(Vtop) {
     static void _sequent__TOP__4(Vtop__Syms* __restrict vlSymsp);
     static void _settle__TOP__5(Vtop__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _settle__TOP__6(Vtop__Syms* __restrict vlSymsp) VL_ATTR_COLD;
-  private:
-    static void traceChgSub0(void* userp, VerilatedVcd* tracep);
-    static void traceChgTop0(void* userp, VerilatedVcd* tracep);
-    static void traceCleanup(void* userp, VerilatedVcd* /*unused*/);
-    static void traceFullSub0(void* userp, VerilatedVcd* tracep) VL_ATTR_COLD;
-    static void traceFullTop0(void* userp, VerilatedVcd* tracep) VL_ATTR_COLD;
-    static void traceInitSub0(void* userp, VerilatedVcd* tracep) VL_ATTR_COLD;
-    static void traceInitTop(void* userp, VerilatedVcd* tracep) VL_ATTR_COLD;
-    void traceRegister(VerilatedVcd* tracep) VL_ATTR_COLD;
-    static void traceInit(void* userp, VerilatedVcd* tracep, uint32_t code) VL_ATTR_COLD;
 } VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 //----------

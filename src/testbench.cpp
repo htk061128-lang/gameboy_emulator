@@ -8,10 +8,10 @@
 #include <verilated_vcd_c.h>
 #include "Vtop.h"
 #include "rom_data.h"
-
 #include <stdint.h>
 
 // verilator -Wall -Wno-fatal --cc --trace --top-module top *.sv --exe testbench.cpp -CFLAGS "$(sdl2-config --cflags)" -LDFLAGS "$(sdl2-config --libs)" --build -j $(nproc) && ./obj_dir/Vtop
+//verilator -Wall -Wno-fatal --cc --top-module top *.sv --exe testbench.cpp -CFLAGS "$(sdl2-config --cflags)" -LDFLAGS "$(sdl2-config --libs)" --build -j $(nproc) && ./obj_dir/Vtop
 void setup_test_rom(uint8_t *memory)
 {
     // [0] 메모리 싹 비우기 (0x00)
@@ -371,6 +371,10 @@ int main(int argc, char **argv)
     {
         rom.memory[i] = game_data[i];
     }
+    /*for (int i = 0; i < 1048576; i++)
+    {
+        rom.memory[i] = game_data2[i];
+    }*/
 
     for (int i = 0; i < 32768; i++)
     {

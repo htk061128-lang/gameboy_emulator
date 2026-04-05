@@ -5,10 +5,6244 @@
 #include "Vtop.h"
 #include "Vtop__Syms.h"
 
-VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop::_sequent__TOP__3\n"); );
+VL_INLINE_OPT void Vtop::_sequent__TOP__2(Vtop__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop::_sequent__TOP__2\n"); );
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Variables
+    IData/*31:0*/ __Vilp;
     // Body
+    if (vlTOPp->reset) {
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+        vlTOPp->top__DOT__cpu_halt = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x100U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP = 0xfffeU;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME = 0U;
+        vlTOPp->__Vdly__top__DOT__irq_clear = 0U;
+        vlTOPp->top__DOT__cpu_mem_ena = 0U;
+        vlTOPp->top__DOT__cpu_mem_w_ena = 0U;
+        vlTOPp->top__DOT__cpu_mem_r_ena = 0U;
+        vlTOPp->top__DOT__u_CPU__DOT__imm8_reg = 0U;
+        vlTOPp->top__DOT__u_CPU__DOT__imm16_reg = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 0U;
+    } else {
+        vlTOPp->top__DOT__cpu_mem_ena = 0U;
+        vlTOPp->top__DOT__cpu_mem_w_ena = 0U;
+        vlTOPp->top__DOT__cpu_mem_r_ena = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+            = vlTOPp->top__DOT__u_CPU__DOT__main_state;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state 
+            = vlTOPp->top__DOT__u_CPU__DOT__mem_state;
+        vlTOPp->__Vdly__top__DOT__irq_clear = 0U;
+        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_out_reg 
+            = vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg;
+        if ((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_state))) {
+            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 0U;
+        } else {
+            if ((1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_state))) {
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 2U;
+            } else {
+                if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_state))) {
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 3U;
+                    vlTOPp->top__DOT__cpu_mem_ad = vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg;
+                    vlTOPp->top__DOT__cpu_mem_w_data 
+                        = vlTOPp->top__DOT__u_CPU__DOT__mem_w_data_reg;
+                    vlTOPp->top__DOT__cpu_mem_ena = 1U;
+                    vlTOPp->top__DOT__cpu_mem_w_ena 
+                        = vlTOPp->top__DOT__u_CPU__DOT__mem_w_ena_reg;
+                    vlTOPp->top__DOT__cpu_mem_r_ena 
+                        = vlTOPp->top__DOT__u_CPU__DOT__mem_r_ena_reg;
+                } else {
+                    if ((3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_state))) {
+                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 4U;
+                    } else {
+                        if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_state))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 0U;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_out_reg 
+                                = vlTOPp->top__DOT__cpu_mem_r_data;
+                        }
+                    }
+                }
+            }
+        }
+        if ((3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter))) {
+            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid 
+                = vlTOPp->top__DOT__u_CPU__DOT__opcode_valid;
+            vlTOPp->top__DOT__cpu_halt = 0U;
+            if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state)) 
+                       | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                      | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                     | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                    | (0x10U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                   | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                  | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                 | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state)))) {
+                if ((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 1U;
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                    vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                        = vlTOPp->top__DOT__u_CPU__DOT__PC;
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 1U;
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                } else {
+                    if ((1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 2U;
+                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                    } else {
+                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 3U;
+                            vlTOPp->top__DOT__u_CPU__DOT__opcode 
+                                = vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                        } else {
+                            if ((3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+                                    = vlTOPp->top__DOT__u_CPU__DOT__next_main_state;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                                    = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+                                if ((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                        = ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                            ? 1U : 
+                                           (1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                                } else {
+                                    if ((0x11U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                    } else {
+                                        if ((((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state)) 
+                                              | (8U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) 
+                                             | (0xcU 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state)))) {
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                        } else {
+                                            if ((0x10U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                                            } else {
+                                                if (
+                                                    (0x12U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                                        = 
+                                                        ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                                          ? 1U
+                                                          : 
+                                                         (1U 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((0x10U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+                                        = vlTOPp->top__DOT__u_CPU__DOT__next_main_state;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                                        = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+                                    if ((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                            = ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                                ? 1U
+                                                : (1U 
+                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                                    } else {
+                                        if ((0x10U 
+                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                                        } else {
+                                            if ((0x11U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 5U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 2U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                                        vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                                            = (0xffffU 
+                                               & ((IData)(1U) 
+                                                  + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 1U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC 
+                                            = (0xffffU 
+                                               & ((IData)(1U) 
+                                                  + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+                                    } else {
+                                        if ((5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 6U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 3U;
+                                        } else {
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 7U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 4U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                                            vlTOPp->top__DOT__u_CPU__DOT__imm8_reg 
+                                                = vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (((((((((7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state)) 
+                           | (8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                          | (9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                         | (0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                        | (0xbU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                       | (0x14U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                      | (0x15U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                     | (0x16U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state)))) {
+                    if ((7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+                            = vlTOPp->top__DOT__u_CPU__DOT__next_main_state;
+                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                            = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+                        if ((0x10U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                        } else {
+                            if ((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                    = ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                        ? 1U : (1U 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                            } else {
+                                if ((0x11U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 9U;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 2U;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                            vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                                = (0xffffU & ((IData)(1U) 
+                                              + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 1U;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC 
+                                = (0xffffU & ((IData)(1U) 
+                                              + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+                        } else {
+                            if ((9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0xaU;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 3U;
+                            } else {
+                                if ((0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0xbU;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 4U;
+                                    vlTOPp->top__DOT__u_CPU__DOT__imm16_reg 
+                                        = ((0xff00U 
+                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__imm16_reg)) 
+                                           | (IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg));
+                                } else {
+                                    if ((0xbU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x14U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 5U;
+                                    } else {
+                                        if ((0x14U 
+                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x15U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 6U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                                                = (0xffffU 
+                                                   & ((IData)(1U) 
+                                                      + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 1U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC 
+                                                = (0xffffU 
+                                                   & ((IData)(1U) 
+                                                      + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+                                        } else {
+                                            if ((0x15U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x16U;
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 7U;
+                                            } else {
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x17U;
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 8U;
+                                                vlTOPp->top__DOT__u_CPU__DOT__imm16_reg 
+                                                    = 
+                                                    ((0xffU 
+                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__imm16_reg)) 
+                                                     | ((IData)(vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg) 
+                                                        << 8U));
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if (((((((((0x17U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state)) 
+                               | (0xcU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                              | (0xdU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                             | (0xeU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                            | (0xfU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                           | (0x13U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                          | (0x11U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) 
+                         | (0x12U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state)))) {
+                        if ((0x17U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+                                = vlTOPp->top__DOT__u_CPU__DOT__next_main_state;
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                                = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+                            if ((0x10U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 1U;
+                            } else {
+                                if ((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                        = ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                            ? 1U : 
+                                           (1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                                } else {
+                                    if ((0x11U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((0xcU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0xdU;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                                vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                                    = vlTOPp->top__DOT__u_CPU__DOT__PC;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 1U;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                            } else {
+                                if ((0xdU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0xeU;
+                                } else {
+                                    if ((0xeU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0xfU;
+                                        vlTOPp->top__DOT__u_CPU__DOT__opcode 
+                                            = vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                        vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 1U;
+                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                    } else {
+                                        if ((0xfU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+                                                = vlTOPp->top__DOT__u_CPU__DOT__next_main_state;
+                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                                                = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+                                            if ((0U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                                    = 
+                                                    ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                                      ? 1U
+                                                      : 
+                                                     (1U 
+                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 0U;
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                                            } else {
+                                                if (
+                                                    (0x13U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                    vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 1U;
+                                                } else {
+                                                    if (
+                                                        (0x11U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                        vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 0U;
+                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if ((0x13U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state 
+                                                    = vlTOPp->top__DOT__u_CPU__DOT__next_main_state;
+                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter 
+                                                    = vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter_next;
+                                                if (
+                                                    (0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME 
+                                                        = 
+                                                        ((IData)(vlTOPp->top__DOT__u_CPU__DOT__EI_pending)
+                                                          ? 1U
+                                                          : 
+                                                         (1U 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)));
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                    vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 0U;
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 0U;
+                                                } else {
+                                                    if (
+                                                        (0x13U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                        vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 1U;
+                                                    } else {
+                                                        if (
+                                                            (0x11U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__next_main_state))) {
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid = 0U;
+                                                            vlTOPp->top__DOT__u_CPU__DOT__prefix_valid = 0U;
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if (
+                                                    (0x11U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                                                    if (
+                                                        ((((((((1U 
+                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                               | (2U 
+                                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                              | (3U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                             | (4U 
+                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                            | (5U 
+                                                               == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                           | (6U 
+                                                              == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                          | (7U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                         | (8U 
+                                                            == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                        if (
+                                                            (1U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 2U;
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IF_reg 
+                                                                = 
+                                                                (0xe0U 
+                                                                 | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg));
+                                                        } else {
+                                                            if (
+                                                                (2U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 3U;
+                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                            } else {
+                                                                if (
+                                                                    (3U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 4U;
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                } else {
+                                                                    if (
+                                                                        (4U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 5U;
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                    } else {
+                                                                        if (
+                                                                            (5U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 6U;
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME = 0U;
+                                                                        } else {
+                                                                            if (
+                                                                                (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 7U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                            } else {
+                                                                                if (
+                                                                                (7U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 8U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                                } else {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 9U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if (
+                                                            ((((((((9U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                   | (0xaU 
+                                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                  | (0xbU 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                 | (0xcU 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                | (0xdU 
+                                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                               | (0xeU 
+                                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                              | (0xfU 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                             | (0x10U 
+                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                            if (
+                                                                (9U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0xaU;
+                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                            } else {
+                                                                if (
+                                                                    (0xaU 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0xbU;
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 1U;
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 0U;
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                                                                        = 
+                                                                        (0xffffU 
+                                                                         & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__SP) 
+                                                                            - (IData)(1U)));
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_w_data_reg 
+                                                                        = 
+                                                                        (0xffU 
+                                                                         & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__PC) 
+                                                                            >> 8U));
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP 
+                                                                        = 
+                                                                        (0xffffU 
+                                                                         & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__SP) 
+                                                                            - (IData)(1U)));
+                                                                } else {
+                                                                    if (
+                                                                        (0xbU 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0xcU;
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                    } else {
+                                                                        if (
+                                                                            (0xcU 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0xdU;
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                        } else {
+                                                                            if (
+                                                                                (0xdU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0xeU;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                            } else {
+                                                                                if (
+                                                                                (0xeU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0xfU;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 1U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 0U;
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                                                                                = 
+                                                                                (0xffffU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__SP) 
+                                                                                - (IData)(1U)));
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_w_data_reg 
+                                                                                = 
+                                                                                (0xffU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC));
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP 
+                                                                                = 
+                                                                                (0xffffU 
+                                                                                & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__SP) 
+                                                                                - (IData)(1U)));
+                                                                                } else {
+                                                                                if (
+                                                                                (0xfU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0x10U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                                } else {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0x11U;
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (0x11U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0x12U;
+                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                if (
+                                                                    (1U 
+                                                                     & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                        & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) {
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x40U;
+                                                                } else {
+                                                                    if (
+                                                                        (1U 
+                                                                         & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                             >> 1U) 
+                                                                            & (0x70U 
+                                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 1U))))) {
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x48U;
+                                                                    } else {
+                                                                        if (
+                                                                            (1U 
+                                                                             & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 2U) 
+                                                                                & (0x38U 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 2U))))) {
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x50U;
+                                                                        } else {
+                                                                            if (
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 3U) 
+                                                                                & (0x1cU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 3U))))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x58U;
+                                                                            } else {
+                                                                                if (
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 4U) 
+                                                                                & (0xeU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 4U))))) {
+                                                                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC = 0x60U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x12U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0x13U;
+                                                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                    if (
+                                                                        (1U 
+                                                                         & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                            & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg)))) {
+                                                                        vlTOPp->__Vdly__top__DOT__irq_clear 
+                                                                            = 
+                                                                            (1U 
+                                                                             | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
+                                                                    } else {
+                                                                        if (
+                                                                            (1U 
+                                                                             & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 1U) 
+                                                                                & (0x70U 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 1U))))) {
+                                                                            vlTOPp->__Vdly__top__DOT__irq_clear 
+                                                                                = 
+                                                                                (2U 
+                                                                                | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
+                                                                        } else {
+                                                                            if (
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 2U) 
+                                                                                & (0x38U 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 2U))))) {
+                                                                                vlTOPp->__Vdly__top__DOT__irq_clear 
+                                                                                = 
+                                                                                (4U 
+                                                                                | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
+                                                                            } else {
+                                                                                if (
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 3U) 
+                                                                                & (0x1cU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 3U))))) {
+                                                                                vlTOPp->__Vdly__top__DOT__irq_clear 
+                                                                                = 
+                                                                                (8U 
+                                                                                | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
+                                                                                } else {
+                                                                                if (
+                                                                                (1U 
+                                                                                & (((IData)(vlTOPp->top__DOT__u_CPU__DOT__IF_reg) 
+                                                                                >> 4U) 
+                                                                                & (0xeU 
+                                                                                | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                                >> 4U))))) {
+                                                                                vlTOPp->__Vdly__top__DOT__irq_clear 
+                                                                                = 
+                                                                                (0x10U 
+                                                                                | (IData)(vlTOPp->__Vdly__top__DOT__irq_clear));
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    if (
+                                                                        (0x13U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0x14U;
+                                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                                    } else {
+                                                                        if (
+                                                                            (0x14U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0U;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    vlTOPp->top__DOT__cpu_halt = 1U;
+                                                    if (
+                                                        ((0U 
+                                                          != 
+                                                          (0x1fU 
+                                                           & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                              & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
+                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                                        vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                                                    } else {
+                                                        if (
+                                                            ((0U 
+                                                              != 
+                                                              (0xe0U 
+                                                               | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                                                  & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)))) 
+                                                             & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)))) {
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0U;
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                                        } else {
+                                                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x12U;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((0x18U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__main_state))) {
+                            if (((0xeU | (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                           & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)) 
+                                          >> 4U)) & (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x11U;
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 1U;
+                            } else {
+                                if ((1U & ((0xeU | 
+                                            (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg) 
+                                              & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg)) 
+                                             >> 4U)) 
+                                           & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME))))) {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0U;
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter = 0U;
+                                } else {
+                                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state = 0x18U;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena) {
+                if ((1U & (~ ((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad)) 
+                                    | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) 
+                                   | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) 
+                                  | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) 
+                                 | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) 
+                                | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) 
+                               | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) 
+                              | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad)))))) {
+                    if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) {
+                        if ((9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP 
+                                = vlTOPp->top__DOT__u_CPU__DOT__reg_w_data;
+                        } else {
+                            if ((0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC 
+                                    = vlTOPp->top__DOT__u_CPU__DOT__reg_w_data;
+                            }
+                        }
+                    }
+                }
+                if ((1U & (~ ((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2)) 
+                                    | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) 
+                                   | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) 
+                                  | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) 
+                                 | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) 
+                                | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) 
+                               | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) 
+                              | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2)))))) {
+                    if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) {
+                        if ((9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) {
+                            vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP 
+                                = vlTOPp->top__DOT__u_CPU__DOT__reg_w_data_2;
+                        } else {
+                            if ((0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2))) {
+                                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC 
+                                    = vlTOPp->top__DOT__u_CPU__DOT__reg_w_data_2;
+                            }
+                        }
+                    }
+                }
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__EI_pending_on) {
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending = 1U;
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__PC_plus_ena) {
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC 
+                    = (0xffffU & ((IData)(1U) + (IData)(vlTOPp->top__DOT__u_CPU__DOT__PC)));
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__IME_on) {
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME = 1U;
+            } else {
+                if (vlTOPp->top__DOT__u_CPU__DOT__IME_off) {
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME = 0U;
+                }
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear) {
+                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg = 0U;
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__imm16_reg_clear) {
+                vlTOPp->top__DOT__u_CPU__DOT__imm16_reg = 0U;
+            }
+            if (vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena) {
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 1U;
+                vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 0U;
+                vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                    = vlTOPp->top__DOT__u_CPU__DOT__mem_control_ad;
+                vlTOPp->top__DOT__u_CPU__DOT__mem_w_data_reg 
+                    = vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_data;
+            } else {
+                if (vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena) {
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state = 1U;
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg = 1U;
+                    vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg = 0U;
+                    vlTOPp->top__DOT__u_CPU__DOT__mem_ad_reg 
+                        = vlTOPp->top__DOT__u_CPU__DOT__mem_control_ad;
+                }
+            }
+        }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data = 0U;
+    } else {
+        if (((((((((0xff40U == (IData)(vlTOPp->top__DOT__io_reg_ad)) 
+                   | (0xff42U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
+                  | (0xff43U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
+                 | (0xff45U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
+                | (0xff47U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
+               | (0xff48U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
+              | (0xff49U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
+             | (0xff4aU == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            if ((0xff40U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                    if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                        vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                            = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg;
+                    }
+                }
+            } else {
+                if ((0xff42U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                    if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                        if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                            vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__SCY_reg;
+                        }
+                    }
+                } else {
+                    if ((0xff43U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                            if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                                vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                    = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__SCX_reg;
+                            }
+                        }
+                    } else {
+                        if ((0xff45U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                            if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                                if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                                    vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                        = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LYC_reg;
+                                }
+                            }
+                        } else {
+                            if ((0xff47U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                                if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                                    if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                                        vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                            = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__BGP_reg;
+                                    }
+                                }
+                            } else {
+                                if ((0xff48U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                                    if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                                        if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                                            vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                                = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__OBP0_reg;
+                                        }
+                                    }
+                                } else {
+                                    if ((0xff49U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                                            if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                                                vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                                    = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__OBP1_reg;
+                                            }
+                                        }
+                                    } else {
+                                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                                            if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                                                vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                                                    = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WY_reg;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((0xff4bU == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
+                if ((1U & (~ (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_w_ena)))) {
+                    if (vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_ena) {
+                        vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data 
+                            = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WX_reg;
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__my_clk_counter 
+        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__my_clk_counter;
+    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_clk_counter 
+        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_clk_counter;
+    vlTOPp->top__DOT__u_CPU__DOT__tem_reg = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__tem_reg;
+    vlTOPp->top__DOT__u_io_register__DOT__inst_DIV__DOT__my_clk_counter 
+        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_DIV__DOT__my_clk_counter;
+    vlTOPp->top__DOT__u_io_register__DOT__inst_DIV__DOT__T_clk_counter 
+        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_DIV__DOT__T_clk_counter;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__state = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__state;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__w_end = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__w_end;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__r_end = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__r_end;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__clk_counter = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__clk_counter;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__real_clk_counter 
+        = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__real_clk_counter;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__tem_reg = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__tem_reg;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__r_ad_reg = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__r_ad_reg;
+    vlTOPp->top__DOT__u_OAM_DMA__DOT__w_ad_reg = vlTOPp->__Vdly__top__DOT__u_OAM_DMA__DOT__w_ad_reg;
+    vlTOPp->top__DOT__u_PPU__DOT__sub_state = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__sub_state;
+    vlTOPp->top__DOT__u_PPU__DOT__sub_counter_1 = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__sub_counter_1;
+    vlTOPp->top__DOT__u_PPU__DOT__sub_counter_3 = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__sub_counter_3;
+    vlTOPp->top__DOT__u_PPU__DOT__obj_ad[0U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_ad[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_ad[1U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_ad[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_ad[2U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_ad[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_ad[3U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_ad[3U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_ad[4U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_ad[4U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_x[0U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_x[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_x[1U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_x[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_x[2U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_x[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_tile_index[0U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_tile_index[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_tile_index[1U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_tile_index[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_tile_index[2U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_tile_index[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_flag[0U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_flag[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_flag[1U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_flag[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_flag[2U] = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_flag[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[1U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[2U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[3U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[3U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[4U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[4U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[5U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[5U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[6U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[6U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[7U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[7U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[8U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[8U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[9U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[9U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0xaU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0xaU];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0xbU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0xbU];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0xcU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0xcU];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0xdU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0xdU];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0xeU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0xeU];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_scanline[0xfU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_scanline[0xfU];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[0U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[1U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[2U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[3U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[3U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[4U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[4U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[5U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[5U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[6U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[6U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_priority[7U] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_priority[7U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[0U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[1U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[2U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[3U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[3U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[4U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[4U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[5U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[5U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[6U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[6U];
+    vlTOPp->top__DOT__u_PPU__DOT__obj_palette[7U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_palette[7U];
+    vlTOPp->top__DOT__u_PPU__DOT__valid_obj_counter 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__valid_obj_counter;
+    __Vilp = 0U;
+    while ((__Vilp <= 0x3fU)) {
+        vlTOPp->top__DOT__u_PPU__DOT__obj_x_buffer[__Vilp] 
+            = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__obj_x_buffer[__Vilp];
+        __Vilp = ((IData)(1U) + __Vilp);
+    }
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[1U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[1U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[2U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[2U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[3U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[3U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[4U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[4U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[5U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[5U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[6U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[6U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[7U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[7U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[8U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[8U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[9U] = 
+        vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[9U];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0xaU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0xaU];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0xbU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0xbU];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0xcU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0xcU];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0xdU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0xdU];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0xeU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0xeU];
+    vlTOPp->top__DOT__u_PPU__DOT__tile_buffer[0xfU] 
+        = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__tile_buffer[0xfU];
+    vlTOPp->top__DOT__u_PPU__DOT__mode3_state = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__mode3_state;
+    vlTOPp->top__DOT__u_PPU__DOT__mode3_counter_1 = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__mode3_counter_1;
+    vlTOPp->top__DOT__u_PPU__DOT__array_index = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__array_index;
+    vlTOPp->top__DOT__u_PPU__DOT__main_state = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__main_state;
+    vlTOPp->top__DOT__u_PPU__DOT__m_clk_counter = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__m_clk_counter;
+    vlTOPp->top__DOT__u_PPU__DOT__line_counter = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__line_counter;
+    vlTOPp->top__DOT__u_PPU__DOT__sub_counter_2 = vlTOPp->__Vdly__top__DOT__u_PPU__DOT__sub_counter_2;
+    vlTOPp->top__DOT__u_CPU__DOT__mem_state = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_state;
+    vlTOPp->top__DOT__u_CPU__DOT__EI_pending = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__EI_pending;
+    vlTOPp->top__DOT__u_CPU__DOT__mem_w_ena_reg = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_w_ena_reg;
+    vlTOPp->top__DOT__u_CPU__DOT__mem_r_ena_reg = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_r_ena_reg;
+    vlTOPp->top__DOT__u_CPU__DOT__IF_reg = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IF_reg;
+    vlTOPp->top__DOT__u_CPU__DOT__my_clk_counter = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__my_clk_counter;
+    vlTOPp->top__DOT__u_CPU__DOT__main_state = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__main_state;
+    vlTOPp->top__DOT__u_CPU__DOT__IME = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__IME;
+    vlTOPp->top__DOT__u_CPU__DOT__mem_out_reg = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__mem_out_reg;
+    vlTOPp->top__DOT__u_CPU__DOT__PC = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__PC;
+    vlTOPp->top__DOT__u_CPU__DOT__SP = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__SP;
+    vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__T_clk_counter;
+    vlTOPp->top__DOT__u_CPU__DOT__opcode_valid = vlTOPp->__Vdly__top__DOT__u_CPU__DOT__opcode_valid;
+    if (vlTOPp->reset) {
+        vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg = 0U;
+    } else {
+        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__tac_w_ena) 
+             & (0xff07U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg 
+                = (7U & (IData)(vlTOPp->top__DOT__io_reg_w_data));
+        }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg = 0U;
+    } else {
+        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__ly_w_ena) 
+             & (0xff44U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            vlTOPp->top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg 
+                = vlTOPp->top__DOT__io_reg_w_data;
+        }
+        if (vlTOPp->top__DOT__PPU_LY_w_ena) {
+            vlTOPp->top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg 
+                = vlTOPp->top__DOT__PPU_LY_w_data;
+        }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg = 0x80U;
+    } else {
+        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__stat_w_ena) 
+             & (0xff41U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg 
+                = ((0x87U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)) 
+                   | (0x78U & (IData)(vlTOPp->top__DOT__io_reg_w_data)));
+            vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg 
+                = (0x80U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg));
+        }
+        if (vlTOPp->top__DOT__PPU_STAT_w_ena) {
+            vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg 
+                = ((0xf8U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)) 
+                   | (7U & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)));
+            vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg 
+                = (0x80U | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg));
+        }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->top__DOT__u_io_register__DOT__DMA_start = 0U;
+    } else {
+        vlTOPp->top__DOT__u_io_register__DOT__DMA_start = 0U;
+        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__dma_w_ena) 
+             & (0xff46U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            vlTOPp->top__DOT__u_io_register__DOT__DMA_start = 1U;
+        }
+        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__dma_r_ena) 
+             & (0xff46U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            vlTOPp->top__DOT__u_io_register__DOT__DMA_start = 0U;
+        }
+    }
+    if (vlTOPp->reset) {
+        vlTOPp->top__DOT__u_io_register__DOT__inst_DMA__DOT__DMA_reg = 0U;
+    } else {
+        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__dma_w_ena) 
+             & (0xff46U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
+            vlTOPp->top__DOT__u_io_register__DOT__inst_DMA__DOT__DMA_reg 
+                = vlTOPp->top__DOT__io_reg_w_data;
+        }
+    }
+    vlTOPp->top__DOT__u_PPU__DOT__obj_row = (0xffU 
+                                             & (((IData)(0x10U) 
+                                                 + (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter)) 
+                                                - (
+                                                   (0x4fU 
+                                                    >= 
+                                                    (0x7fU 
+                                                     & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
+                                                        << 3U)))
+                                                    ? 
+                                                   (((0U 
+                                                      == 
+                                                      (0x1fU 
+                                                       & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
+                                                          << 3U)))
+                                                      ? 0U
+                                                      : 
+                                                     (vlTOPp->top__DOT__u_PPU__DOT__obj_y[
+                                                      ((IData)(1U) 
+                                                       + 
+                                                       (3U 
+                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
+                                                           >> 2U)))] 
+                                                      << 
+                                                      ((IData)(0x20U) 
+                                                       - 
+                                                       (0x1fU 
+                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
+                                                           << 3U))))) 
+                                                    | (vlTOPp->top__DOT__u_PPU__DOT__obj_y[
+                                                       (3U 
+                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
+                                                           >> 2U))] 
+                                                       >> 
+                                                       (0x1fU 
+                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
+                                                           << 3U))))
+                                                    : 0U)));
+    vlTOPp->cpu_halt_out = vlTOPp->top__DOT__cpu_halt;
+    vlTOPp->IME_out = vlTOPp->top__DOT__u_CPU__DOT__IME;
+    vlTOPp->PC_out = vlTOPp->top__DOT__u_CPU__DOT__PC;
+    vlTOPp->top__DOT__u_CPU__DOT__IME_off = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                      >> 5U)) & (0U 
+                                                 == 
+                                                 (7U 
+                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)) 
+                                          & (4U == 
+                                             (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                if ((7U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if ((1U != (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((5U != 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((1U 
+                                                 & (~ 
+                                                    ((((((((6U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0xeU 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x1eU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0x26U 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x2eU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x36U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x3eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                if (
+                                                    (1U 
+                                                     & (~ 
+                                                        ((((((((9U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x19U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (3U 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x29U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0xdU 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x22U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x20U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x2aU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                    if (
+                                                        ((((((((0x32U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x30U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (0x3aU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x28U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0x38U 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x39U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x33U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x3bU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                        if (
+                                                            (0x32U 
+                                                             != 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0x30U 
+                                                                 != 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0x3aU 
+                                                                     != 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0x28U 
+                                                                         != 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (0x38U 
+                                                                             != 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0x39U 
+                                                                                != 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                if (
+                                                                                (0x33U 
+                                                                                == 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__IME_off = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                      >> 5U)) & (0U 
+                                                 == 
+                                                 (7U 
+                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)) 
+                                          & (4U == 
+                                             (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                if ((7U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if ((1U != (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((5U != 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((((
+                                                   (((((6U 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                       | (0xeU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x16U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x1eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                    | (0x26U 
+                                                       == 
+                                                       (0x3fU 
+                                                        & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                   | (0x2eU 
+                                                      == 
+                                                      (0x3fU 
+                                                       & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                  | (0x36U 
+                                                     == 
+                                                     (0x3fU 
+                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                 | (0x3eU 
+                                                    == 
+                                                    (0x3fU 
+                                                     & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                if (
+                                                    (6U 
+                                                     == 
+                                                     (0x3fU 
+                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                    if (
+                                                        (0U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (4U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (
+                                                        (0xeU 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            (0U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (4U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if (
+                                                            (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (4U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (0x1eU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (4U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x26U 
+                                                                     == 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (4U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    if (
+                                                                        (0x2eU 
+                                                                         == 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (0U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        if (
+                                                                            (0x36U 
+                                                                             == 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if (
+                                                    ((((((((9U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0x19U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (3U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x29U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0xdU 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x22U 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x20U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x2aU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                    if (
+                                                        (9U 
+                                                         != 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            (0x19U 
+                                                             != 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (3U 
+                                                                 != 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0x29U 
+                                                                     != 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0xdU 
+                                                                         != 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (0x22U 
+                                                                             != 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0x20U 
+                                                                                == 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (5U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (6U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (7U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (
+                                                        ((((((((0x32U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x30U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (0x3aU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x28U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0x38U 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x39U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x33U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x3bU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                        if (
+                                                            (0x32U 
+                                                             != 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0x30U 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (4U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (5U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (6U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (7U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x3aU 
+                                                                     != 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0x28U 
+                                                                         == 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (1U 
+                                                                             & (~ 
+                                                                                ((((((((0U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                                | (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (5U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (7U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (9U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (0xaU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                                                            if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        if (
+                                                                            (0x38U 
+                                                                             == 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (5U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (6U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (7U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                          >> 6U)))) {
+                if ((4U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((4U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((5U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((6U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (7U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (8U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 1U)))) {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)))) {
+                                if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)))) {
+                                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                            if ((0U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (5U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (6U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (7U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (8U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__imm8_reg_clear = 1U;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__IME_on = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                      >> 5U)) & (0U 
+                                                 == 
+                                                 (7U 
+                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)) 
+                                          & (4U == 
+                                             (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                if ((7U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if ((1U != (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((5U != 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((1U 
+                                                 & (~ 
+                                                    ((((((((6U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0xeU 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x1eU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0x26U 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x2eU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x36U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x3eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                if (
+                                                    ((((((((9U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0x19U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (3U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x29U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0xdU 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x22U 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x20U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x2aU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                    if (
+                                                        (9U 
+                                                         != 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            (0x19U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (1U 
+                                                                 & (~ 
+                                                                    ((((((((0U 
+                                                                            == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                           | (1U 
+                                                                              == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                          | (2U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                         | (3U 
+                                                                            == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                        | (4U 
+                                                                           == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                       | (5U 
+                                                                          == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                      | (6U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                     | (7U 
+                                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                                                if (
+                                                                    (8U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (9U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (0xaU 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__IME_on = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__EI_pending_on = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                      >> 5U)) & (0U 
+                                                 == 
+                                                 (7U 
+                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)) 
+                                          & (4U == 
+                                             (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                if ((7U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if ((1U != (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((5U != 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((1U 
+                                                 & (~ 
+                                                    ((((((((6U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0xeU 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x1eU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0x26U 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x2eU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x36U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x3eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                if (
+                                                    (1U 
+                                                     & (~ 
+                                                        ((((((((9U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x19U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (3U 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x29U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0xdU 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x22U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x20U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x2aU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                    if (
+                                                        ((((((((0x32U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x30U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (0x3aU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x28U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0x38U 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x39U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x33U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x3bU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                        if (
+                                                            (0x32U 
+                                                             != 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0x30U 
+                                                                 != 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0x3aU 
+                                                                     != 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0x28U 
+                                                                         != 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (0x38U 
+                                                                             != 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0x39U 
+                                                                                != 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                if (
+                                                                                (0x33U 
+                                                                                != 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                if (
+                                                                                (1U 
+                                                                                & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)))) {
+                                                                                if (
+                                                                                (1U 
+                                                                                & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__IME)))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__EI_pending_on = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                      >> 5U)) & (0U 
+                                                 == 
+                                                 (7U 
+                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if (((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                     >> 5U)) & (4U 
+                                                == 
+                                                (7U 
+                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (0xbU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (0xcU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (0xdU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (0xeU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((9U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0xaU 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (0xbU 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (0xcU 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (0xdU 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((0xfU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((0x10U 
+                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((0x11U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0x12U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((7U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if (((((((((0U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                               | (1U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                             | (3U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                            | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                           | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((1U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (2U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (3U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (4U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (5U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (6U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((9U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0xaU 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((1U != (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((5U == 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((((
+                                                   (((((0U 
+                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                       | (1U 
+                                                          == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                      | (2U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                     | (3U 
+                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                    | (4U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (5U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (6U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (7U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                if (
+                                                    (0U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (1U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (2U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                        } else {
+                                                            if (
+                                                                (3U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (4U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (5U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (6U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if ((1U 
+                                                 & (~ 
+                                                    ((((((((6U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0xeU 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x1eU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0x26U 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x2eU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x36U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x3eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                if (
+                                                    ((((((((9U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0x19U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (3U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x29U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0xdU 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x22U 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x20U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x2aU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                    if (
+                                                        (9U 
+                                                         != 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            (0x19U 
+                                                             != 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (3U 
+                                                                 != 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0x29U 
+                                                                     != 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0xdU 
+                                                                         == 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            ((((((((0U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                                | (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (9U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (0xaU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (0xbU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                               | (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                              | (0xdU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                             | (0xeU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (9U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xaU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xdU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                (0xfU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x10U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x11U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x12U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        if (
+                                                                            (0x22U 
+                                                                             == 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (1U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (2U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                (0x20U 
+                                                                                == 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (5U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            } else {
+                                                                                if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (9U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xaU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0x76U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((6U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                        if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 3U)))) {
+                            if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((4U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((4U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((5U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((6U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 3U)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)))) {
+                                if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)))) {
+                                    if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                                  >> 4U)))) {
+                                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                            if ((((
+                                                   (((((0U 
+                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                       | (8U 
+                                                          == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                      | (9U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                     | (0xaU 
+                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                    | (0xbU 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (0xcU 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (0xdU 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (0xeU 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                if (
+                                                    (0U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (8U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (9U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (0xaU 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            } else {
+                                                                if (
+                                                                    (0xbU 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (0xcU 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (0xdU 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (vlTOPp->top__DOT__u_CPU__DOT__prefix_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                               | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                              | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                             | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                            | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                           | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                          | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                         | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((3U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((4U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((5U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (6U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                               | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                              | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                             | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                            | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                           | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                          | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                         | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((3U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((4U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((5U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (6U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                          >> 6U)))) {
+                if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if (((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                             >> 5U)) & (0U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                        if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                   | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                  | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                 | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                               | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                              | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                             | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                            if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((3U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((4U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (5U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (6U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if (((((((((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                       | (9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (0xbU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                    | (0xcU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                   | (0xdU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                  | (0xeU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                 | (0xfU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((9U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)) 
+                                          & (4U == 
+                                             (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                if ((7U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if ((1U == (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((((((((
+                                                   (0U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                   | (1U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (2U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (3U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (4U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (5U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (6U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                             | (7U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                            if ((0U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (1U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (2U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                    } else {
+                                                        if (
+                                                            (3U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (4U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (5U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (6U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if ((5U != 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((1U 
+                                                 & (~ 
+                                                    ((((((((6U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0xeU 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x1eU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0x26U 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x2eU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x36U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x3eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                                if (
+                                                    ((((((((9U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0x19U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (3U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x29U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0xdU 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x22U 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x20U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x2aU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                    if (
+                                                        (9U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            ((((((((0U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                   | (1U 
+                                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                  | (2U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                 | (3U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                | (4U 
+                                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                               | (5U 
+                                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                              | (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                             | (7U 
+                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                            if (
+                                                                (0U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (1U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (2U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                    } else {
+                                                                        if (
+                                                                            (3U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (4U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (5U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if (
+                                                            (0x19U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                ((((((((0U 
+                                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                       | (1U 
+                                                                          == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                      | (2U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                     | (3U 
+                                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                    | (4U 
+                                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                   | (5U 
+                                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                  | (6U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                 | (7U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (1U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (2U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                        } else {
+                                                                            if (
+                                                                                (3U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (5U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (
+                                                        ((((((((0x32U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x30U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (0x3aU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x28U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0x38U 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x39U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x33U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x3bU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                        if (
+                                                            (0x32U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (1U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (2U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                    }
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (0x30U 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (4U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (5U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x3aU 
+                                                                     == 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (8U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (9U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xaU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0x76U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((4U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 1U)))) {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (~ (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                            if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (vlTOPp->top__DOT__u_CPU__DOT__prefix_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                               | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                              | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                             | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                            | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                           | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                          | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                         | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                               | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                              | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                             | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                            | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                           | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                          | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                         | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                vlTOPp->top__DOT__u_CPU__DOT__mem_control_r_ena = 1U;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if (((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                             >> 5U)) & (0U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                        if ((1U & (~ ((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                            | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                           | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                            if (((((((((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                       | (9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (0xbU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                    | (0xcU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                   | (0xdU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                  | (0xeU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                 | (0xfU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                } else {
+                                    if ((9U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((0xaU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((0xbU 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0xcU 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if (((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                 >> 5U)) & (2U == (7U 
+                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                            if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((9U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((0xaU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((0xbU 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0xcU 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if (((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                     >> 5U)) & (4U 
+                                                == 
+                                                (7U 
+                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (9U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (0xaU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (0xbU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (0xcU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (0xdU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (0xeU == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((9U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0xaU 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (0xbU 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (0xcU 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (0xdU 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((0xfU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((0x10U 
+                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((0x11U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0x12U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                } else {
+                                                    if (
+                                                        (0x13U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (0x14U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((7U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if (((((((((0U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                               | (1U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (2U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                             | (3U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                            | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                           | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((1U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (2U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (3U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (4U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (5U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (6U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if ((8U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((9U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (0xaU 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                } else {
+                                                    if (
+                                                        (0xbU 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (0xcU 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((1U == (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((((((((
+                                                   (0U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                   | (1U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (2U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (3U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (4U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (5U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (6U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                             | (7U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                            if ((0U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (1U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (2U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                    } else {
+                                                        if (
+                                                            (3U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (4U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (5U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (6U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if ((8U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (9U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (0xaU 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (0xbU 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (0xcU 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if ((5U == 
+                                             (0xfU 
+                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                            if ((((
+                                                   (((((0U 
+                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                       | (1U 
+                                                          == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                      | (2U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                     | (3U 
+                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                    | (4U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (5U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (6U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (7U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                if (
+                                                    (0U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (1U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (2U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                        } else {
+                                                            if (
+                                                                (3U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (4U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (5U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (6U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if ((((
+                                                   (((((6U 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                       | (0xeU 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x16U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x1eU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                    | (0x26U 
+                                                       == 
+                                                       (0x3fU 
+                                                        & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                   | (0x2eU 
+                                                      == 
+                                                      (0x3fU 
+                                                       & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                  | (0x36U 
+                                                     == 
+                                                     (0x3fU 
+                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                 | (0x3eU 
+                                                    == 
+                                                    (0x3fU 
+                                                     & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                if (
+                                                    (6U 
+                                                     == 
+                                                     (0x3fU 
+                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                    if (
+                                                        (0U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (4U 
+                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (
+                                                        (0xeU 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            (0U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (4U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if (
+                                                            (0x16U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (4U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (0x1eU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (4U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x26U 
+                                                                     == 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (4U 
+                                                                             == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    if (
+                                                                        (0x2eU 
+                                                                         == 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (0U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        if (
+                                                                            (0x36U 
+                                                                             == 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if (
+                                                    ((((((((9U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                           | (0x19U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (3U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x29U 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                        | (0xdU 
+                                                           == 
+                                                           (0x3fU 
+                                                            & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                       | (0x22U 
+                                                          == 
+                                                          (0x3fU 
+                                                           & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                      | (0x20U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                     | (0x2aU 
+                                                        == 
+                                                        (0x3fU 
+                                                         & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                    if (
+                                                        (9U 
+                                                         == 
+                                                         (0x3fU 
+                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                        if (
+                                                            ((((((((0U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                   | (1U 
+                                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                  | (2U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                 | (3U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                | (4U 
+                                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                               | (5U 
+                                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                              | (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                             | (7U 
+                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                            if (
+                                                                (0U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (1U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (2U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (3U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (8U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        if (
+                                                            (0x19U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                ((((((((0U 
+                                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                       | (1U 
+                                                                          == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                      | (2U 
+                                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                     | (3U 
+                                                                        == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                    | (4U 
+                                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                   | (5U 
+                                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                  | (6U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                 | (7U 
+                                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (1U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (2U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (3U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (8U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (3U 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (8U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (9U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (0xaU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x29U 
+                                                                     == 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                } else {
+                                                                    if (
+                                                                        (0xdU 
+                                                                         == 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            ((((((((0U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                                | (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (9U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (0xaU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (0xbU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                               | (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                              | (0xdU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                             | (0xeU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (9U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xaU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xdU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                (0xfU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x10U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x11U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x12U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                } else {
+                                                                                if (
+                                                                                (0x13U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0x14U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    if (
+                                                        ((((((((0x32U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) 
+                                                               | (0x30U 
+                                                                  == 
+                                                                  (0x3fU 
+                                                                   & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                              | (0x3aU 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                             | (0x28U 
+                                                                == 
+                                                                (0x3fU 
+                                                                 & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                            | (0x38U 
+                                                               == 
+                                                               (0x3fU 
+                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                           | (0x39U 
+                                                              == 
+                                                              (0x3fU 
+                                                               & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                          | (0x33U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) 
+                                                         | (0x3bU 
+                                                            == 
+                                                            (0x3fU 
+                                                             & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))) {
+                                                        if (
+                                                            (0x32U 
+                                                             == 
+                                                             (0x3fU 
+                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                            if (
+                                                                (0U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (1U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (2U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (3U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (
+                                                                (0x30U 
+                                                                 == 
+                                                                 (0x3fU 
+                                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                if (
+                                                                    (0U 
+                                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    if (
+                                                                        (4U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (5U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (6U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (7U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                if (
+                                                                    (0x3aU 
+                                                                     == 
+                                                                     (0x3fU 
+                                                                      & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                    if (
+                                                                        (0U 
+                                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                        if (
+                                                                            (8U 
+                                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                            if (
+                                                                                (9U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xaU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                } else {
+                                                                    if (
+                                                                        (0x28U 
+                                                                         == 
+                                                                         (0x3fU 
+                                                                          & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                        if (
+                                                                            (1U 
+                                                                             & (~ 
+                                                                                ((((((((0U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                                                | (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (5U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (6U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (7U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (9U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                                                | (0xaU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                                                            if (
+                                                                                (0xbU 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (0xcU 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        if (
+                                                                            (0x38U 
+                                                                             == 
+                                                                             (0x3fU 
+                                                                              & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                            if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (5U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (6U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (7U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (8U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (
+                                                                                (0x39U 
+                                                                                == 
+                                                                                (0x3fU 
+                                                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                                                                if (
+                                                                                (0U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (1U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (2U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (3U 
+                                                                                != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                if (
+                                                                                (4U 
+                                                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    }
+                } else {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0x76U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                        if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((3U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((6U != (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 3U)))) {
+                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                        }
+                    }
+                }
+            } else {
+                if ((4U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                        } else {
+                            if ((6U != (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    }
+                } else {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((3U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (2U 
+                                                         == 
+                                                         (3U 
+                                                          & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                                             >> 4U)))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                    } else {
+                                                        if (
+                                                            (3U 
+                                                             == 
+                                                             (3U 
+                                                              & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                                                 >> 4U)))) {
+                                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((4U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((5U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((6U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (7U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (8U 
+                                                         == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)))) {
+                                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                            if ((0U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (4U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (5U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (6U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (7U 
+                                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                if (
+                                                                    (8U 
+                                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (vlTOPp->top__DOT__u_CPU__DOT__prefix_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((6U != (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                }
+            } else {
+                if ((6U != (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                }
+            }
+        } else {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                  >> 3U)))) {
+                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                            if ((2U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                if ((3U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                    if ((4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                }
+            } else {
+                if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    }
+                } else {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if ((1U & (~ ((((((
+                                                   ((0U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                    | (1U 
+                                                       == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                   | (2U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (3U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (4U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (5U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (6U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (7U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))))) {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                                    }
+                                }
+                            } else {
+                                vlTOPp->top__DOT__u_CPU__DOT__reg_w_ena = 1U;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 0U;
+    if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
+        if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+            if ((0x40U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                if ((0xcbU != (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                      >> 5U)) & (0U 
+                                                 == 
+                                                 (7U 
+                                                  & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                        if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                          >> 5U)) & 
+                                      (2U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                            if ((1U & (~ ((~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 5U)) 
+                                          & (4U == 
+                                             (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))))))) {
+                                if ((7U != (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                    if ((1U == (0xfU 
+                                                & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                        if ((((((((
+                                                   (0U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                                   | (1U 
+                                                      == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                  | (2U 
+                                                     == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                 | (3U 
+                                                    == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                                | (4U 
+                                                   == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                               | (5U 
+                                                  == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                              | (6U 
+                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                             | (7U 
+                                                == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                            if ((0U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (1U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (2U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (3U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (4U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if ((8U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (9U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (0xaU 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (0xbU 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (0xcU 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                          >> 6U)))) {
+                if ((4U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((2U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                                if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 4U)))) {
+                                    if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                                  >> 3U)))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 0U;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((1U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                                              >> 3U)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (vlTOPp->top__DOT__u_CPU__DOT__prefix_valid) {
+        if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                      >> 7U)))) {
+            if ((1U & (~ ((IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode) 
+                          >> 6U)))) {
+                if ((0x20U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if ((0x10U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        if ((8U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        } else {
+                            if ((6U == (7U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode)))) {
+                                if (((((((((0U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)) 
+                                           | (1U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                          | (2U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                         | (3U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                        | (4U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                       | (5U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                      | (6U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) 
+                                     | (7U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter)))) {
+                                    if ((0U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        if ((1U != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                            if ((2U 
+                                                 != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                if (
+                                                    (3U 
+                                                     != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                    if (
+                                                        (4U 
+                                                         != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                        if (
+                                                            (5U 
+                                                             != (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                            if (
+                                                                (6U 
+                                                                 == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                                                vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if ((8U == (IData)(vlTOPp->top__DOT__u_CPU__DOT__T_clk_counter))) {
+                                        vlTOPp->top__DOT__u_CPU__DOT__tem_reg_w_ena = 1U;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     vlTOPp->top__DOT__u_CPU__DOT__reg_ad_2 = 0U;
     if (vlTOPp->top__DOT__u_CPU__DOT__opcode_valid) {
         if ((0x80U & (IData)(vlTOPp->top__DOT__u_CPU__DOT__opcode))) {
@@ -5149,44 +11383,6 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                 = vlTOPp->top__DOT__io_reg_w_data;
         }
     }
-    vlTOPp->top__DOT__u_PPU__DOT__obj_row = (0xffU 
-                                             & (((IData)(0x10U) 
-                                                 + (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter)) 
-                                                - (
-                                                   (0x4fU 
-                                                    >= 
-                                                    (0x7fU 
-                                                     & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
-                                                        << 3U)))
-                                                    ? 
-                                                   (((0U 
-                                                      == 
-                                                      (0x1fU 
-                                                       & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
-                                                          << 3U)))
-                                                      ? 0U
-                                                      : 
-                                                     (vlTOPp->top__DOT__u_PPU__DOT__obj_y[
-                                                      ((IData)(1U) 
-                                                       + 
-                                                       (3U 
-                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
-                                                           >> 2U)))] 
-                                                      << 
-                                                      ((IData)(0x20U) 
-                                                       - 
-                                                       (0x1fU 
-                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
-                                                           << 3U))))) 
-                                                    | (vlTOPp->top__DOT__u_PPU__DOT__obj_y[
-                                                       (3U 
-                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
-                                                           >> 2U))] 
-                                                       >> 
-                                                       (0x1fU 
-                                                        & ((IData)(vlTOPp->top__DOT__u_PPU__DOT__array_index) 
-                                                           << 3U))))
-                                                    : 0U)));
     if (vlTOPp->reset) {
         vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__BGP_reg = 0U;
     } else {
@@ -9833,575 +16029,6 @@ VL_INLINE_OPT void Vtop::_sequent__TOP__3(Vtop__Syms* __restrict vlSymsp) {
                     }
                 }
             }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY = 0xffU;
-        vlTOPp->top__DOT__u_io_register__DOT__irq_joypad = 0U;
-    } else {
-        vlTOPp->top__DOT__u_io_register__DOT__irq_joypad = 0U;
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY 
-            = (0xc0U | (IData)(vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY));
-        if (vlTOPp->top__DOT__u_io_register__DOT__joy_w_ena) {
-            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY 
-                = ((0xcfU & (IData)(vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY)) 
-                   | (0x30U & (IData)(vlTOPp->top__DOT__io_reg_w_data)));
-        }
-        if ((0x20U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY))) {
-            if ((0x10U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY))) {
-                vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY 
-                    = (0xfU | (IData)(vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY));
-            } else {
-                if ((0U != (0xfU & ((~ ((8U & ((~ (IData)(vlTOPp->joypad_down)) 
-                                               << 3U)) 
-                                        | ((4U & ((~ (IData)(vlTOPp->joypad_up)) 
-                                                  << 2U)) 
-                                           | ((2U & 
-                                               ((~ (IData)(vlTOPp->joypad_left)) 
-                                                << 1U)) 
-                                              | (1U 
-                                                 & (~ (IData)(vlTOPp->joypad_right))))))) 
-                                    & (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY))))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__irq_joypad = 1U;
-                }
-                vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY 
-                    = ((0xf0U & (IData)(vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY)) 
-                       | ((8U & ((~ (IData)(vlTOPp->joypad_down)) 
-                                 << 3U)) | ((4U & (
-                                                   (~ (IData)(vlTOPp->joypad_up)) 
-                                                   << 2U)) 
-                                            | ((2U 
-                                                & ((~ (IData)(vlTOPp->joypad_left)) 
-                                                   << 1U)) 
-                                               | (1U 
-                                                  & (~ (IData)(vlTOPp->joypad_right)))))));
-            }
-        } else {
-            if ((0x10U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY))) {
-                if ((0U != (0xfU & ((~ ((8U & ((~ (IData)(vlTOPp->joypad_start)) 
-                                               << 3U)) 
-                                        | ((4U & ((~ (IData)(vlTOPp->joypad_select)) 
-                                                  << 2U)) 
-                                           | ((2U & 
-                                               ((~ (IData)(vlTOPp->joypad_B)) 
-                                                << 1U)) 
-                                              | (1U 
-                                                 & (~ (IData)(vlTOPp->joypad_A))))))) 
-                                    & (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY))))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__irq_joypad = 1U;
-                }
-                vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY 
-                    = ((0xf0U & (IData)(vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY)) 
-                       | ((8U & ((~ (IData)(vlTOPp->joypad_start)) 
-                                 << 3U)) | ((4U & (
-                                                   (~ (IData)(vlTOPp->joypad_select)) 
-                                                   << 2U)) 
-                                            | ((2U 
-                                                & ((~ (IData)(vlTOPp->joypad_B)) 
-                                                   << 1U)) 
-                                               | (1U 
-                                                  & (~ (IData)(vlTOPp->joypad_A)))))));
-            } else {
-                if ((0U != (0xfU & ((~ ((8U & ((~ ((IData)(vlTOPp->joypad_start) 
-                                                   | (IData)(vlTOPp->joypad_down))) 
-                                               << 3U)) 
-                                        | ((4U & ((~ 
-                                                   ((IData)(vlTOPp->joypad_select) 
-                                                    | (IData)(vlTOPp->joypad_up))) 
-                                                  << 2U)) 
-                                           | ((2U & 
-                                               ((~ 
-                                                 ((IData)(vlTOPp->joypad_B) 
-                                                  | (IData)(vlTOPp->joypad_left))) 
-                                                << 1U)) 
-                                              | (1U 
-                                                 & (~ 
-                                                    ((IData)(vlTOPp->joypad_A) 
-                                                     | (IData)(vlTOPp->joypad_right)))))))) 
-                                    & (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY))))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__irq_joypad = 1U;
-                }
-                vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY 
-                    = ((0xf0U & (IData)(vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY)) 
-                       | ((8U & ((~ ((IData)(vlTOPp->joypad_start) 
-                                     | (IData)(vlTOPp->joypad_down))) 
-                                 << 3U)) | ((4U & (
-                                                   (~ 
-                                                    ((IData)(vlTOPp->joypad_select) 
-                                                     | (IData)(vlTOPp->joypad_up))) 
-                                                   << 2U)) 
-                                            | ((2U 
-                                                & ((~ 
-                                                    ((IData)(vlTOPp->joypad_B) 
-                                                     | (IData)(vlTOPp->joypad_left))) 
-                                                   << 1U)) 
-                                               | (1U 
-                                                  & (~ 
-                                                     ((IData)(vlTOPp->joypad_A) 
-                                                      | (IData)(vlTOPp->joypad_right))))))));
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->top__DOT__u_io_register__DOT__tima_r_data = 0U;
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter = 0U;
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter = 0U;
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter = 0U;
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter = 0U;
-        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow = 0U;
-        vlTOPp->top__DOT__u_io_register__DOT__irq_timer_wire = 0U;
-    } else {
-        vlTOPp->top__DOT__u_io_register__DOT__tima_r_data = 0U;
-        vlTOPp->top__DOT__u_io_register__DOT__irq_timer_wire = 0U;
-        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__tima_w_ena) 
-             & (0xff05U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
-            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-                = vlTOPp->top__DOT__io_reg_w_data;
-        }
-        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__tima_r_ena) 
-             & (0xff05U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
-            vlTOPp->top__DOT__u_io_register__DOT__tima_r_data 
-                = vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA;
-        }
-        if (vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_cycle_ena) {
-            if (vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_cycle_ena) {
-                vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow = 0U;
-                if ((3U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter))) {
-                    vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter = 0U;
-                    if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena) 
-                         & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-                            = (0xffU & ((IData)(1U) 
-                                        + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA)));
-                        if ((0xffU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow = 1U;
-                        }
-                    }
-                } else {
-                    if ((3U > (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter 
-                            = (0xffffU & ((IData)(1U) 
-                                          + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter)));
-                    } else {
-                        if ((3U < (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter = 0U;
-                        }
-                    }
-                }
-                if ((0xfU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter))) {
-                    vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter = 0U;
-                    if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena) 
-                         & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-                            = (0xffU & ((IData)(1U) 
-                                        + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA)));
-                        if ((0xffU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow = 1U;
-                        }
-                    }
-                } else {
-                    if ((0xfU > (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter 
-                            = (0xffffU & ((IData)(1U) 
-                                          + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter)));
-                    } else {
-                        if ((0xfU < (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter = 0U;
-                        }
-                    }
-                }
-                if ((0x3fU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter))) {
-                    vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter = 0U;
-                    if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena) 
-                         & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-                            = (0xffU & ((IData)(1U) 
-                                        + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA)));
-                        if ((0xffU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow = 1U;
-                        }
-                    }
-                } else {
-                    if ((0x3fU > (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter 
-                            = (0xffffU & ((IData)(1U) 
-                                          + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter)));
-                    } else {
-                        if ((0x3fU < (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter = 0U;
-                        }
-                    }
-                }
-                if ((0xffU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter))) {
-                    vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter = 0U;
-                    if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena) 
-                         & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-                            = (0xffU & ((IData)(1U) 
-                                        + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA)));
-                        if ((0xffU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow = 1U;
-                        }
-                    }
-                } else {
-                    if ((0xffU > (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter))) {
-                        vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter 
-                            = (0xffffU & ((IData)(1U) 
-                                          + (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter)));
-                    } else {
-                        if ((0xffU < (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter))) {
-                            vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter = 0U;
-                        }
-                    }
-                }
-                if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow) 
-                     & (0U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA)))) {
-                    vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-                        = vlTOPp->top__DOT__u_io_register__DOT__inst_TMA__DOT__TMA_reg;
-                    vlTOPp->top__DOT__u_io_register__DOT__irq_timer_wire = 1U;
-                }
-            }
-        }
-    }
-    vlTOPp->top__DOT__u_PPU__DOT__map_y = (0xffU & 
-                                           ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__SCY_reg) 
-                                            + (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter)));
-    vlTOPp->top__DOT__u_PPU__DOT__win_y = (0xffU & 
-                                           ((IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter) 
-                                            - (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WY_reg)));
-    vlTOPp->top__DOT__u_PPU__DOT__map_x = (0xffU & 
-                                           ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__SCX_reg) 
-                                            + (IData)(vlTOPp->top__DOT__u_PPU__DOT__sub_counter_2)));
-    vlTOPp->top__DOT__u_PPU__DOT__win_x = (0xffU & 
-                                           ((6U >= (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WX_reg))
-                                             ? (((IData)(7U) 
-                                                 + (IData)(vlTOPp->top__DOT__u_PPU__DOT__sub_counter_2)) 
-                                                - (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WX_reg))
-                                             : ((IData)(vlTOPp->top__DOT__u_PPU__DOT__sub_counter_2) 
-                                                - ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WX_reg) 
-                                                   - (IData)(7U)))));
-    vlTOPp->LCDC_out = vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg;
-    vlTOPp->top__DOT__PPU_LY_w_ena = 0U;
-    vlTOPp->top__DOT__PPU_LY_w_data = 0U;
-    vlTOPp->top__DOT__PPU_STAT_w_ena = 0U;
-    vlTOPp->top__DOT__PPU_STAT_w_data = vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg;
-    vlTOPp->top__DOT__irq_vblank = 0U;
-    vlTOPp->top__DOT__irq_LCD = 0U;
-    vlTOPp->top__DOT__u_PPU__DOT__mode0_enter = 0U;
-    vlTOPp->top__DOT__u_PPU__DOT__mode1_enter = 0U;
-    vlTOPp->top__DOT__u_PPU__DOT__mode2_enter = 0U;
-    vlTOPp->top__DOT__u_PPU__DOT__mode3_enter = 0U;
-    if ((0U == (IData)(vlTOPp->top__DOT__u_PPU__DOT__main_state))) {
-        if ((0x80U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg))) {
-            vlTOPp->top__DOT__PPU_LY_w_ena = 1U;
-            vlTOPp->top__DOT__PPU_LY_w_data = 0U;
-            vlTOPp->top__DOT__u_PPU__DOT__mode2_enter = 1U;
-        }
-    } else {
-        if ((1U == (IData)(vlTOPp->top__DOT__u_PPU__DOT__main_state))) {
-            if ((0x13fU == vlTOPp->top__DOT__u_PPU__DOT__m_clk_counter)) {
-                vlTOPp->top__DOT__u_PPU__DOT__mode3_enter = 1U;
-            }
-        } else {
-            if ((2U == (IData)(vlTOPp->top__DOT__u_PPU__DOT__main_state))) {
-                if ((0x2afU == vlTOPp->top__DOT__u_PPU__DOT__m_clk_counter)) {
-                    vlTOPp->top__DOT__u_PPU__DOT__mode0_enter = 1U;
-                }
-                if ((0x5dfU == vlTOPp->top__DOT__u_PPU__DOT__m_clk_counter)) {
-                    if ((0x8fU == (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter))) {
-                        vlTOPp->top__DOT__u_PPU__DOT__mode1_enter = 1U;
-                    } else {
-                        vlTOPp->top__DOT__u_PPU__DOT__mode2_enter = 1U;
-                    }
-                    vlTOPp->top__DOT__PPU_LY_w_ena = 1U;
-                    vlTOPp->top__DOT__PPU_LY_w_data 
-                        = (0xffU & ((IData)(1U) + (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter)));
-                }
-            } else {
-                if ((3U == (IData)(vlTOPp->top__DOT__u_PPU__DOT__main_state))) {
-                    if ((0x80U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LCDC_reg))) {
-                        if ((0x71fU == vlTOPp->top__DOT__u_PPU__DOT__m_clk_counter)) {
-                            if ((0x99U == (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter))) {
-                                vlTOPp->top__DOT__PPU_LY_w_ena = 1U;
-                                vlTOPp->top__DOT__PPU_LY_w_data = 0U;
-                            } else {
-                                vlTOPp->top__DOT__PPU_LY_w_ena = 1U;
-                                vlTOPp->top__DOT__PPU_LY_w_data 
-                                    = (0xffU & ((IData)(1U) 
-                                                + (IData)(vlTOPp->top__DOT__u_PPU__DOT__line_counter)));
-                            }
-                        }
-                    } else {
-                        vlTOPp->top__DOT__PPU_LY_w_ena = 1U;
-                        vlTOPp->top__DOT__PPU_LY_w_data = 0U;
-                    }
-                }
-            }
-        }
-    }
-    if (((IData)(vlTOPp->top__DOT__PPU_LY_w_ena) & 
-         ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LYC_reg) 
-          == (IData)(vlTOPp->top__DOT__PPU_LY_w_data)))) {
-        vlTOPp->top__DOT__PPU_STAT_w_ena = 1U;
-        vlTOPp->top__DOT__PPU_STAT_w_data = (4U | (IData)(vlTOPp->top__DOT__PPU_STAT_w_data));
-        vlTOPp->top__DOT__PPU_STAT_w_data = ((0xfcU 
-                                              & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)) 
-                                             | ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode0_enter)
-                                                 ? 0U
-                                                 : 
-                                                ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode1_enter)
-                                                  ? 1U
-                                                  : 
-                                                 ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode2_enter)
-                                                   ? 2U
-                                                   : 
-                                                  ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode3_enter)
-                                                    ? 3U
-                                                    : 
-                                                   (3U 
-                                                    & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)))))));
-    } else {
-        if (((IData)(vlTOPp->top__DOT__PPU_LY_w_ena) 
-             & ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__LYC_reg) 
-                != (IData)(vlTOPp->top__DOT__PPU_LY_w_data)))) {
-            vlTOPp->top__DOT__PPU_STAT_w_ena = 1U;
-            vlTOPp->top__DOT__PPU_STAT_w_data = (0xfbU 
-                                                 & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data));
-            vlTOPp->top__DOT__PPU_STAT_w_data = ((0xfcU 
-                                                  & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)) 
-                                                 | ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode0_enter)
-                                                     ? 0U
-                                                     : 
-                                                    ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode1_enter)
-                                                      ? 1U
-                                                      : 
-                                                     ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode2_enter)
-                                                       ? 2U
-                                                       : 
-                                                      ((IData)(vlTOPp->top__DOT__u_PPU__DOT__mode3_enter)
-                                                        ? 3U
-                                                        : 
-                                                       (3U 
-                                                        & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)))))));
-        } else {
-            if (vlTOPp->top__DOT__u_PPU__DOT__mode0_enter) {
-                vlTOPp->top__DOT__PPU_STAT_w_ena = 1U;
-                vlTOPp->top__DOT__PPU_STAT_w_data = 
-                    (0xfcU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data));
-                vlTOPp->top__DOT__PPU_STAT_w_data = 
-                    ((0xfbU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)) 
-                     | (4U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)));
-            } else {
-                if (vlTOPp->top__DOT__u_PPU__DOT__mode1_enter) {
-                    vlTOPp->top__DOT__PPU_STAT_w_ena = 1U;
-                    vlTOPp->top__DOT__PPU_STAT_w_data 
-                        = (1U | (0xfcU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)));
-                    vlTOPp->top__DOT__PPU_STAT_w_data 
-                        = ((0xfbU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)) 
-                           | (4U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)));
-                } else {
-                    if (vlTOPp->top__DOT__u_PPU__DOT__mode2_enter) {
-                        vlTOPp->top__DOT__PPU_STAT_w_ena = 1U;
-                        vlTOPp->top__DOT__PPU_STAT_w_data 
-                            = (2U | (0xfcU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)));
-                        vlTOPp->top__DOT__PPU_STAT_w_data 
-                            = ((0xfbU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)) 
-                               | (4U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)));
-                    } else {
-                        if (vlTOPp->top__DOT__u_PPU__DOT__mode3_enter) {
-                            vlTOPp->top__DOT__PPU_STAT_w_ena = 1U;
-                            vlTOPp->top__DOT__PPU_STAT_w_data 
-                                = (3U | (IData)(vlTOPp->top__DOT__PPU_STAT_w_data));
-                            vlTOPp->top__DOT__PPU_STAT_w_data 
-                                = ((0xfbU & (IData)(vlTOPp->top__DOT__PPU_STAT_w_data)) 
-                                   | (4U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg)));
-                        }
-                    }
-                }
-            }
-        }
-    }
-    if (((((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg) 
-           >> 6U) & (IData)(vlTOPp->top__DOT__PPU_STAT_w_ena)) 
-         & ((IData)(vlTOPp->top__DOT__PPU_STAT_w_data) 
-            >> 2U))) {
-        vlTOPp->top__DOT__irq_LCD = 1U;
-    }
-    if ((((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg) 
-          >> 5U) & (IData)(vlTOPp->top__DOT__u_PPU__DOT__mode2_enter))) {
-        vlTOPp->top__DOT__irq_LCD = 1U;
-    }
-    if ((((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg) 
-          >> 4U) & (IData)(vlTOPp->top__DOT__u_PPU__DOT__mode1_enter))) {
-        vlTOPp->top__DOT__irq_LCD = 1U;
-    }
-    if ((((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg) 
-          >> 3U) & (IData)(vlTOPp->top__DOT__u_PPU__DOT__mode0_enter))) {
-        vlTOPp->top__DOT__irq_LCD = 1U;
-    }
-    if (vlTOPp->top__DOT__u_PPU__DOT__mode1_enter) {
-        vlTOPp->top__DOT__irq_vblank = 1U;
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__JOY = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__JOY;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter 
-        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_4_counter;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter 
-        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_16_counter;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter 
-        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_64_counter;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter 
-        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_256_counter;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow 
-        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_overflow;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA 
-        = vlTOPp->__Vdly__top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA;
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_cycle_ena = 0U;
-    if ((3U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__my_clk_counter))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_cycle_ena = 1U;
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_cycle_ena = 0U;
-    if ((3U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__T_clk_counter))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__M_cycle_ena = 1U;
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena = 0U;
-    if ((1U & (0x3eU | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg) 
-                        >> 2U)))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena = 1U;
-    } else {
-        if ((1U & (~ (0x3eU | ((IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg) 
-                               >> 2U))))) {
-            vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_ena = 0U;
-        }
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena = 0U;
-    if ((0U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena = 0U;
-    } else {
-        if ((1U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-            vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena = 1U;
-        } else {
-            if ((2U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena = 0U;
-            } else {
-                if ((3U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_4_ena = 0U;
-                }
-            }
-        }
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena = 0U;
-    if ((0U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena = 0U;
-    } else {
-        if ((1U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-            vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena = 0U;
-        } else {
-            if ((2U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena = 1U;
-            } else {
-                if ((3U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_16_ena = 0U;
-                }
-            }
-        }
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena = 0U;
-    if ((0U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena = 0U;
-    } else {
-        if ((1U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-            vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena = 0U;
-        } else {
-            if ((2U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena = 0U;
-            } else {
-                if ((3U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_64_ena = 1U;
-                }
-            }
-        }
-    }
-    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena = 0U;
-    if ((0U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena = 1U;
-    } else {
-        if ((1U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-            vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena = 0U;
-        } else {
-            if ((2U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena = 0U;
-            } else {
-                if ((3U == (3U & (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_TAC__DOT__TAC_reg)))) {
-                    vlTOPp->top__DOT__u_io_register__DOT__inst_TIMA__DOT__TIMA_M_256_ena = 0U;
-                }
-            }
-        }
-    }
-    vlTOPp->JOY_out = vlTOPp->top__DOT__u_io_register__DOT__JOY;
-    vlTOPp->top__DOT__io_reg_r_data = 0U;
-    if (((((((((0U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state)) 
-               | (1U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) 
-              | (2U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) 
-             | (3U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) 
-            | (4U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) 
-           | (5U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) 
-          | (6U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) 
-         | (7U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state)))) {
-        if ((0U != (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) {
-            vlTOPp->top__DOT__io_reg_r_data = ((1U 
-                                                == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))
-                                                ? (IData)(vlTOPp->top__DOT__u_io_register__DOT__JOY)
-                                                : (
-                                                   (2U 
-                                                    == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))
-                                                    ? (IData)(vlTOPp->top__DOT__u_io_register__DOT__div_r_data)
-                                                    : 
-                                                   ((3U 
-                                                     == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))
-                                                     ? (IData)(vlTOPp->top__DOT__u_io_register__DOT__tima_r_data)
-                                                     : 
-                                                    ((4U 
-                                                      == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))
-                                                      ? (IData)(vlTOPp->top__DOT__u_io_register__DOT__tma_r_data)
-                                                      : 
-                                                     ((5U 
-                                                       == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))
-                                                       ? (IData)(vlTOPp->top__DOT__u_io_register__DOT__tac_r_data)
-                                                       : 
-                                                      ((6U 
-                                                        == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))
-                                                        ? 
-                                                       (0xe0U 
-                                                        | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IF__DOT__IF_reg))
-                                                        : (IData)(vlTOPp->top__DOT__u_io_register__DOT__ppu_io_r_data)))))));
-        }
-    } else {
-        if ((8U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) {
-            vlTOPp->top__DOT__io_reg_r_data = vlTOPp->top__DOT__u_io_register__DOT__dma_r_data;
-        } else {
-            if ((9U == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) {
-                vlTOPp->top__DOT__io_reg_r_data = (0xe0U 
-                                                   | (IData)(vlTOPp->top__DOT__u_io_register__DOT__inst_IE__DOT__IE_reg));
-            } else {
-                if ((0xaU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) {
-                    vlTOPp->top__DOT__io_reg_r_data 
-                        = vlTOPp->top__DOT__u_io_register__DOT__stat_r_data;
-                } else {
-                    if ((0xbU == (IData)(vlTOPp->top__DOT__u_io_register__DOT__r_state))) {
-                        vlTOPp->top__DOT__io_reg_r_data 
-                            = vlTOPp->top__DOT__u_io_register__DOT__ly_r_data;
-                    }
-                }
-            }
-        }
-    }
-    if (vlTOPp->reset) {
-        vlTOPp->top__DOT__u_io_register__DOT__inst_TMA__DOT__TMA_reg = 0U;
-    } else {
-        if (((IData)(vlTOPp->top__DOT__u_io_register__DOT__tma_w_ena) 
-             & (0xff06U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
-            vlTOPp->top__DOT__u_io_register__DOT__inst_TMA__DOT__TMA_reg 
-                = vlTOPp->top__DOT__io_reg_w_data;
         }
     }
 }

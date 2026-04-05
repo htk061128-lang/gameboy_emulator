@@ -6644,35 +6644,6 @@ void Vtop::_settle__TOP__6(Vtop__Syms* __restrict vlSymsp) {
             }
         }
     }
-    vlTOPp->top__DOT__u_io_register__DOT__joy_r_ena = 0U;
-    if (((IData)(vlTOPp->top__DOT__io_reg_ena) & (IData)(vlTOPp->top__DOT__io_reg_r_ena))) {
-        if (((((((((0xff00U == (IData)(vlTOPp->top__DOT__io_reg_ad)) 
-                   | (0xff04U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-                  | (0xff05U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-                 | (0xff06U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-                | (0xff07U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-               | (0xff0fU == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-              | (0xff40U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-             | (0xff41U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
-            if ((0xff00U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
-                vlTOPp->top__DOT__u_io_register__DOT__joy_r_ena = 1U;
-            }
-        }
-    }
-    if (((IData)(vlTOPp->top__DOT__io_reg_ena) & (IData)(vlTOPp->top__DOT__io_reg_w_ena))) {
-        if (((((((((0xff00U == (IData)(vlTOPp->top__DOT__io_reg_ad)) 
-                   | (0xff04U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-                  | (0xff05U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-                 | (0xff06U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-                | (0xff07U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-               | (0xff0fU == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-              | (0xff40U == (IData)(vlTOPp->top__DOT__io_reg_ad))) 
-             | (0xff41U == (IData)(vlTOPp->top__DOT__io_reg_ad)))) {
-            if ((0xff00U == (IData)(vlTOPp->top__DOT__io_reg_ad))) {
-                vlTOPp->top__DOT__u_io_register__DOT__joy_r_ena = 0U;
-            }
-        }
-    }
     vlTOPp->top__DOT__u_io_register__DOT__div_w_ena = 0U;
     if (((IData)(vlTOPp->top__DOT__io_reg_ena) & (IData)(vlTOPp->top__DOT__io_reg_r_ena))) {
         if (((((((((0xff00U == (IData)(vlTOPp->top__DOT__io_reg_ad)) 
@@ -6757,10 +6728,6 @@ void Vtop::_eval_settle(Vtop__Syms* __restrict vlSymsp) {
     Vtop* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlTOPp->_settle__TOP__5(vlSymsp);
-    vlTOPp->__Vm_traceActivity[3U] = 1U;
-    vlTOPp->__Vm_traceActivity[2U] = 1U;
-    vlTOPp->__Vm_traceActivity[1U] = 1U;
-    vlTOPp->__Vm_traceActivity[0U] = 1U;
     vlTOPp->_settle__TOP__6(vlSymsp);
 }
 
@@ -6853,7 +6820,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__io_reg_w_data = VL_RAND_RESET_I(8);
     top__DOT__io_reg_r_data = VL_RAND_RESET_I(8);
     top__DOT__irq_clear = VL_RAND_RESET_I(8);
-    top__DOT__irq_joypad = VL_RAND_RESET_I(1);
     top__DOT__irq_LCD = VL_RAND_RESET_I(1);
     top__DOT__irq_vblank = VL_RAND_RESET_I(1);
     top__DOT__cpu_halt = VL_RAND_RESET_I(1);
@@ -6861,7 +6827,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__PPU_STAT_w_data = VL_RAND_RESET_I(8);
     top__DOT__PPU_LY_w_ena = VL_RAND_RESET_I(1);
     top__DOT__PPU_LY_w_data = VL_RAND_RESET_I(8);
-    top__DOT__u_CPU__DOT__mem_r_data_valid = VL_RAND_RESET_I(8);
     top__DOT__u_CPU__DOT__IME = VL_RAND_RESET_I(1);
     top__DOT__u_CPU__DOT__IME_on = VL_RAND_RESET_I(1);
     top__DOT__u_CPU__DOT__IME_off = VL_RAND_RESET_I(1);
@@ -6895,7 +6860,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__u_CPU__DOT__opcode_valid = VL_RAND_RESET_I(1);
     top__DOT__u_CPU__DOT__prefix_valid = VL_RAND_RESET_I(1);
     top__DOT__u_CPU__DOT__my_clk_counter = VL_RAND_RESET_I(4);
-    top__DOT__u_CPU__DOT__M_cycle_ena = VL_RAND_RESET_I(1);
     top__DOT__u_CPU__DOT__mem_state = VL_RAND_RESET_I(4);
     top__DOT__u_CPU__DOT__main_state = VL_RAND_RESET_I(8);
     top__DOT__u_CPU__DOT__next_main_state = VL_RAND_RESET_I(8);
@@ -6929,8 +6893,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__u_CPU__DOT__alu_result_8 = VL_RAND_RESET_I(8);
     top__DOT__u_CPU__DOT__ins00__DOT__tem9 = VL_RAND_RESET_I(9);
     top__DOT__u_CPU__DOT__ins00__DOT__tem5 = VL_RAND_RESET_I(5);
-    top__DOT__u_io_register__DOT__DIV = VL_RAND_RESET_I(8);
-    top__DOT__u_io_register__DOT__TIMA = VL_RAND_RESET_I(8);
     top__DOT__u_io_register__DOT__DMA_start = VL_RAND_RESET_I(1);
     top__DOT__u_io_register__DOT__irq_timer_wire = VL_RAND_RESET_I(1);
     top__DOT__u_io_register__DOT__IF_w_ena = VL_RAND_RESET_I(1);
@@ -6959,7 +6921,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__u_io_register__DOT__ly_r_data = VL_RAND_RESET_I(8);
     top__DOT__u_io_register__DOT__ly_r_ena = VL_RAND_RESET_I(1);
     top__DOT__u_io_register__DOT__ly_w_ena = VL_RAND_RESET_I(1);
-    top__DOT__u_io_register__DOT__joy_r_ena = VL_RAND_RESET_I(1);
     top__DOT__u_io_register__DOT__joy_w_ena = VL_RAND_RESET_I(1);
     top__DOT__u_io_register__DOT__r_state = VL_RAND_RESET_I(4);
     top__DOT__u_io_register__DOT__next = VL_RAND_RESET_I(4);
@@ -6998,7 +6959,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__u_io_register__DOT__inst_PPU_IO__DOT__WY_reg = VL_RAND_RESET_I(8);
     top__DOT__u_io_register__DOT__inst_STAT__DOT__STAT_reg = VL_RAND_RESET_I(8);
     top__DOT__u_io_register__DOT__inst_LY__DOT__LY_reg = VL_RAND_RESET_I(8);
-    top__DOT__u_PPU__DOT__clk_counter = VL_RAND_RESET_I(4);
     top__DOT__u_PPU__DOT__m_clk_counter = VL_RAND_RESET_I(32);
     top__DOT__u_PPU__DOT__main_state = VL_RAND_RESET_I(5);
     top__DOT__u_PPU__DOT__line_counter = VL_RAND_RESET_I(8);
@@ -7029,7 +6989,6 @@ void Vtop::_ctor_var_reset() {
     top__DOT__u_PPU__DOT__win_x = VL_RAND_RESET_I(8);
     top__DOT__u_PPU__DOT__win_y = VL_RAND_RESET_I(8);
     VL_RAND_RESET_W(512, top__DOT__u_PPU__DOT__tile_buffer);
-    top__DOT__u_PPU__DOT__tile_buffer_index = VL_RAND_RESET_I(8);
     top__DOT__u_PPU__DOT__i = VL_RAND_RESET_I(32);
     top__DOT__u_PPU__DOT__obj_row = VL_RAND_RESET_I(8);
     top__DOT__u_PPU__DOT__shifted_data = VL_RAND_RESET_I(8);
@@ -7143,7 +7102,4 @@ void Vtop::_ctor_var_reset() {
     __Vdly__top__DOT__u_OAM_DMA__DOT__w_ad_reg = VL_RAND_RESET_I(16);
     __Vchglast__TOP__top__DOT__u_CPU__DOT__flag_8 = VL_RAND_RESET_I(4);
     __Vchglast__TOP__top__DOT__u_CPU__DOT__alu_result_8 = VL_RAND_RESET_I(8);
-    { int __Vi0=0; for (; __Vi0<4; ++__Vi0) {
-            __Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
-    }}
 }
