@@ -1,7 +1,10 @@
 # gameboy_emulator
 Verilog HDL로 개발 중인 Game Boy(1989) 에뮬레이터입니다. Verilator를 사용하여 시뮬레이션하며, SDL2 라이브러리를 통해 화면을 출력합니다.
+
 개발기간: 26년 1월 ~ 26년 4월
+
 사용언어: Verilog(CPU, PPU등의 모듈 개발), C++(테스트 벤치 작성)
+
 사용도구: Verilator, SDL2
 # 실행 방법
 github codespace에서 다음 명령어를 입력하여 프로젝트를 빌드하고 시뮬레이터를 실행할 수 있습니다.
